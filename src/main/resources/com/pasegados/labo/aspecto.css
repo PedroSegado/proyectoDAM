@@ -1,0 +1,403 @@
+/* PANTALLA */
+
+.pantalla {
+     -fx-font-family: Digital-7;     
+     -fx-font-size: 29;
+     -fx-text-fill: #ffffff;  
+     -fx-background-color: #333333;     
+ }
+
+
+.labelEspecial {
+    -fx-text-fill: #E4002B;   /*rojo repsol*/ 
+}
+
+.textEspecial {
+    -fx-fill: #E4002B;   /*rojo repsol*/ 
+}
+
+.labelFormulario {
+    -fx-text-fill: white;   
+    -fx-font-weight:bold;
+}
+
+/* Titulos principales de los contenedores */ 
+
+.tituloContenedor {
+    -fx-text-fill: #041E42;  
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* Titulos principales fuera de los contenedores */ 
+
+.tituloFueraContenedor {
+    -fx-text-fill: #E4002B;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* textos de la información de los calibrados */ 
+
+.labelInforme {    
+    -fx-opacity: 0.70;    
+    -fx-font-weight: bold;
+}
+
+.labelInformeSecundaria {    
+    -fx-opacity: 0.50;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+/* BOTON ANALIZAR MUESTRAS */ 
+
+.btnAnalizar {
+    -fx-background-color: #E4002B;
+    -fx-text-fill: white; 
+    -fx-background-radius: 110;
+    -fx-border-color: #062D64; 
+    -fx-border-width: 3;  
+    -fx-border-radius: 110;   
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 5,0,0,10 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 30,0,0,0 );    
+}
+
+.btnAnalizar:hover {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 6,0,0,10 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 40,0,0,0 );        
+}
+
+.btnAnalizar:pressed {
+    -fx-border-width: 4;      
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,10 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 60,0,0,0 );
+}
+
+/* BOTON ANALIZAR PATRON */ 
+
+.btnAnalizarPat {
+    -fx-background-color: #E4002B;
+    -fx-text-fill: white; 
+    -fx-background-radius: 10;
+    -fx-border-color: #062D64; 
+    -fx-border-width: 1;  
+    -fx-border-radius: 7;   
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 4,0,0,10 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );    
+}
+
+.btnAnalizarPat:hover {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 5,0,0,10 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 25,0,0,0 );        
+}
+
+.btnAnalizarPat:pressed {
+    -fx-border-width: 2;      
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 6,0,0,10 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 40,0,0,0 );
+}
+
+/* BOTONES MEDIANOS */ 
+
+.btnMidi {
+    -fx-background-color: #E4002B;
+    -fx-text-fill: white; 
+    -fx-background-radius: 5;
+    -fx-border-color: #062D64; 
+    -fx-border-width: 1;  
+    -fx-border-radius: 3;   
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 3,0,0,5 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 15,0,0,0 );    
+}
+
+.btnMidi:hover {        
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 4,0,0,5 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 22,0,0,0 );      
+}
+
+.btnMidi:pressed {    
+    -fx-border-width: 2;      
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 5,0,0,5 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 30,0,0,0 );
+}
+
+/* BOTONES PEQUEÑOS */ 
+
+.btnMini {
+    -fx-background-color: #E4002B;
+    -fx-text-fill: white; 
+    -fx-background-radius: 5;
+    -fx-border-color: #062D64; 
+    -fx-border-width: 1;  
+    -fx-border-radius: 3;   
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 2,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,0 );    
+}
+
+.btnMini:hover {    
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 3,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 15,0,0,0 );      
+}
+
+.btnMini:pressed {    
+    -fx-border-width: 2;      
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 4,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+}
+
+
+/* BOTONES TECLADO */ 
+
+.btnTeclado {
+    -fx-background-color: transparent;
+    -fx-text-fill: white; 
+    -fx-background-radius: 27;
+    -fx-border-color: #062D64; 
+    -fx-border-width: 0;  
+    -fx-border-radius: 27;   
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 2,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,0 );    
+}
+
+.btnTeclado:hover {    
+    -fx-background-color: lightyellow;
+    -fx-border-width: 0.25;  
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 3,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 15,0,0,0 );      
+}
+
+.btnTeclado:pressed {    
+    -fx-border-width: 0.5;      
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 4,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+}
+
+.btnTecladoTg {
+    -fx-background-color: transparent;
+    -fx-text-fill: white; 
+    -fx-background-radius: 27;
+    -fx-border-color: #062D64; 
+    -fx-border-width: 0;  
+    -fx-border-radius: 27;   
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 2,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,0 );    
+}
+
+.btnTecladoTg:hover {    
+    -fx-background-color: lightyellow;
+    -fx-border-width: 0.25;  
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 3,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 15,0,0,0 );      
+}
+
+.btnTecladoTg:pressed {    
+    -fx-border-width: 0.5;      
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 4,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+}
+
+.btnTecladoTg:selected {
+    -fx-background-color: yellow;
+    -fx-border-width: 0.25;  
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 3,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 15,0,0,0 ); 
+}
+
+
+
+.radios {
+    -fx-text-fill: white; 
+    -fx-font: 16px "Helvetica Neue" ;
+}
+
+
+
+
+.contenedores {
+    -fx-border-color: #E4002B;  
+    -fx-border-radius: 15;
+    -fx-border-width: 5;
+    -fx-background-color: #FFB200;   
+    -fx-background-radius: 17;    
+}
+
+.contenedorSecundario {
+    -fx-border-color: darkgrey;  
+    -fx-border-radius: 5;
+    -fx-border-width: 2;        
+    -fx-background-color: white;   
+    -fx-background-radius: 5;    
+}
+
+.resultados {
+    -fx-border-color: #E4002B;  
+    -fx-border-radius: 15;
+    -fx-border-width: 5;
+    -fx-background-color: #041E42;   
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    
+}
+
+
+.tab {
+    -fx-background-color: #083F8A;
+    -fx-font: 16px "Helvetica Neue" ;
+    -fx-background-radius: 0;  
+    
+}
+
+.tab-label {
+    -fx-text-fill: lightgray;
+    -fx-font-weight: bold; 
+    -fx-padding:0 15 0 15;   
+    
+}
+
+.tab:focused .tab-label {
+    -fx-text-fill: #000;
+   
+}
+
+.tab-header-area {
+    -fx-padding: 3 3 -1 3;
+}
+
+
+.tab-header-background {
+    -fx-background-color: #083F8A;        
+    
+    
+}
+
+.tab-pane {  
+    -fx-tab-min-width:120px;
+    -fx-tab-max-width:150px;    
+    -fx-tab-min-height:40px;
+    -fx-tab-max-height:40px;
+    -fx-background-color: #041E42;           
+}
+
+.root{
+    -fx-background-color: #041E42;           
+}
+
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #041E42; 
+    
+}
+
+.tab:selected .tab-label { 
+    -fx-text-fill: white;
+    -fx-background-color: #041E42;   
+}
+
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;    
+}
+
+
+.table-view .show-hide-columns-button {
+    -fx-background-color: transparent;     
+    -fx-border-radius: 3;      
+    -fx-border-color: white;        
+    -fx-border-insets: 3 1 3 1;     
+}
+
+
+
+
+/* ALTURA CELDAS TABLA RESULTADOS */
+/*.tablaRes .table-row-cell {
+    -fx-cell-size: 22.67px;
+}*/
+
+
+
+.table-view {
+    -fx-base: White;  
+    -fx-control-inner-background: White;
+    -fx-background-color: #E4002B;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    /*-fx-padding: 2.0;*/
+    -fx-border-color: #E4002B; 
+    -fx-border-width: 1;
+    -fx-border-radius: 5;    
+    -fx-background-radius: 5;  
+    
+}
+
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;    
+    
+}
+
+.table-view .arrow {
+   -fx-mark-color: white;    
+}
+   
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35.0;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-radius: 5;
+    -fx-background-color: transparent;
+    -fx-border-color: white;        
+    -fx-border-insets: 3 2 3 2;     
+}
+
+/* CENTRAR TEXTO EN VERTICAL Y HORIZONTAL EN LAS TABLAS */ 
+.table-view .table-column {
+    -fx-alignment: center;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 13px;    
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-opacity: 1.0;    
+}
+
+
+.table-view .table-row-cell:filled {    
+    -fx-font-size: 13px; 
+    
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+    -fx-font-size: 15px; 
+    
+}
+
+
+
+/* OCULTAR BARRA SCROLL INFERIOR */ 
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow, 
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+
+
+
+

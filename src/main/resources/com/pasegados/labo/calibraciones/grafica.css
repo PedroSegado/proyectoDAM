@@ -1,0 +1,30 @@
+/* patrones */
+.default-color1.chart-series-line {
+    -fx-stroke: transparent;
+}
+
+.default-color1.chart-line-symbol { /* hollow circle */
+    -fx-background-color: transparent;    
+    -fx-background-radius: 4px;
+    -fx-padding: 3px;
+    -fx-border-color: #041E42; 
+    -fx-border-width: 2;  
+    -fx-border-radius: 4px; 
+}
+
+/* ecuacion */
+.default-color0.chart-line-symbol {
+    -fx-background-color: transparent;
+}
+
+/* EJES */
+.axis-label {
+    -fx-font-size: 13px;    
+    -fx-font-weight: bold;
+}
+
+#lbEcuacion {
+    -fx-opacity: 0.70;    
+    -fx-font-weight: bold;
+}
+

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="691.0" minWidth="1276.0" prefHeight="691.0" prefWidth="1276.0" stylesheets="@../aspecto.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.configuracion.TabConfiguracionControlador">
+   <children>
+      <GridPane layoutX="66.0" layoutY="33.0" prefHeight="618.0" prefWidth="828.0" styleClass="contenedores" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" percentWidth="28.0" prefWidth="250.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="300.0" percentWidth="50.0" prefWidth="300.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="300.0" percentWidth="22.0" prefWidth="300.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="350.0" prefHeight="350.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane prefHeight="607.0" prefWidth="536.0" styleClass="contenedorSecundario" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="160.0" prefWidth="160.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="120.0" prefWidth="120.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="40.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="40.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="30.0" prefHeight="40.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="50.0" prefHeight="70.0" vgrow="ALWAYS" />
+              </rowConstraints>
+               <children>
+                  <Label styleClass="labelEspecial" text="Puerto Serie:" underline="true">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Bits Por Segundo:" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Bits De Datos:" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Tipo de Paridad:" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Bits De Parada:" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="cbPuerto" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ComboBox>
+                  <ComboBox fx:id="cbBPS" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ComboBox>
+                  <ComboBox fx:id="cbBDD" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ComboBox>
+                  <ComboBox fx:id="cbPAR" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ComboBox>
+                  <ComboBox fx:id="cbBPD" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ComboBox>
+                  <Label styleClass="labelInforme" text="T. entre Pulsaciones (ms):" GridPane.columnSpan="2147483647" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
+                     </tooltip>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Pre-Acondicionam. (ms):" GridPane.columnSpan="2147483647" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="Duración en milisegundos del mensaje de preacondicionamiento del equipo" />
+                     </tooltip>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Acondicionamiento (s):" GridPane.columnSpan="2147483647" GridPane.rowIndex="10">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="Duración en segundos de la cuenta atrás realizada en el acondicionamiento" />
+                     </tooltip>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Previo-Energía (ms):" GridPane.columnSpan="2147483647" GridPane.rowIndex="11">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Ajuste de Energía (s):" GridPane.columnSpan="2147483647" GridPane.rowIndex="12">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Previo-Medida (ms):" GridPane.columnSpan="2147483647" GridPane.rowIndex="13">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="tfPulsaciones" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets left="15.0" right="30.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="tfPreAcond" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="15.0" right="30.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="tfAcond" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                     <GridPane.margin>
+                        <Insets left="15.0" right="30.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="tfPreEnerg" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                     <GridPane.margin>
+                        <Insets left="15.0" right="30.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="tfEner" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                     <GridPane.margin>
+                        <Insets left="15.0" right="30.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="tfPreMed" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                     <GridPane.margin>
+                        <Insets left="15.0" right="30.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="btReiniciar" mnemonicParsing="false" onAction="#cargaConfiguracion" styleClass="btnMini" text="Reiniciar" GridPane.halignment="LEFT" GridPane.rowIndex="14" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="40.0" />
+                     </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="Recupera la útlima configuración guardada" />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="btGuardar" mnemonicParsing="false" onAction="#guardaConfig" styleClass="btnMini" text="Guardar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" right="40.0" />
+                     </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="Guarda la configuración actual mostrada en pantalla en la base de datos" />
+                     </tooltip>
+                  </Button>
+                  <Label styleClass="labelEspecial" text="Otros parámetros:" underline="true" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <Label styleClass="labelInforme" text="Puerto Seleccionado:" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane styleClass="contenedorSecundario" GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="40.0" prefHeight="60.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </GridPane.margin>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textEspecial" text="CONFIGURACION DEL LABX-3500" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="arrow" text="Relativa al puerto COM:" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 2 &quot;Otras Funciones&quot;" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 3 &quot;Utilidades&quot;" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 4 &quot;Cambiar página&quot; dos veces hasta llegar a ver la opción &quot;Configurar RS232&quot;." GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 2 para ver la configuración del puerto 2 (9 pines) que es el que se va a usar." GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Tomar nota de la configuración del puerto, pulsando ENTER varias veces para ver todos" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="los parámetros (Bits Por Segundo, Bits de Datos, Tipo de Paridad y Bits De Parada)" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="arrow" text="Relativa al envío y recepción de datos:" GridPane.rowIndex="13">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 1 para acceder al menú &quot;Configurar RS232&quot;" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Configurar el apartado &quot;Puerto Serie&quot; a la izquierda de esta pantalla con estos datos y" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="en &quot;Puerto Seleccionado&quot; escoger al que hemos conectado el cable en el PC." GridPane.rowIndex="10">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 2 &quot;Otras Funciones&quot;" GridPane.rowIndex="14">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 3 &quot;Utilidades&quot;" GridPane.rowIndex="15">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 4 &quot;Cambiar página&quot; tres veces hasta llegar a ver la opción &quot;Conexiones&quot;" GridPane.rowIndex="16">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text=" " GridPane.rowIndex="17" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 1 para acceder al menú &quot;Conexiones&quot;" GridPane.rowIndex="17">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 3 para acceder al menú &quot;Especial&quot;" GridPane.rowIndex="18">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 1&quot;Key&quot; y asegurarse que solo queda marcada la opción &quot;Port 2&quot;" GridPane.rowIndex="19">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 2 &quot;LCD&quot; y asegurarse que NO están marcados ni &quot;Port 1&quot; ni &quot;Port 2&quot;" GridPane.rowIndex="20">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 3&quot;Printer&quot; y asegurarse que solo queda marcada la opción &quot;Port 2&quot;" GridPane.rowIndex="21">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 4 &quot;Graphs&quot; y asegurarse que NO están marcados ni &quot;Port 1&quot; ni &quot;Port 2&quot;" GridPane.rowIndex="22">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 5 &quot;Exports&quot; y asegurarse que solo queda marcada la opción &quot;Port 2&quot;" GridPane.rowIndex="23">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInformeSecundaria" text="(Por defecto: BPS-2400, BDD-8,Paridad-Ninguna, BDP-1))" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="BOTTOM" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </GridPane.margin>
+               <children>
+                  <GridPane styleClass="contenedorSecundario" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="160.0" prefWidth="160.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="10.0" prefWidth="40.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="40.0" prefHeight="60.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="labelEspecial" text="Base de Datos:" underline="true" GridPane.columnSpan="2147483647">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Button fx:id="btNuevaBBDD" mnemonicParsing="false" onAction="#crearNuevaBBDD" text="BBDD" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label styleClass="labelInforme" text="Crear vacía" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
+                           </tooltip>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label styleClass="labelInforme" text="Nueva (copiando patrones)" GridPane.rowIndex="2">
+                           <tooltip>
+                              <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
+                           </tooltip>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label styleClass="labelInforme" text="Nueva (copiando pat. y calib.)" GridPane.rowIndex="3">
+                           <tooltip>
+                              <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
+                           </tooltip>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label styleClass="labelInforme" text="Crear Nueva" GridPane.rowIndex="4">
+                           <tooltip>
+                              <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
+                           </tooltip>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane maxHeight="270.0" minHeight="210.0" prefHeight="210.0" prefWidth="225.0" styleClass="contenedorSecundario" GridPane.valignment="TOP">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="160.0" prefWidth="160.0" />
+                      <ColumnConstraints hgrow="NEVER" maxWidth="136.5" minWidth="10.0" prefWidth="59.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="50.0" prefHeight="60.0" vgrow="NEVER" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label styleClass="labelEspecial" text="Ajustes del Equipo:" GridPane.columnSpan="2147483647">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <ListView fx:id="lvAjustes" prefHeight="160.0" prefWidth="160.0" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="20.0" left="20.0" />
+                           </GridPane.margin>
+                        </ListView>
+                        <Button fx:id="btAnadirAjsute" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#nuevoAjuste" prefHeight="32.0" prefWidth="32.0" text="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets top="5.0" />
+                           </GridPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0">
+                                 <image>
+                                    <Image url="@anadir.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btModificarAjsute" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#modificarAjuste" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="20.0" />
+                           </GridPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-6.0" translateY="-1.0">
+                                 <image>
+                                    <Image url="@editar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btEliminarAjsute" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#eliminarAjuste" prefHeight="32.0" prefWidth="32.0" text="3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="25.0" />
+                           </GridPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0">
+                                 <image>
+                                    <Image url="@eliminar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="691.0" minWidth="1276.0" prefHeight="691.0" prefWidth="1276.0" stylesheets="@../aspecto.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.utilidades.TabUtilidadesControlador">
+   <children>
+      <GridPane layoutX="66.0" layoutY="33.0" styleClass="contenedores" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="602.0" prefWidth="602.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="602.0" prefWidth="602.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="350.0" prefHeight="350.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="150.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="72.0" minWidth="72.0" prefWidth="72.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="76.0" minWidth="76.0" prefWidth="76.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="76.0" minWidth="76.0" prefWidth="76.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="72.0" minWidth="72.0" prefWidth="72.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="150.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="236.0" prefHeight="236.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="65.0" prefHeight="65.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="65.0" prefHeight="65.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="65.0" prefHeight="65.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="65.0" prefHeight="65.0" vgrow="NEVER" />
+                  <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="65.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="442.0" fitWidth="577.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,8), 30, 0, 0,0);;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     
+                     <GridPane.margin>
+                        <Insets left="70.0" top="-156.0" />
+                     </GridPane.margin>
+                     <image>
+                        <Image url="@teclas.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btEscape" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaEscape" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="10.0" top="6.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt7" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaA7B" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt8" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaC8D" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="2.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt9" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaE9F" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="7.0" top="6.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btYes" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaGYesH" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="3.0" top="6.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt4" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaI4J" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt5" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaK5L" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="2.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt6" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaM6N" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="6.0" top="6.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btNo" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaONoP" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="2.0" top="6.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btImprimir" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="9.0" top="6.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt0" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaQ0R" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets right="4.0" top="4.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt1" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaS1T" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="2.0" right="8.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt2" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaU2V" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="4.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="bt3" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaW3X" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="7.0" top="6.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btDel" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaYDelZ" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="2.0" top="7.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btSpace" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaIgualEspacioMas" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets bottom="1.0" right="6.0" top="2.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btPunto" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarIzqPuntoDcha" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="1.0" top="3.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btEnter" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarMenosEntPorc" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="5.0" top="4.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <TextField fx:id="tfPantalla" maxHeight="53.0" maxWidth="425.0" minHeight="53.0" minWidth="425.0" prefHeight="53.0" prefWidth="425.0" styleClass="pantalla" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets bottom="33.0" left="1.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+                  <ToggleButton fx:id="btArriba" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTecladoTg" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="especial" />
+                     </toggleGroup>
+                     <GridPane.margin>
+                        <Insets right="3.0" top="5.0" />
+                     </GridPane.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="btAbajo" maxHeight="52.0" maxWidth="52.0" minHeight="52.0" minWidth="52.0" mnemonicParsing="false" opacity="0.4" prefHeight="52.0" prefWidth="52.0" styleClass="btnTecladoTg" toggleGroup="$especial" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets right="2.0" top="8.0" />
+                     </GridPane.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="btSecundaria" maxHeight="52.0" maxWidth="52.0" minHeight="52.0" minWidth="52.0" mnemonicParsing="false" opacity="0.4" prefHeight="52.0" prefWidth="52.0" styleClass="btnTecladoTg" toggleGroup="$especial" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets left="2.0" top="4.0" />
+                     </GridPane.margin>
+                  </ToggleButton>
+                  <Label style="-fx-text-fill: white;" text="TECLADO VIRTUAL" underline="true" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets top="15.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="NEVER" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+                <RowConstraints minHeight="370.0" prefHeight="370.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <TextArea fx:id="taDatos" editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="contenedorSecundario" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="60.0" right="60.0" />
+                     </GridPane.margin>
+                  </TextArea>
+                  <Label style="-fx-text-fill: white;" text="DATOS RECIBIDOS" underline="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="15.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="btLimpiar" mnemonicParsing="false" onAction="#limpiarTextArea" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Limpiar" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="30.0" left="70.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btGuardar" mnemonicParsing="false" onAction="#guardarTextArea" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Guardar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="30.0" right="70.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btCopiar" mnemonicParsing="false" onAction="#copiarTextArea" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Copiar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="30.0" right="60.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label text="Activar lectura continua:" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="60.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="rbSi" mnemonicParsing="false" onAction="#abrirPuerto" text="Si" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="lecturaContinua" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNo" mnemonicParsing="false" onAction="#cerrarPuerto" selected="true" text="No" toggleGroup="$lecturaContinua" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="70.0" />
+                     </GridPane.margin>
+                  </RadioButton>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

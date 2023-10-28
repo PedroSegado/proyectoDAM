@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="691.0" minWidth="1276.0" prefHeight="691.0" prefWidth="1276.0" stylesheets="@../aspecto.css" xmlns="http://javafx.com/javafx/17.0.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.analisis.TabAnalisisControlador">
+   <children>
+      <GridPane layoutX="37.0" layoutY="38.0" maxHeight="265.0" minHeight="265.0" minWidth="965.0" prefHeight="265.0" prefWidth="965.0" styleClass="contenedores" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="20.0" prefWidth="20.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="240.0" minWidth="190.0" prefWidth="190.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="320.0" prefWidth="320.0" />
+          <ColumnConstraints hgrow="NEVER" maxWidth="390.0" minWidth="390.0" prefWidth="390.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="20.0" prefWidth="20.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="85.0" minHeight="85.0" prefHeight="85.0" vgrow="NEVER" />
+          <RowConstraints minHeight="85.0" prefHeight="85.0" vgrow="NEVER" />
+          <RowConstraints minHeight="85.0" prefHeight="85.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <Label styleClass="tituloContenedor" text="Nº de muestra:" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label styleClass="tituloContenedor" text="Identificación:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label styleClass="tituloContenedor" text="Calibrado:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
+            </Label>
+            <ComboBox fx:id="cbMetodo" maxWidth="240.0" minHeight="44.0" minWidth="190.0" prefHeight="44.0" prefWidth="190.0" promptText="Seleccionar" style="-fx-font-size: 20;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin></ComboBox>
+            <TextField fx:id="tfIdentificacion" alignment="CENTER" minHeight="44.0" minWidth="190.0" prefHeight="44.0" prefWidth="190.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfMuestra" alignment="CENTER" minHeight="44.0" minWidth="190.0" prefHeight="44.0" prefWidth="190.0" GridPane.columnIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button fx:id="btAnalizarMuestra" maxHeight="200.0" maxWidth="400.0" minHeight="200.0" minWidth="380.0" mnemonicParsing="false" onAction="#analizaMuestra" prefHeight="200.0" prefWidth="400.0" styleClass="btnAnalizar" text="Analizar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="70.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="234.0" fitWidth="299.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@oxford.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <GridPane layoutX="82.0" layoutY="332.0" maxHeight="374.0" maxWidth="1187.0" minHeight="374.0" minWidth="1187.0" prefHeight="374.0" prefWidth="1187.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="330.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="NEVER" maxWidth="775.0" minWidth="775.0" prefWidth="755.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="200.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="90.0" prefHeight="90.0" valignment="CENTER" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" valignment="CENTER" vgrow="NEVER" />
+          <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" styleClass="labelEspecial" text="RESULTADO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="System Bold" size="72.0" />
+               </font>
+               <padding>
+                  <Insets bottom="-10.0" top="-10.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="tfResultadoMuestra" alignment="CENTER" editable="false" maxHeight="140.0" maxWidth="740.0" minHeight="140.0" minWidth="740.0" prefHeight="140.0" prefWidth="740.0" styleClass="resultados" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <font>
+                  <Font name="System Bold" size="126.0" />
+               </font>
+               <padding>
+                  <Insets bottom="-30.0" left="-30.0" right="-30.0" top="-30.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="tfCuentasMuestra" alignment="CENTER" editable="false" maxHeight="50.0" maxWidth="140.0" minHeight="50.0" minWidth="140.0" prefHeight="50.0" prefWidth="140.0" styleClass="resultados" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Label styleClass="labelEspecial" text="CUENTAS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="ivIzquierda" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@rx.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ivDerecha" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@rx.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

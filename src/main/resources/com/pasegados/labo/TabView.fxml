@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="733.0" minWidth="1280.0" prefHeight="733.0" prefWidth="1280.0" style="-fx-border-color: white;" stylesheets="@aspecto.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.TabViewControlador">
+    <children>
+        <TabPane minHeight="733.0" minWidth="1280.0" prefHeight="733.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="40.0" tabMaxWidth="400.0" tabMinHeight="20.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab fx:id="tabAnalisis" text="Análisis">
+                    <fx:include fx:id="TabAnalisis" source="analisis/TabAnalisis.fxml" />
+                </Tab>
+                <Tab fx:id="tabResultados" text="Resultados">
+                    <fx:include fx:id="TabResultados" source="resultados/TabResultados.fxml" />
+                </Tab>
+                <Tab fx:id="tabCalibraciones" text="Calibraciones">
+                    <fx:include fx:id="TabCalibraciones" source="calibraciones/TabCalibraciones.fxml" />
+                </Tab>       
+                <Tab fx:id="tabUtilidades" text="Utilidades">
+                    <fx:include fx:id="TabUtilidades" source="utilidades/TabUtilidades.fxml" />
+                </Tab>     
+                <Tab fx:id="tabConfiguracion" text="Configuración">
+                    <fx:include fx:id="TabConfiguracion" source="configuracion/TabConfiguracion.fxml" />
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>   
+</AnchorPane>

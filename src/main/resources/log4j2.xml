@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">               
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} (%M): \n %msg%n \n"/>
+        </Console>
+        <!---Para Main-->
+        <File name="FileMain" fileName="logs/principal-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} (%M): \n %msg%n \n"/>
+        </File>
+        <!---Para TabViewControlador-->
+        <File name="FileTabViewControlador" fileName="logs/principal-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} (%M): \n %msg%n \n"/>
+        </File>
+        <!---Para TabAnalisisControlador-->
+        <File name="FileTabAnalisisControlador" fileName="logs/analisis-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} (%M): \n %msg%n \n"/>
+        </File>
+        <!---Para TabResultadosControlador-->
+        <File name="FileTabResultadosControlador" fileName="logs/resultados-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} (%M): \n %msg%n \n"/>
+        </File>
+        <!---Para TabCalibracionesControlador-->
+        <File name="FileTabCalibracionesControlador" fileName="logs/calibraciones-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} (%M): \n %msg%n \n"/>
+        </File>
+        <!---Para TabUtilidadesControlador-->
+        <File name="FileTabUtilidadesControlador" fileName="logs/utilidades-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} (%M): \n %msg%n \n"/>
+        </File>
+        <!---Para TabConfiguracionControlador-->
+        <File name="FileTabConfiguracionControlador" fileName="logs/configuracion-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} (%M): \n %msg%n \n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender" />  
+                      
+        </Root>
+        <Logger name="com.pasegados.labo.App" level="debug" additivity="false">
+            <AppenderRef ref="FileMain" />
+        </Logger>
+        <Logger name="com.pasegados.labo.TabViewControlador" level="debug" additivity="false">
+            <AppenderRef ref="FileTabViewControlador" />
+        </Logger>
+        <!---Para TabAnalisisControlador-->
+        <Logger name="com.pasegados.labo.analisis.TabAnalisisControlador" level="debug" additivity="false">
+            <AppenderRef ref="FileTabAnalisisControlador" />
+        </Logger>
+        <!---Para TabResultadosControlador-->
+        <Logger name="com.pasegados.labo.resultados.TabResultadosControlador" level="debug" additivity="false">
+            <AppenderRef ref="FileTabResultadosControlador" />
+        </Logger>
+        <!---Para TabCalibracionesControlador-->
+        <Logger name="com.pasegados.labo.calibraciones.TabCalibracionesControlador" level="debug" additivity="false">
+            <AppenderRef ref="FileTabCalibracionesControlador" />
+        </Logger>
+        <!---Para TabUtilidadesControlador-->
+        <Logger name="com.pasegados.labo.utilidades.TabUtilidadesControlador" level="debug" additivity="false">
+            <AppenderRef ref="FileTabUtilidadesControlador" />
+        </Logger>
+        <!---Para TabConfiguracionControlador-->
+        <Logger name="com.pasegados.labo.configuracion.TabConfiguracionControlador" level="debug" additivity="false">
+            <AppenderRef ref="FileTabConfiguracionControlador" />
+        </Logger>
+    </Loggers>
+</Configuration>
