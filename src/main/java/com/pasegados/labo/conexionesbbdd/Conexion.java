@@ -1,10 +1,13 @@
 package com.pasegados.labo.conexionesbbdd;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 /**
  * Esta clase representa la conexión principal a la BBDD, con un conector de tipo HSQLDB, que genera y conecta a una
@@ -59,6 +62,13 @@ public class Conexion implements Cloneable {
      */
     public boolean isCerrado() throws SQLException{
         return con.isClosed();
+    }
+    
+    public void cerrarBase() throws SQLException{
+        Statement statement = con.createStatement();
+        statement.execute("SHUTDOWN");
+        statement.close();
+
     }
     
     /**
@@ -201,5 +211,22 @@ public class Conexion implements Cloneable {
         }
         // Borra el directorio
         directorioBaseDeDatos.delete();    
+    }
+    
+    public void copiaSeguridadBBDD() throws IOException{
+        
+        String directorioFecha = (LocalDate.now().toString()).replaceAll("-","")+"/";
+                
+        File directorioCopias = new File("./copiaSeguridad/" + directorioFecha);
+        if (!directorioCopias.exists()){
+            directorioCopias.mkdirs();
+        }
+        
+        File directorioBBDD = new File("./bbdd");
+        File[] archivos = directorioBBDD.listFiles();
+        // Recorro los archivos de la BBDD y los copia al directorio de copia de seguridad
+        for (File f : archivos){
+            Files.copy(f.toPath(), new File(directorioCopias, f.getName()).toPath());
+        }        
     }
 }

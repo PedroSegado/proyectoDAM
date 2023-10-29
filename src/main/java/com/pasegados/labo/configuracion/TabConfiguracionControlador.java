@@ -13,6 +13,7 @@ import com.pasegados.labo.modelos.Configuracion;
 import com.pasegados.labo.modelos.Filtros;
 import com.pasegados.labo.modelos.Patron;
 import com.pasegados.labo.modelos.Puerto;
+import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -364,12 +365,17 @@ public class TabConfiguracionControlador {
 
     @FXML
     private void crearNuevaBBDD(ActionEvent event) throws SQLException {
-        
-        Conexion.getINSTANCIA().iniciarConexion();
-        System.out.println(Conexion.getINSTANCIA().isCerrado());
-        Conexion.getINSTANCIA().detenerConexion();
-        System.out.println(Conexion.getINSTANCIA().isCerrado());
-        Conexion.getINSTANCIA().borrarBBDD();
-        
+        try {
+            /*
+            Conexion.getINSTANCIA().iniciarConexion();
+            Conexion.getINSTANCIA().cerrarBase(); // Cierra
+            Conexion.getINSTANCIA().detenerConexion();
+            //Conexion.getINSTANCIA().borrarBBDD(); // Borra todos los archivos
+            */
+            Conexion.getINSTANCIA().copiaSeguridadBBDD();
+        } catch (IOException ex) {
+            //java.util.logging.Logger.getLogger(TabConfiguracionControlador.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error");
+        }
     }
 }
