@@ -22,6 +22,9 @@ public abstract class Alertas {
     }
     
     
+    
+    
+    
 
     public static boolean alertaCrearNuevaBBDD() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -36,6 +39,62 @@ public abstract class Alertas {
         }
         return false;
     }
+    
+    // previa al borrado, solicita hacer copia
+    public static boolean alertaPreviaCrearCopia() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Borrar Base de Datos");
+        alert.setHeaderText("¿Realizar copia de seguridad antes de eliminar la 'Base de Datos'?");
+        alert.setContentText("Es conveniente realizar una copia por si hay algún problema poder revertir la situación al estado anterior." +
+                "\n\n" + "¿Desea crear una copia de seguridad?");
+         Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK) {
+            return true;
+        }
+        return false;
+    }
+    
+    // previa al crear copia de seguridad
+    public static boolean alertaCrearCopia() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Copia de seguridad de la 'Base de Datos'");
+        alert.setHeaderText("¿Deseá realizar una copia de seguridad del estado actual de la 'Base de Datos'?");
+        alert.setContentText("La copia se guardará en la carpeta 'copiaSeguridad', en un directorio con la fecha actual en formato 'AAMMDD'." +
+                "\n\n" + "¿Desea crear una copia de seguridad?");
+         Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK) {
+            return true;
+        }
+        return false;
+    }
+    
+     // confirmacion borrado BBDD
+    public static boolean alertaBorradoBBDD(boolean copia, boolean exitoCopia) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Borrar Base de Datos");
+        alert.setHeaderText("¿Seguro que quiere eliminar la 'Base de Datos'?");
+        if (copia & exitoCopia) {
+            alert.setContentText("El estado de la 'Base de Datos' se podrá revertir gracias a la a copia de seguridad creada en el paso anterior." +
+                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?");
+        } else if (copia & !exitoCopia) {
+            alert.setContentText("El estado de la 'Base de Datos'  NO se podrá revertir porque ha fallado el proceso de creación de la copia de seguridad en el paso anterior." +
+                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?");
+        } else {
+            alert.setContentText("Este es un proceso irreversible ya que no se ha creado copia de seguridad en el paso anterior." +
+                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?");
+        }        
+         Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK) {
+            return true;
+        }
+        return false;
+    }
+    
+    
+    
     
     public static void alertaBBDDCreada() {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -116,6 +175,24 @@ public abstract class Alertas {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Eliminar " + tipo);
         alert.setContentText("¿Estás seguro de eliminar el " + tipo + " " + valor + "?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK) {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Confirmación del usuario de que se puede eliminar un objeto (Patron, Calibrado o Ajuste) 
+     * @param tipo String que indica si es un "Ajuste", "Patron" o "Calibrado"
+     * @param valor String que indica el nombre del objeto a borrar, tal y como lo ve el usuario en la lista
+     * @return boolean indicando true si se pulsa "OK" o false si se "CANCELA" o "CIERRA"
+     */
+    public static boolean alertaEliminaObjeto(String tipo, String valor, String loUsan) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar " + tipo);
+        alert.setContentText("¿Estás seguro de eliminar el " + tipo + " " + valor + "?" + "\n\n" + valor + " se usa en: " + loUsan);
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {

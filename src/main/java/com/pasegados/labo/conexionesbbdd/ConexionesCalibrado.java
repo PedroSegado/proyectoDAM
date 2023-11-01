@@ -53,7 +53,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
         
 
         st = iniciarConexion().createStatement();
-        resultados1 = st.executeQuery("Select * from Calibraciones");
+        resultados1 = st.executeQuery("Select * from Calibracion");
 
         while (resultados1.next()) {
 
@@ -71,7 +71,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
             }
 
             // Ahora vamos a crear la lista de Patrones del Calibrado, registrada en la tabla "CalibradoPatron"
-            resultados2 = st.executeQuery("Select * from CalibradoPatron "
+            resultados2 = st.executeQuery("Select * from CalibracionPatron "
                                          + "WHERE nombreCalibrado = '" + calibrado + "'");
 
             ObservableList<Patron> listaPat = FXCollections.observableArrayList();
@@ -97,6 +97,12 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
         resultados1.close(); // Cerramos busquedas y conexiones
         st.close();
         detenerConexion();
+        
+        //Una vez terminada la conexion, podemos actualizar los coeficientes, ya que para ello usa la conexión nuevamente
+        // y si lo hacemos antes, cierra la conexión y solo hace una iteracion del resulset1
+        for (Calibrado c:listaCalibrados){
+            c.ajustaCoeficientes("normal");
+        }
 
         return listaCalibrados;
     }
@@ -109,7 +115,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
      */
     public void insertarCalibrado(Calibrado c) throws SQLException {
 
-        ps = iniciarConexion().prepareStatement("INSERT INTO Calibraciones (nombre, fecha, activo, ajuste, tipoRegresion) "
+        ps = iniciarConexion().prepareStatement("INSERT INTO Calibracion (nombre, fecha, activo, ajuste, tipoRegresion) "
                                  + "VALUES (?,?,?,?,?);");
         // Preparo cada campo del registro por su posición en el INSERT declarado anteriormente
         ps.setString(1, c.getNombre());
@@ -133,7 +139,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
      */
     public void actualizarCalibrado(Calibrado c, String nombre) throws SQLException {
 
-        ps = iniciarConexion().prepareStatement("Update Calibraciones set nombre = ? , Fecha = ?, activo = ?,"
+        ps = iniciarConexion().prepareStatement("Update Calibracion set nombre = ? , Fecha = ?, activo = ?,"
                                 + " ajuste = ? , tipoRegresion = ? where nombre = '" + nombre + "';");
         // Preparo cada campo del UPDATE, y uso el parametro recibido como nombre para hacer el WHERE que limita a un solo registro, ya que el nombre es el PK
         ps.setString(1, c.getNombre());
@@ -157,7 +163,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
         
         st = iniciarConexion().createStatement();
 
-        st.executeUpdate("Delete from Calibraciones where nombre =  '" + nombre + "';");
+        st.executeUpdate("Delete from Calibracion where nombre =  '" + nombre + "';");
         // Tras lanzar el DELETE cerramos las conexiones de los objetos involucrados en el proceso
         st.close();
         detenerConexion();
@@ -238,7 +244,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
      */
     public void insertarListaPatronesCalibrado(String calibrado, String patron) throws SQLException {
 
-        ps = iniciarConexion().prepareStatement("INSERT INTO CalibradoPatron (nombreCalibrado, nombrePatron) VALUES (?,?);");
+        ps = iniciarConexion().prepareStatement("INSERT INTO CalibracionPatron (nombreCalibrado, nombrePatron) VALUES (?,?);");
         ps.setString(1, calibrado);
         ps.setString(2, patron);
 
@@ -258,7 +264,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
 
         st = iniciarConexion().createStatement();
 
-        st.executeUpdate("DELETE FROM CalibradoPatron WHERE nombreCalibrado = '" + calibrado + "' "
+        st.executeUpdate("DELETE FROM CalibracionPatron WHERE nombreCalibrado = '" + calibrado + "' "
                        + "AND nombrePatron = '" + patron + "';");
         st.close();
         detenerConexion();

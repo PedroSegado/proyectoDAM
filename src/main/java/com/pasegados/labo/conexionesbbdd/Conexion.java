@@ -95,7 +95,7 @@ public class Conexion implements Cloneable {
                                                 + "tiempo INT CONSTRAINT Chk_Aj_NotNullAndRange CHECK (tiempo IS NOT NULL AND tiempo BETWEEN 10 AND 300))";
         st.executeUpdate(tablaAjuste);
                 
-        String tablaCalibraciones = "CREATE TABLE Calibraciones (nombre VARCHAR(32) PRIMARY KEY, "
+        String tablaCalibraciones = "CREATE TABLE Calibracion (nombre VARCHAR(32) PRIMARY KEY, "
                                                                + "fecha DATE NULL, "
                                                                + "activo BOOLEAN NOT NULL, "
                                                                + "ajuste VARCHAR(32) NULL, "
@@ -110,10 +110,10 @@ public class Conexion implements Cloneable {
                                           + "calibrado VARCHAR(32), "
                                           + "cuentas INT NOT NULL, " 
                                           + "PRIMARY KEY (numMuestra,identificacion,calibrado)," // Trigger para copiar a otra tabla antes de borrar por FK
-                                          + "FOREIGN KEY (calibrado) REFERENCES Calibraciones(nombre) ON UPDATE CASCADE ON DELETE CASCADE)";         
+                                          + "FOREIGN KEY (calibrado) REFERENCES Calibracion(nombre) ON UPDATE CASCADE ON DELETE CASCADE)";         
         st.executeUpdate(tablaAnalisis);
         
-        String tablaPatrones = "CREATE TABLE Patrones (nombre VARCHAR(32) PRIMARY KEY, "
+        String tablaPatrones = "CREATE TABLE Patron (nombre VARCHAR(32) PRIMARY KEY, "
                                           + "fecha DATE NULL, "
                                           + "concentracion DECIMAL(5,4) NOT NULL)";
         st.executeUpdate(tablaPatrones);
@@ -131,18 +131,18 @@ public class Conexion implements Cloneable {
                                                               + "premedida INT NOT NULL)";
         st.executeUpdate(tablaConfiguracion);
         
-        String tablaCalibradoPatron = "CREATE TABLE CalibradoPatron (nombreCalibrado VARCHAR(32), "
+        String tablaCalibradoPatron = "CREATE TABLE CalibracionPatron (nombreCalibrado VARCHAR(32), "
                                                                   + "nombrePatron VARCHAR(32), "                
                                                                   + "PRIMARY KEY (nombreCalibrado,nombrePatron), "
-                                                                  + "FOREIGN KEY (nombreCalibrado) REFERENCES Calibraciones(nombre) ON UPDATE CASCADE ON DELETE CASCADE, "
-                                                                  + "FOREIGN KEY (nombrePatron) REFERENCES Patrones(nombre) ON UPDATE CASCADE ON DELETE CASCADE)";
+                                                                  + "FOREIGN KEY (nombreCalibrado) REFERENCES Calibracion(nombre) ON UPDATE CASCADE ON DELETE CASCADE, "
+                                                                  + "FOREIGN KEY (nombrePatron) REFERENCES Patron(nombre) ON UPDATE CASCADE ON DELETE CASCADE)";
         st.executeUpdate(tablaCalibradoPatron);
         
         String tablaPatronAjuste = "CREATE TABLE PatronAjuste (nombrePatron VARCHAR(32), "
                                                             + "nombreAjuste VARCHAR(32), "
                                                             + "cuentas INT NOT NULL, " 
                                                             + "PRIMARY KEY (nombrePatron,nombreAjuste), "
-                                                            + "FOREIGN KEY (nombrePatron) REFERENCES Patrones(nombre) ON UPDATE CASCADE ON DELETE CASCADE, "
+                                                            + "FOREIGN KEY (nombrePatron) REFERENCES Patron(nombre) ON UPDATE CASCADE ON DELETE CASCADE, "
                                                             + "FOREIGN KEY (nombreAjuste) REFERENCES Ajuste(nombre) ON UPDATE CASCADE ON DELETE CASCADE)";
         st.executeUpdate(tablaPatronAjuste);
         
@@ -162,7 +162,7 @@ public class Conexion implements Cloneable {
         // Vamos previamente al UPDATE de Calibraciones, verificar si el UPDATE es por un Ajuste a NULL, y en ese caso, cambiaremos el campo activo a FALSE
         // para desactivar el Calibrado en la aplicación, y que no se pueda usar hasta que el usuario lo revise y asigne otro ajuste de trabajo.
         String triggerUpdCal = "CREATE TRIGGER updCal " +
-                               "BEFORE UPDATE ON Calibraciones " +
+                               "BEFORE UPDATE ON Calibracion " +
                                "REFERENCING NEW AS newrow FOR EACH ROW " +                                     
                                "BEGIN ATOMIC " +                              
                                "IF newrow.ajuste IS NULL THEN " +
@@ -197,36 +197,5 @@ public class Conexion implements Cloneable {
         detenerConexion();
     }
     
-    /**
-     * Este método permite borrar la BBDD en uso, eliminando los archivos del equipo.
-     */
-    public void borrarBBDD() {                
-        File directorioBaseDeDatos = new File("./bbdd");
-        File[] archivos = directorioBaseDeDatos.listFiles();
-        
-        if (archivos != null) {
-            for (File archivo : archivos) {
-                archivo.delete();
-            }
-        }
-        // Borra el directorio
-        directorioBaseDeDatos.delete();    
-    }
-    
-    public void copiaSeguridadBBDD() throws IOException{
-        
-        String directorioFecha = (LocalDate.now().toString()).replaceAll("-","")+"/";
-                
-        File directorioCopias = new File("./copiaSeguridad/" + directorioFecha);
-        if (!directorioCopias.exists()){
-            directorioCopias.mkdirs();
-        }
-        
-        File directorioBBDD = new File("./bbdd");
-        File[] archivos = directorioBBDD.listFiles();
-        // Recorro los archivos de la BBDD y los copia al directorio de copia de seguridad
-        for (File f : archivos){
-            Files.copy(f.toPath(), new File(directorioCopias, f.getName()).toPath());
-        }        
-    }
+
 }

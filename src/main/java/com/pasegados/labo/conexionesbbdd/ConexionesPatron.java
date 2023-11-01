@@ -49,7 +49,7 @@ public class ConexionesPatron extends Conexion implements Cloneable {
         ArrayList<Patron> listaPatrones = new ArrayList<>();
 
         st = iniciarConexion().createStatement();
-        res = st.executeQuery("Select * from Patrones");
+        res = st.executeQuery("Select * from Patron");
 
         while (res.next()) { // Tendremos varios patrones
             //Si no se guardó fecha del patron, el atributo sera null, sino haremos conversion
@@ -78,7 +78,7 @@ public class ConexionesPatron extends Conexion implements Cloneable {
         // En caso contrario, hacemos conversión a Date SQL desde el LocalDate del patron
         Date fecha = (p.getFecha() == null) ? null : Date.valueOf(p.getFecha());
 
-        ps = iniciarConexion().prepareStatement("INSERT INTO Patrones (nombre, fecha, concentracion) VALUES (?,?,?);");
+        ps = iniciarConexion().prepareStatement("INSERT INTO Patron (nombre, fecha, concentracion) VALUES (?,?,?);");
         ps.setString(1, p.getNombre());
         ps.setDate(2, fecha);
         ps.setFloat(3, p.getConcentracion());
@@ -101,7 +101,7 @@ public class ConexionesPatron extends Conexion implements Cloneable {
         // Preparamos objeto Date SQL a partir del atributo fecha de tipo LocalDate
         Date fecha = (p.getFecha() == null) ? null : Date.valueOf(p.getFecha());
 
-        ps = iniciarConexion().prepareStatement("Update Patrones set nombre = ?, fecha = ?, concentracion = ?   where nombre = '" + nombreOriginal + "';");
+        ps = iniciarConexion().prepareStatement("Update Patron set nombre = ?, fecha = ?, concentracion = ?   where nombre = '" + nombreOriginal + "';");
         ps.setString(1, p.getNombre());
         ps.setDate(2, fecha);
         ps.setFloat(3, p.getConcentracion());
@@ -123,7 +123,7 @@ public class ConexionesPatron extends Conexion implements Cloneable {
                 
         st = iniciarConexion().createStatement();
         // Al actuar con la PK solo se va a borrar 1 registro
-        st.executeUpdate("Delete from Patrones where nombre =  '" + nombre + "';");
+        st.executeUpdate("Delete from Patron where nombre =  '" + nombre + "';");
         // Cerramos los objetos implicados
         st.close();
         detenerConexion();

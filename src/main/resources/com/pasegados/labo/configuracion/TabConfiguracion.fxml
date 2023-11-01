@@ -392,8 +392,8 @@
                <children>
                   <GridPane styleClass="contenedorSecundario" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="160.0" prefWidth="160.0" />
-                        <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="10.0" prefWidth="40.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="40.0" prefHeight="60.0" vgrow="NEVER" />
@@ -412,8 +412,7 @@
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Label>
-                        <Button fx:id="btNuevaBBDD" mnemonicParsing="false" onAction="#crearNuevaBBDD" text="BBDD" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label styleClass="labelInforme" text="Crear vacía" GridPane.rowIndex="1">
+                        <Label styleClass="labelInforme" text="Borrar por completo:" GridPane.rowIndex="1">
                            <tooltip>
                               <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
                            </tooltip>
@@ -421,7 +420,7 @@
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label styleClass="labelInforme" text="Nueva (copiando patrones)" GridPane.rowIndex="2">
+                        <Label styleClass="labelInforme" text="Copia de Seguridad:" GridPane.rowIndex="2">
                            <tooltip>
                               <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
                            </tooltip>
@@ -429,7 +428,7 @@
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label styleClass="labelInforme" text="Nueva (copiando pat. y calib.)" GridPane.rowIndex="3">
+                        <Label styleClass="labelInforme" text="Borrar, manteniendo:" GridPane.rowIndex="4">
                            <tooltip>
                               <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
                            </tooltip>
@@ -437,7 +436,7 @@
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label styleClass="labelInforme" text="Crear Nueva" GridPane.rowIndex="4">
+                        <Label styleClass="labelInforme" text="Restaurar con copia:" GridPane.rowIndex="3">
                            <tooltip>
                               <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
                            </tooltip>
@@ -445,6 +444,42 @@
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Label>
+                        <Button fx:id="btBorrarBBDD" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#borrarBBDD" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" translateX="-2.0">
+                                 <image>
+                                    <Image url="@borrar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btCopiaSeguridad" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-6.0" translateY="-1.0">
+                                 <image>
+                                    <Image url="@editar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btRestaurarCopia" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-6.0" translateY="-1.0">
+                                 <image>
+                                    <Image url="@editar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btBorrarManteniendo" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-6.0" translateY="-1.0">
+                                 <image>
+                                    <Image url="@editar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </GridPane>
                   <GridPane maxHeight="270.0" minHeight="210.0" prefHeight="210.0" prefWidth="225.0" styleClass="contenedorSecundario" GridPane.valignment="TOP">

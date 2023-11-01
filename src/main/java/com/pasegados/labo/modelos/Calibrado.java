@@ -73,8 +73,7 @@ public class Calibrado implements Cloneable {
         this.patronesString = new SimpleStringProperty(null);
         actualizaPatronesString();
         this.rangoString = new SimpleStringProperty(null);
-        actualizaRangoString();
-        ajustaCoeficientes("normal");
+        actualizaRangoString();        
     }
 
     public Calibrado() {

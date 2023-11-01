@@ -13,7 +13,9 @@ import com.pasegados.labo.modelos.Configuracion;
 import com.pasegados.labo.modelos.Filtros;
 import com.pasegados.labo.modelos.Patron;
 import com.pasegados.labo.modelos.Puerto;
-import java.util.logging.Level;
+import java.io.File;
+import java.nio.file.Files;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,7 +32,6 @@ import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 /**
  * Esta clase representa al controlador de la pestaña Configuración
@@ -81,6 +82,14 @@ public class TabConfiguracionControlador {
     private Button btReiniciar;
     @FXML
     private Button btGuardar;
+    @FXML
+    private Button btBorrarBBDD;
+    @FXML
+    private Button btCopiaSeguridad;
+    @FXML
+    private Button btRestaurarCopia;
+    @FXML
+    private Button btBorrarManteniendo;
 
     // Listas
     @FXML
@@ -88,17 +97,15 @@ public class TabConfiguracionControlador {
     private ObservableList<Ajuste> listaAjustes;
 
     // Otras variables
-    private final ConexionesConfiguracion CNCF = ConexionesConfiguracion.getINSTANCIA_CONFIGURACION();    
+    private final ConexionesConfiguracion CNCF = ConexionesConfiguracion.getINSTANCIA_CONFIGURACION();
     private Puerto puerto;
     private final SerialPort[] PORTS = Puerto.getPuertosSistema();
     private Configuracion config; // Objeto Configuración que almacena toda la info
     private EditorAjusteControlador controladorAjuste = new EditorAjusteControlador();
     private static final Logger LOGGER = LogManager.getLogger(TabConfiguracionControlador.class);
 
-    @FXML
-    private Button btNuevaBBDD;
 
-    
+
     /**
      * Inicializa automaticamente el controlador al crear el objeto, ejecutándose su contenido.
      */
@@ -201,7 +208,7 @@ public class TabConfiguracionControlador {
                 CNCF.insertarAjuste(nuevoAjuste);
                 listaAjustes.add(nuevoAjuste);
                 LOGGER.info("Nuevo ajuste +" + nuevoAjuste.getNombre() + " guardado  en la tabla 'Ajustes'");
-            } catch (SQLException e) { 
+            } catch (SQLException e) {
                 LOGGER.fatal("Error al guardar el nuevo ajuste " + nuevoAjuste.getNombre() + " en la tabla 'Ajustes'" + "\n" + e.getMessage());
                 Alertas.alertaBBDD(e.getMessage());
             }
@@ -212,12 +219,12 @@ public class TabConfiguracionControlador {
     @FXML
     private void modificarAjuste(ActionEvent event) {
         // Seleccionamos el objeto marcado en la lista de Ajustes
-        Ajuste seleccionado = lvAjustes.getSelectionModel().getSelectedItem();        
+        Ajuste seleccionado = lvAjustes.getSelectionModel().getSelectedItem();
 
         if (seleccionado != null) { // Si hay algo seleccionado en la lista
             String valorViejo = seleccionado.toStringCompleto(); // Para informar en el log
             String nombreOriginal = seleccionado.getNombre(); // Guardamos el nombre original por si lo moficiamos poder hacer el UPDATE
-            
+
             if (accedeFormularioAjuste(seleccionado, "modificar")) { // Si se pulsa aceptar en el formulario/editor de Ajustes                
                 try { // Actualizamos valores en BBDD
                     CNCF.actualizarAjuste(seleccionado, nombreOriginal);
@@ -236,31 +243,52 @@ public class TabConfiguracionControlador {
     @FXML
     private void eliminarAjuste(ActionEvent event) {
         // Seleccionamos el objeto marcado en la lista de Ajustes
-        Ajuste seleccionado = lvAjustes.getSelectionModel().getSelectedItem();     
+        Ajuste seleccionado = lvAjustes.getSelectionModel().getSelectedItem();
+        String usanAjuste = "";
 
         if (seleccionado != null) { // Si ha algo seleccionado      
+            // Verifico si se usa en algún Calibrado, para avisar al usuario
+            int tamanyo = App.getControladorPrincipal().getListaCalibrados().size();
+            for (int i = 0; i < tamanyo; i++) {
+                if (App.getControladorPrincipal().getListaCalibrados().get(i).getAjuste().getNombre().equals(seleccionado.getNombre())) {
+                    if (usanAjuste.isBlank()) { // primero en escribirse
+                        usanAjuste += "'" + App.getControladorPrincipal().getListaCalibrados().get(i).getNombre() + "'";
+                    } else if (i < (tamanyo - 1)) { // ultimo en escribirse, pero y ya hay otro/s antes
+                        usanAjuste = usanAjuste.replaceAll(" y ", ", ") + " y '" + App.getControladorPrincipal().getListaCalibrados().get(i).getNombre() + "'";
+                    } else { // lo demas
+                        usanAjuste += " y '" + App.getControladorPrincipal().getListaCalibrados().get(i).getNombre() + "'";
+                    }
+                }
+            }
+
             // Alerta confirmacion por parte del usuario
-            boolean confirmacion = Alertas.alertaEliminaObjeto("ajuste", seleccionado.getNombre());
+            boolean confirmacion;
+            if (usanAjuste.isBlank()) { // no se usa el ajuste en ningun calibrado {
+                confirmacion = Alertas.alertaEliminaObjeto("ajuste", seleccionado.getNombre());
+            } else {
+                confirmacion = Alertas.alertaEliminaObjeto("ajuste", seleccionado.getNombre(), usanAjuste);
+            }
+
             if (confirmacion) { // Si acepta, eliminar registro de BBDD
                 try { // Realizamos DELETE en BBDD
                     CNCF.eliminarAjuste(seleccionado.getNombre());
                     LOGGER.warn("Eliminado el ajuste con datos " + seleccionado.toStringCompleto());
-                    listaAjustes.remove(seleccionado);                   
-                    
+                    listaAjustes.remove(seleccionado);
+
                     //Verifico los objetos Calibrado, y si alguno usaba este ajuste, pasa al valor NULL
                     //En BBDD se realiza automaticamente con el ON DELETE SET NULL                    
-                    for (Calibrado c : App.getControladorPrincipal().getListaCalibrados()){
-                        if (c.getAjuste().equals(seleccionado)){
+                    for (Calibrado c : App.getControladorPrincipal().getListaCalibrados()) {
+                        if (c.getAjuste().equals(seleccionado)) {
                             c.setAjuste(null);
                             c.setActivo(false);// y ya no se puede usar para analizar hasta que no se le asigne un ajuste
                             c.setTipoRegresion("Seleccionar...");// y el tipo de regresion a seleccionar por el ususario
                             c.ajustaCoeficientes("cero");
-                            for(Patron p: c.getListaPatrones()){
+                            for (Patron p : c.getListaPatrones()) {
                                 p.setCuentas(0); // y las cuentas de los patrones a 0 hasta que se elija otro ajuste y se actualicen
                             }
                         }
-                    }                    
-                    
+                    }
+
                 } catch (SQLException e) {
                     if (e.getCause().toString().contains("SQLIntegrityConstraintViolationException")) {
                         LOGGER.warn("Error al eliminar en BBDD el ajuste con datos " + seleccionado.toStringCompleto()
@@ -278,8 +306,8 @@ public class TabConfiguracionControlador {
         }
     }
 
-    // Llama a la ventana del formulario, pasandole a esta los datos del Ajuste o creando uno nuevo, según el parámetro
-    // titulo sea "nuevo" o "modificar".
+// Llama a la ventana del formulario, pasandole a esta los datos del Ajuste o creando uno nuevo, según el parámetro
+// titulo sea "nuevo" o "modificar".
     private boolean accedeFormularioAjuste(Ajuste ajuste, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -321,9 +349,10 @@ public class TabConfiguracionControlador {
     }
 
     // OTROS METODOS NO FXML
-    
     /**
-     * Este método devuelve el Puerto creado por este controlador de la pestaña "Configuración".     *
+     * Este método devuelve el Puerto creado por este controlador de la pestaña "Configuración".
+     *
+     *
      * @return Puerto configurado tal y como vemos en la pestaña
      */
     public Puerto getPuerto() {
@@ -332,7 +361,9 @@ public class TabConfiguracionControlador {
 
     /**
      * Este método devuelve la Configuracion relativa al funcionamiento del equipo, tal y como aparece en la pestaña
-     * "Configuracion".     *
+     * "Configuracion".
+     *
+     *
      * @return Configuración con los atributos tal y como vemos en la pestaña
      */
     public Configuracion getConfiguracion() {
@@ -340,7 +371,9 @@ public class TabConfiguracionControlador {
     }
 
     /**
-     * Este método recibe la lista de objetos Ajuste para trabajar en su gestión desde la pestaña "Configuración     *
+     * Este método recibe la lista de objetos Ajuste para trabajar en su gestión desde la pestaña "Configuración
+     *
+     *
      * @param listaAjustes ObservableList de objetos Ajuste rescatada desde la BBDD al inicio del programa
      */
     public void setListaAjustes(ObservableList<Ajuste> listaAjustes) {
@@ -350,7 +383,9 @@ public class TabConfiguracionControlador {
 
     /**
      * Este método devulve la secuencia de pulsaciones necesaria para que el equipo trabaje en un determinado ajuste,
-     * para realizar el análisis de una muestra o patrón     *
+     * para realizar el análisis de una muestra o patrón
+     *
+     *
      * @param ajuste Nombre del objeto Ajuste del que obtener la secuencia de pulsaciones
      * @return String con la secuencia, separada por comas, de las distintas pulsaciones
      */
@@ -363,19 +398,72 @@ public class TabConfiguracionControlador {
         return null; // Si llegamos aqui no existe ese ajuste y se devuelve null
     }
 
+    
+
+    /**
+     * Este método permite borrar la BBDD en uso, eliminando los archivos del equipo.
+     */
     @FXML
-    private void crearNuevaBBDD(ActionEvent event) throws SQLException {
-        try {
-            /*
-            Conexion.getINSTANCIA().iniciarConexion();
-            Conexion.getINSTANCIA().cerrarBase(); // Cierra
-            Conexion.getINSTANCIA().detenerConexion();
-            //Conexion.getINSTANCIA().borrarBBDD(); // Borra todos los archivos
-            */
-            Conexion.getINSTANCIA().copiaSeguridadBBDD();
-        } catch (IOException ex) {
-            //java.util.logging.Logger.getLogger(TabConfiguracionControlador.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error");
+    private void borrarBBDD() {
+        // Antes de borrar indicaremos que es conveniente hacer copia de seguridad
+        boolean copia = Alertas.alertaPreviaCrearCopia();
+        boolean exitoCopiaSeg = true;
+        if (copia) {
+            exitoCopiaSeg = copiaSeguridadBBDD(copia); // Si falla el proceso de creado de copia, exito pasa a false
         }
+        // Alerta de borrado indicando al usuario si se ha creado copia o no, o si la copia ha fallado
+        boolean borrado = Alertas.alertaBorradoBBDD(copia , exitoCopiaSeg);
+        if (borrado) {
+            try { // Detenemos por completo la base de datos, para que se puedan borrar todos los archivos
+                Conexion.getINSTANCIA().iniciarConexion();
+                Conexion.getINSTANCIA().cerrarBase(); // Cierra
+                Conexion.getINSTANCIA().detenerConexion();
+            } catch (SQLException ex) {
+                //
+            }
+
+            File directorioBaseDeDatos = new File("./bbdd");
+            File[] archivos = directorioBaseDeDatos.listFiles();
+
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    archivo.delete();
+                }
+            }
+            // Borra el directorio
+            directorioBaseDeDatos.delete();
+        }
+    }
+
+    private boolean copiaSeguridadBBDD(boolean borradoPrevio) {
+        // Solicitaremos confirmación al usuario, salvo que la haya dado anteriormente porque iba a borrar la bbdd
+        boolean copia;
+        if (borradoPrevio) { // Si seleccionó hacer copia previa al borrado de la BBDD
+            copia = true;
+        } else {
+            copia = Alertas.alertaCrearCopia(); // Solicitamos confirmación al usuario
+        }
+        if (copia) { // Tenemos confirmacion            
+            String directorioFecha = (LocalDate.now().toString()).replaceAll("-", "") + "/";
+
+            File directorioCopias = new File("./copiaSeguridad/" + directorioFecha);
+            if (!directorioCopias.exists()) {
+                directorioCopias.mkdirs();
+            }
+
+            File directorioBBDD = new File("./bbdd");
+            File[] archivos = directorioBBDD.listFiles();
+            // Recorro los archivos de la BBDD y los copia al directorio de copia de seguridad
+            for (File f : archivos) {
+                try {                    
+                    Files.copy(f.toPath(), new File(directorioCopias, f.getName()).toPath());                    
+                } catch (IOException ex) {
+                    //
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }
