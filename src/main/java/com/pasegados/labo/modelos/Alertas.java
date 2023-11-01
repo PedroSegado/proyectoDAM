@@ -2,6 +2,7 @@ package com.pasegados.labo.modelos;
 
 import java.util.Optional;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 
 /**
@@ -31,7 +32,7 @@ public abstract class Alertas {
         alert.setTitle("Crear nueva BBDD");
         alert.setHeaderText("Es necesario crear una nueva 'Base de Datos'");
         alert.setContentText("Por ser la primera ejecución o por algún tipo de problema no existe la 'Base de Datos'." +
-                "\n\n" + "¿Desea crearla para empezar a trabajar?");
+                "\n\n" + "¿Desea crearla para empezar a trabajar?" + "\n\n");
          Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
@@ -46,7 +47,7 @@ public abstract class Alertas {
         alert.setTitle("Borrar Base de Datos");
         alert.setHeaderText("¿Realizar copia de seguridad antes de eliminar la 'Base de Datos'?");
         alert.setContentText("Es conveniente realizar una copia por si hay algún problema poder revertir la situación al estado anterior." +
-                "\n\n" + "¿Desea crear una copia de seguridad?");
+                "\n\n" + "¿Desea crear una copia de seguridad?" + "\n\n");
          Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
@@ -61,7 +62,7 @@ public abstract class Alertas {
         alert.setTitle("Copia de seguridad de la 'Base de Datos'");
         alert.setHeaderText("¿Deseá realizar una copia de seguridad del estado actual de la 'Base de Datos'?");
         alert.setContentText("La copia se guardará en la carpeta 'copiaSeguridad', en un directorio con la fecha actual en formato 'AAMMDD'." +
-                "\n\n" + "¿Desea crear una copia de seguridad?");
+                "\n\n" + "¿Desea crear una copia de seguridad?"  + "\n\n");
          Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
@@ -77,14 +78,23 @@ public abstract class Alertas {
         alert.setHeaderText("¿Seguro que quiere eliminar la 'Base de Datos'?");
         if (copia & exitoCopia) {
             alert.setContentText("El estado de la 'Base de Datos' se podrá revertir gracias a la a copia de seguridad creada en el paso anterior." +
-                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?");
+                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?" + "\n\n");
         } else if (copia & !exitoCopia) {
             alert.setContentText("El estado de la 'Base de Datos'  NO se podrá revertir porque ha fallado el proceso de creación de la copia de seguridad en el paso anterior." +
-                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?");
+                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?" + "\n\n");
         } else {
             alert.setContentText("Este es un proceso irreversible ya que no se ha creado copia de seguridad en el paso anterior." +
-                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?");
+                "\n\n" + "¿Desea borrar por completo la 'Base de Datos'?" + "\n\n");
         }        
+        
+        //Desactiva boton aceptar por defecto        
+        Button aceptar = (Button) alert.getDialogPane().lookupButton( ButtonType.OK );
+         aceptar.setDefaultButton( false );
+
+        //Establece boton cancelar por defecto
+        Button cancelar = (Button) alert.getDialogPane().lookupButton( ButtonType.CANCEL );
+        cancelar.setDefaultButton( true );        
+        
          Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {

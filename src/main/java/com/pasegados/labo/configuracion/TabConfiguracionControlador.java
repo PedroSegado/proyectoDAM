@@ -15,6 +15,7 @@ import com.pasegados.labo.modelos.Patron;
 import com.pasegados.labo.modelos.Puerto;
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +29,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import org.apache.logging.log4j.LogManager;
@@ -404,7 +406,7 @@ public class TabConfiguracionControlador {
      * Este método permite borrar la BBDD en uso, eliminando los archivos del equipo.
      */
     @FXML
-    private void borrarBBDD() {
+    private void borrarBBDD(ActionEvent event) {
         // Antes de borrar indicaremos que es conveniente hacer copia de seguridad
         boolean copia = Alertas.alertaPreviaCrearCopia();
         boolean exitoCopiaSeg = true;
@@ -433,6 +435,11 @@ public class TabConfiguracionControlador {
             // Borra el directorio
             directorioBaseDeDatos.delete();
         }
+    }
+    
+    @FXML
+    private void realizarCopia(ActionEvent event) {
+        copiaSeguridadBBDD(false);
     }
 
     private boolean copiaSeguridadBBDD(boolean borradoPrevio) {
@@ -465,5 +472,43 @@ public class TabConfiguracionControlador {
             return true;
         }
         return false;
+    }
+
+
+
+    @FXML
+    private void restaurarCopia(ActionEvent event) {
+        
+        //Alerta pidiendo confirmacion al usuario para restaurar
+        
+        //DirectoryChooser
+        Stage stage = new Stage();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setInitialDirectory(new File("./copiaSeguridad/"));
+        directoryChooser.setTitle("Selecciona el directorio con la copia a restaurar");
+        File directorioCopia = directoryChooser.showDialog(stage);
+
+        if(directorioCopia != null){             
+            try { // Detenemos por completo la base de datos, para que se puedan sobrescribir los archivos
+                Conexion.getINSTANCIA().iniciarConexion();
+                Conexion.getINSTANCIA().cerrarBase(); // Cierra
+                Conexion.getINSTANCIA().detenerConexion();
+            } catch (SQLException ex) {
+                //
+            }
+            
+            File[] archivos = directorioCopia.listFiles();
+            File directorioBBDD = new File("./bbdd");
+            // Recorro los archivos de la copia los copio al directorio de la base de datos, sobreescribiendo los existentes
+            for (File f : archivos) {
+                try {                        
+                    Files.copy(f.toPath(), new File(directorioBBDD, f.getName()).toPath(),StandardCopyOption.REPLACE_EXISTING);                    
+                } catch (IOException ex) {
+                    //                 
+                }
+            }  
+            
+            App.getApp().reiniciar(); // Reiniciamos la app para que cargue los datos nuevos
+        }
     }
 }

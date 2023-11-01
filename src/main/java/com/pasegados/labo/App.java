@@ -30,17 +30,21 @@ public class App extends Application {
     private static TabCalibracionesControlador controladorCalibrados;
     private static TabUtilidadesControlador controladorUtilidades;
     private static TabConfiguracionControlador controladorConfiguracion;
-    private static final Logger logger = LogManager.getLogger(App.class);
+    private static final Logger LOGGER = LogManager.getLogger(App.class);
+    private Stage stage; // Stage creado por si hay que reiniciar la App actuar sobre el mismo
+    private static App app; // Devuelve esta clase, por si hay que llamar al metodo de reiniciarla
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) {                
+    public void start(Stage stage) {           
+        this.stage = stage;
+        App.app = this;
         //Comprobamos existencia BBDD: si existe podemos iniciar el programa               
         if (Conexion.getINSTANCIA().existeBBDD()){             
-            logger.info("Iniciando carga de la aplicación ...");            
+            LOGGER.info("Iniciando carga de la aplicación ...");            
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("TabView.fxml"));
                 Parent root = loader.load();
@@ -53,11 +57,11 @@ public class App extends Application {
                 stage.setScene(scene);
 
                 stage.setOnCloseRequest(event -> {
-                    logger.info("Usuario cierra la aplicación ...");
+                    LOGGER.info("Usuario cierra la aplicación ...");
                 });
                 stage.show();
             } catch (IOException ex) {
-                logger.fatal("Error al cargar 'TabView.fxml' al inicio " + "\n" + ex.getMessage());
+                LOGGER.fatal("Error al cargar 'TabView.fxml' al inicio " + "\n" + ex.getMessage());
                 Alertas.alertaCargaInicial(ex.getLocalizedMessage());
             }
         }
@@ -67,9 +71,9 @@ public class App extends Application {
                 try {                
                     Conexion.getINSTANCIA().crearEstructura(); // Patron singleton, una única instancia de Conexion
                     Alertas.alertaBBDDCreada();
-                    start(stage); // llamo al método start para reiniciar carga de la aplicación
+                    reiniciar(); // reiniciar carga de la aplicación
                 } catch (SQLException ex) {
-                    logger.fatal("Error al crear la BBDD" + "\n" + ex.getMessage());
+                    LOGGER.fatal("Error al crear la BBDD" + "\n" + ex.getMessage());
                     Alertas.alertaBBDDErrorCrear();                
                 }
             } else{
@@ -187,4 +191,21 @@ public class App extends Application {
     public static void setControladorUtilidades(TabUtilidadesControlador controladorUtilidades) {
         App.controladorUtilidades = controladorUtilidades;
     }
+    
+    
+    // Método para reiniciar la aplicación
+    public void reiniciar() {
+        try {
+            stop(); // Llamada al método stop() para detener la aplicación actual
+        } catch (Exception ex) {
+            LOGGER.fatal(ex.getMessage());
+        }
+        start(stage); // Iniciar una nueva instancia de la aplicación
+    }
+    
+    public static App getApp(){
+        return app;
+    }
+    
+ 
 }
