@@ -106,8 +106,6 @@ public class TabConfiguracionControlador {
     private EditorAjusteControlador controladorAjuste = new EditorAjusteControlador();
     private static final Logger LOGGER = LogManager.getLogger(TabConfiguracionControlador.class);
 
-
-
     /**
      * Inicializa automaticamente el controlador al crear el objeto, ejecutándose su contenido.
      */
@@ -400,8 +398,6 @@ public class TabConfiguracionControlador {
         return null; // Si llegamos aqui no existe ese ajuste y se devuelve null
     }
 
-    
-
     /**
      * Este método permite borrar la BBDD en uso, eliminando los archivos del equipo.
      */
@@ -414,29 +410,33 @@ public class TabConfiguracionControlador {
             exitoCopiaSeg = copiaSeguridadBBDD(copia); // Si falla el proceso de creado de copia, exito pasa a false
         }
         // Alerta de borrado indicando al usuario si se ha creado copia o no, o si la copia ha fallado
-        boolean borrado = Alertas.alertaBorradoBBDD(copia , exitoCopiaSeg);
+        boolean borrado = Alertas.alertaBorradoBBDD(copia, exitoCopiaSeg);
         if (borrado) {
             try { // Detenemos por completo la base de datos, para que se puedan borrar todos los archivos
                 Conexion.getINSTANCIA().iniciarConexion();
                 Conexion.getINSTANCIA().cerrarBase(); // Cierra
                 Conexion.getINSTANCIA().detenerConexion();
-            } catch (SQLException ex) {
-                //
-            }
 
-            File directorioBaseDeDatos = new File("./bbdd");
-            File[] archivos = directorioBaseDeDatos.listFiles();
+                File directorioBaseDeDatos = new File("./bbdd");
+                File[] archivos = directorioBaseDeDatos.listFiles();
 
-            if (archivos != null) {
-                for (File archivo : archivos) {
-                    archivo.delete();
+                if (archivos != null) {
+                    for (File archivo : archivos) {
+                        archivo.delete();
+                    }
                 }
+                // Borra el directorio
+                directorioBaseDeDatos.delete();
+                
+                //Informamos de que se ha borrado con exito y que se va a reinicar la App
+                Alertas.alertaBBDDBorradoExito();
+                App.getApp().reiniciar(); // Reiniciamos la app para que cargue los datos nuevos
+            } catch (SQLException ex) {
+                Alertas.alertaBBDDBorradoFracaso(ex.getMessage());
             }
-            // Borra el directorio
-            directorioBaseDeDatos.delete();
         }
     }
-    
+
     @FXML
     private void realizarCopia(ActionEvent event) {
         copiaSeguridadBBDD(false);
@@ -462,53 +462,52 @@ public class TabConfiguracionControlador {
             File[] archivos = directorioBBDD.listFiles();
             // Recorro los archivos de la BBDD y los copia al directorio de copia de seguridad
             for (File f : archivos) {
-                try {                    
+                try {
                     Files.copy(f.toPath(), new File(directorioCopias, f.getName()).toPath());                    
                 } catch (IOException ex) {
-                    //
+                    // Informamos de problema al crear la copia
+                    LOGGER.fatal("Error al crear copia de seguridad: " + ex.getMessage());
+                    Alertas.alertaCopiaCreadaFracaso(directorioFecha);
                     return false;
                 }
             }
-            return true;
+            // Informamos de que se ha creado con éxito
+            LOGGER.info("Copia " + directorioCopias.getAbsolutePath() + " creada con éxito");
+            Alertas.alertaCopiaCreadaExito(directorioCopias.getAbsolutePath());
+            return true; 
         }
         return false;
     }
 
-
-
     @FXML
     private void restaurarCopia(ActionEvent event) {
-        
-        //Alerta pidiendo confirmacion al usuario para restaurar
-        
-        //DirectoryChooser
-        Stage stage = new Stage();
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setInitialDirectory(new File("./copiaSeguridad/"));
-        directoryChooser.setTitle("Selecciona el directorio con la copia a restaurar");
-        File directorioCopia = directoryChooser.showDialog(stage);
 
-        if(directorioCopia != null){             
+        //Alerta pidiendo confirmacion al usuario para restaurar, donde se selecciona el directorio y lo devuelve
+        File directorioCopia = Alertas.alertaRestaurarCopia();
+
+        if (directorioCopia != null) {
             try { // Detenemos por completo la base de datos, para que se puedan sobrescribir los archivos
                 Conexion.getINSTANCIA().iniciarConexion();
                 Conexion.getINSTANCIA().cerrarBase(); // Cierra
                 Conexion.getINSTANCIA().detenerConexion();
-            } catch (SQLException ex) {
-                //
-            }
-            
-            File[] archivos = directorioCopia.listFiles();
-            File directorioBBDD = new File("./bbdd");
-            // Recorro los archivos de la copia los copio al directorio de la base de datos, sobreescribiendo los existentes
-            for (File f : archivos) {
-                try {                        
-                    Files.copy(f.toPath(), new File(directorioBBDD, f.getName()).toPath(),StandardCopyOption.REPLACE_EXISTING);                    
-                } catch (IOException ex) {
-                    //                 
+                
+                File[] archivos = directorioCopia.listFiles();
+                File directorioBBDD = new File("./bbdd");
+                // Recorro los archivos de la copia los copio al directorio de la base de datos, sobreescribiendo los existentes
+                for (File f : archivos) {
+                    try {
+                        Files.copy(f.toPath(), new File(directorioBBDD, f.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException ex) {
+                        //                 
+                    }
                 }
-            }  
-            
-            App.getApp().reiniciar(); // Reiniciamos la app para que cargue los datos nuevos
+                
+                //Alerta exito indicando que se va a reiniciar
+                App.getApp().reiniciar(); // Reiniciamos la app para que cargue los datos nuevos
+            } catch (SQLException ex) {
+                LOGGER.fatal("Error al restaurar BBDD " + directorioCopia.getAbsolutePath() + ": " + ex.getMessage());
+                //Alerta fallo
+            }           
         }
     }
 }

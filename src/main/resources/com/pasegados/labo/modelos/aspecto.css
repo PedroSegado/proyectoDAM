@@ -1,0 +1,53 @@
+.alert-dialog .label{          
+}
+
+
+
+.alert-dialog .header-panel {
+    -fx-background-color: #E4002B;    
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0); /* Agrega una sombra al header */
+}
+.alert-dialog .header-panel .label{    
+    -fx-text-fill: white;    
+    -fx-font-weight: bold;     
+}
+
+.alert-dialog .content {
+    -fx-font-weight: bold;    
+}
+
+/* Estilos para la barra de botones */
+.alert.dialog .button-bar {   
+}
+
+
+
+
+.alert-dialog .button-bar .button {
+    -fx-background-color: #E4002B;
+    -fx-text-fill: white; 
+    -fx-font-weight: bold;  
+    -fx-background-radius: 4;
+    -fx-border-color: #062D64; 
+    -fx-border-width: 0.5;  
+    -fx-border-radius: 3;   
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 2,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,0 );    
+}
+
+.alert-dialog .button-bar .button:hover {   
+    -fx-background-color: #FF3F58;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 3,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 15,0,0,0 );      
+}
+
+.alert-dialog .button-bar .button:pressed {    
+    -fx-border-width: 1;      
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 4,0,0,4 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+}
+
+/* Estilos para los botones Aceptar y Cancelar 
+.alert-dialog .button-bar .button:default {
+    -fx-background-color: #FF3F58;
+}*/

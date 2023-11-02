@@ -78,6 +78,7 @@ public class App extends Application {
                 }
             } else{
                 //el ususario ha cancelado la creacion de la BBDD, se cerrará la aplicación al terminar este hilo
+                System.exit(0);
             }            
         }             
     }
