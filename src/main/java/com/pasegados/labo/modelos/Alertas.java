@@ -76,7 +76,7 @@ public abstract class Alertas {
         alert.setAlertType(Alert.AlertType.ERROR);
         alert.setTitle("Error al crear BBDD");
         alert.setHeaderText("Error al crear BBDD");
-        alert.setContentText("La 'Base de Datos' NO se ha podido crear con exito." + "\n\n" + "Pulse aceptar para cerrar la aplicación");
+        alert.setContentText("La 'Base de Datos' NO se ha podido crear con exito." + "\n\n" + "Pulse aceptar para cerrar la aplicación" + "\n\n");
         alert.showAndWait();
     }
 
@@ -208,6 +208,11 @@ public abstract class Alertas {
             }
             else if (result.get() == customButton) {
                 directorioCopia = seleccionardirectorio();
+                alert.setContentText(!(directorioCopia==null)? ("Ha seleccionado la copia '" + directorioCopia.getName() + "'" + "\n\n" + 
+                        "Pulse aceptar para restaurarla o seleccione otra copia ..." + "\n\n"):("No ha seleccionado ninguna copia." + "\n\n" + 
+                        "Debe Seleccionar una o bien cancelar el proceso de restauración ..." + "\n\n"));
+            } else{
+                alert.getButtonTypes().remove(customButton); // elimino el boton para que no salga en los demás alerts
             }
         }
         alert.getButtonTypes().remove(customButton); // elimino el boton para que no salga en los demás alerts

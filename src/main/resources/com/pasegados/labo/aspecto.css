@@ -74,6 +74,47 @@
     -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 60,0,0,0 );
 }
 
+.btImagen {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent; 
+}
+.btImagen:hover {
+    -fx-background-color: #ccff33;
+    -fx-border-color: transparent; 
+    -fx-background-radius: 17;    
+    -fx-border-color: grey;     
+    -fx-border-width: 1;
+    -fx-border-radius: 17;
+}
+
+.btImagenContraste {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent; 
+    
+}
+.btImagenContraste:hover {
+    -fx-background-color: lightyellow;
+    -fx-background-radius: 18;    
+    -fx-border-color: lightgrey;     
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+}
+
+.btInforme {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent; 
+    
+}
+.btInforme:hover {
+    -fx-background-color: lightyellow;
+    -fx-background-radius: 25;    
+    -fx-border-color: lightgray;     
+    -fx-border-width: 1;
+    -fx-border-radius: 25;
+}
+
+
+
 /* BOTON ANALIZAR PATRON */ 
 
 .btnAnalizarPat {
@@ -127,6 +168,7 @@
 .btnMini {
     -fx-background-color: #E4002B;
     -fx-text-fill: white; 
+    -fx-font-weight: bold; 
     -fx-background-radius: 5;
     -fx-border-color: #062D64; 
     -fx-border-width: 1;  

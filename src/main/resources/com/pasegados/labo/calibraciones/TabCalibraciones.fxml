@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -42,11 +44,17 @@
                      <GridPane.margin>
                         <Insets left="30.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btActualizarPatron" mnemonicParsing="false" onAction="#modificarPatron" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Modificar" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btEliminarPatron" mnemonicParsing="false" onAction="#eliminarPatron" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Eliminar" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <font>
@@ -55,6 +63,9 @@
                      <GridPane.margin>
                         <Insets right="30.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <TableView fx:id="tvPatrones" prefHeight="188.0" prefWidth="440.0" style="-fx-font-size: 14;" GridPane.rowIndex="1">
                      <columns>
@@ -123,6 +134,9 @@
                      <GridPane.margin>
                         <Insets bottom="5.0" right="35.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btActualizarCalibrado" mnemonicParsing="false" onAction="#modificarCalibrado" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Modificar" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <font>
@@ -131,6 +145,9 @@
                      <GridPane.margin>
                         <Insets right="35.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btAnadirCalibrado" mnemonicParsing="false" onAction="#nuevoCalibrado" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Nueva" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
@@ -139,6 +156,9 @@
                      <GridPane.margin>
                         <Insets right="35.0" top="5.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <GridPane styleClass="contenedorSecundario" GridPane.rowIndex="2">
                     <columnConstraints>
@@ -259,11 +279,30 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Mostrar gráfica" />
+                           </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#verInforme" text="Informe PDF" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                        <Button maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#verInforme" prefHeight="50.0" prefWidth="50.0" styleClass="btInforme" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                            <GridPane.margin>
-                              <Insets bottom="10.0" right="30.0" />
+                              <Insets right="25.0" top="25.0" />
                            </GridPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@informe.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Informe" />
+                           </tooltip>
                         </Button>
                         <Label fx:id="lbFecha" styleClass="labelInformeSecundaria" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbAjuste" styleClass="labelInformeSecundaria" GridPane.columnIndex="3" GridPane.rowIndex="1" />

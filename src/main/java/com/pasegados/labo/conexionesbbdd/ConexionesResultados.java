@@ -1,13 +1,10 @@
 package com.pasegados.labo.conexionesbbdd;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.pasegados.labo.modelos.Alertas;
 import com.pasegados.labo.modelos.Analisis;
 
 
@@ -149,4 +146,18 @@ public class ConexionesResultados extends Conexion implements Cloneable {
 
         return false; // Si llegamos aquí, no existen resultado, luego esa PK no existe
     }
+    
+    /**
+     * Este método elimina el contenido de la tablas Analisis y AnalisisOLD de la BBDD.
+     */
+    public void eliminaAnalisis() throws SQLException {        
+        // Creamos nuestra declaración y ejecutamos la busqueda
+        st = iniciarConexion().createStatement();
+        res = st.executeQuery("TRUNCATE TABLE Analisis;"); 
+        res = st.executeQuery("TRUNCATE TABLE AnalisisOLD;"); 
+        res.close();
+        st.close();
+        detenerConexion(); 
+    }
+    
 }

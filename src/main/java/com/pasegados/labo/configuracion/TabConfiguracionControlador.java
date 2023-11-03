@@ -6,6 +6,7 @@ import com.fazecast.jSerialComm.SerialPort;
 import com.pasegados.labo.App;
 import com.pasegados.labo.conexionesbbdd.Conexion;
 import com.pasegados.labo.conexionesbbdd.ConexionesConfiguracion;
+import com.pasegados.labo.conexionesbbdd.ConexionesResultados;
 import com.pasegados.labo.modelos.Ajuste;
 import com.pasegados.labo.modelos.Alertas;
 import com.pasegados.labo.modelos.Calibrado;
@@ -17,6 +18,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +31,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import org.apache.logging.log4j.LogManager;
@@ -90,8 +91,6 @@ public class TabConfiguracionControlador {
     private Button btCopiaSeguridad;
     @FXML
     private Button btRestaurarCopia;
-    @FXML
-    private Button btBorrarManteniendo;
 
     // Listas
     @FXML
@@ -100,11 +99,14 @@ public class TabConfiguracionControlador {
 
     // Otras variables
     private final ConexionesConfiguracion CNCF = ConexionesConfiguracion.getINSTANCIA_CONFIGURACION();
+    private final ConexionesResultados CNR = ConexionesResultados.getINSTANCIA_RESULTADOS();
     private Puerto puerto;
     private final SerialPort[] PORTS = Puerto.getPuertosSistema();
     private Configuracion config; // Objeto Configuración que almacena toda la info
     private EditorAjusteControlador controladorAjuste = new EditorAjusteControlador();
     private static final Logger LOGGER = LogManager.getLogger(TabConfiguracionControlador.class);
+    @FXML
+    private Button btBorrarResultados;
 
     /**
      * Inicializa automaticamente el controlador al crear el objeto, ejecutándose su contenido.
@@ -463,7 +465,7 @@ public class TabConfiguracionControlador {
             // Recorro los archivos de la BBDD y los copia al directorio de copia de seguridad
             for (File f : archivos) {
                 try {
-                    Files.copy(f.toPath(), new File(directorioCopias, f.getName()).toPath());                    
+                    Files.copy(f.toPath(), new File(directorioCopias, f.getName()).toPath(),StandardCopyOption.REPLACE_EXISTING);                    
                 } catch (IOException ex) {
                     // Informamos de problema al crear la copia
                     LOGGER.fatal("Error al crear copia de seguridad: " + ex.getMessage());
@@ -481,6 +483,11 @@ public class TabConfiguracionControlador {
 
     @FXML
     private void restaurarCopia(ActionEvent event) {
+        // Si el directorio de copias no existe, lo creamos para usarlo en el futuro
+        File directorioParaCopias = new File("./copiaSeguridad/");
+            if (!directorioParaCopias.exists()) {
+                directorioParaCopias.mkdirs();
+            }
 
         //Alerta pidiendo confirmacion al usuario para restaurar, donde se selecciona el directorio y lo devuelve
         File directorioCopia = Alertas.alertaRestaurarCopia();
@@ -508,6 +515,17 @@ public class TabConfiguracionControlador {
                 LOGGER.fatal("Error al restaurar BBDD " + directorioCopia.getAbsolutePath() + ": " + ex.getMessage());
                 //Alerta fallo
             }           
+        }
+    }
+
+    @FXML
+    private void eliminarResultadosBBDD(ActionEvent event) {
+        try {
+            CNR.eliminaAnalisis();            
+            //Alerta exito indicando que se va a reiniciar
+                App.getApp().reiniciar(); // Reiniciamos la app para que cargue los datos nuevos
+        } catch (SQLException ex) {
+           // java.util.logging.Logger.getLogger(TabConfiguracionControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

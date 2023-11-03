@@ -125,7 +125,7 @@
                         <Insets left="30.0" />
                      </GridPane.margin>
                      <tooltip>
-                        <Tooltip text="Tiempo esperado entre el envio del equivalente a cada pulsación de teclado, en milisegundos" />
+                        <Tooltip text="Tiempo esperado entre cada pulsación de teclado (milisegundos)" />
                      </tooltip>
                   </Label>
                   <Label styleClass="labelInforme" text="Pre-Acondicionam. (ms):" GridPane.columnSpan="2147483647" GridPane.rowIndex="9">
@@ -133,7 +133,7 @@
                         <Insets left="30.0" />
                      </GridPane.margin>
                      <tooltip>
-                        <Tooltip text="Duración en milisegundos del mensaje de preacondicionamiento del equipo" />
+                        <Tooltip text="Duración del mensaje de pre-acondicionamiento del equipo (milisegundos)" />
                      </tooltip>
                   </Label>
                   <Label styleClass="labelInforme" text="Acondicionamiento (s):" GridPane.columnSpan="2147483647" GridPane.rowIndex="10">
@@ -141,23 +141,32 @@
                         <Insets left="30.0" />
                      </GridPane.margin>
                      <tooltip>
-                        <Tooltip text="Duración en segundos de la cuenta atrás realizada en el acondicionamiento" />
+                        <Tooltip text="Duración de la cuenta atrás del acondicionamiento (segundos)" />
                      </tooltip>
                   </Label>
                   <Label styleClass="labelInforme" text="Previo-Energía (ms):" GridPane.columnSpan="2147483647" GridPane.rowIndex="11">
                      <GridPane.margin>
                         <Insets left="30.0" />
                      </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="Duración del ajuste previo de energia (milisegundos)" />
+                     </tooltip>
                   </Label>
                   <Label styleClass="labelInforme" text="Ajuste de Energía (s):" GridPane.columnSpan="2147483647" GridPane.rowIndex="12">
                      <GridPane.margin>
                         <Insets left="30.0" />
                      </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="Duración de la cuenta atrás del ajuste de energía (segundos)" />
+                     </tooltip>
                   </Label>
                   <Label styleClass="labelInforme" text="Previo-Medida (ms):" GridPane.columnSpan="2147483647" GridPane.rowIndex="13">
                      <GridPane.margin>
                         <Insets left="30.0" />
                      </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="Duración del ajuste previo a la medida (milisegundos)" />
+                     </tooltip>
                   </Label>
                   <TextField fx:id="tfPulsaciones" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <GridPane.margin>
@@ -196,6 +205,9 @@
                      <tooltip>
                         <Tooltip text="Recupera la útlima configuración guardada" />
                      </tooltip>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btGuardar" mnemonicParsing="false" onAction="#guardaConfig" styleClass="btnMini" text="Guardar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
@@ -204,6 +216,9 @@
                      <tooltip>
                         <Tooltip text="Guarda la configuración actual mostrada en pantalla en la base de datos" />
                      </tooltip>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Label styleClass="labelEspecial" text="Otros parámetros:" underline="true" GridPane.rowIndex="7">
                      <font>
@@ -444,9 +459,9 @@
                               <Insets left="30.0" />
                            </GridPane.margin>
                         </Label>
-                        <Button fx:id="btBorrarBBDD" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#borrarBBDD" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Button fx:id="btBorrarBBDD" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#borrarBBDD" prefHeight="36.0" prefWidth="36.0" style="-fx-background-radius: 16;" styleClass="btImagenContraste" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" translateX="-2.0">
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="-2.0">
                                  <image>
                                     <Image url="@borrar.png" />
                                  </image>
@@ -456,9 +471,9 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btCopiaSeguridad" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#realizarCopia" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <Button fx:id="btCopiaSeguridad" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#realizarCopia" prefHeight="36.0" prefWidth="36.0" styleClass="btImagenContraste" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0">
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0" translateY="-1.0">
                                  <image>
                                     <Image url="@copiar.png" />
                                  </image>
@@ -468,9 +483,9 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btRestaurarCopia" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#restaurarCopia" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                        <Button fx:id="btRestaurarCopia" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#restaurarCopia" prefHeight="36.0" prefWidth="36.0" styleClass="btImagenContraste" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0">
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0" translateZ="-1.0">
                                  <image>
                                     <Image url="@restaurar.png" />
                                  </image>
@@ -480,9 +495,9 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btBorrarManteniendo" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                        <Button fx:id="btBorrarResultados" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#eliminarResultadosBBDD" prefHeight="36.0" prefWidth="36.0" styleClass="btImagenContraste" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-8.0" translateY="-1.0">
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0" translateY="-1.0">
                                  <image>
                                     <Image url="@base.png" />
                                  </image>
@@ -517,12 +532,12 @@
                               <Insets bottom="20.0" left="20.0" />
                            </GridPane.margin>
                         </ListView>
-                        <Button fx:id="btAnadirAjsute" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#nuevoAjuste" prefHeight="32.0" prefWidth="32.0" text="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Button fx:id="btAnadirAjsute" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#nuevoAjuste" prefHeight="36.0" prefWidth="36.0" styleClass="btImagenContraste" text="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <GridPane.margin>
-                              <Insets top="5.0" />
+                              <Insets top="20.0" />
                            </GridPane.margin>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-6.0">
                                  <image>
                                     <Image url="@anadir.png" />
                                  </image>
@@ -532,12 +547,12 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btModificarAjsute" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#modificarAjuste" prefHeight="32.0" prefWidth="32.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Button fx:id="btModificarAjsute" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#modificarAjuste" prefHeight="36.0" prefWidth="36.0" styleClass="btImagenContraste" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="20.0" />
                            </GridPane.margin>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-6.0" translateY="-1.0">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-4.0" translateY="-1.0">
                                  <image>
                                     <Image url="@editar.png" />
                                  </image>
@@ -547,12 +562,12 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="btEliminarAjsute" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#eliminarAjuste" prefHeight="32.0" prefWidth="32.0" text="3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btEliminarAjsute" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#eliminarAjuste" prefHeight="36.0" prefWidth="36.0" styleClass="btImagenContraste" text="3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
-                              <Insets bottom="25.0" />
+                              <Insets bottom="40.0" />
                            </GridPane.margin>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-6.0">
                                  <image>
                                     <Image url="@eliminar.png" />
                                  </image>

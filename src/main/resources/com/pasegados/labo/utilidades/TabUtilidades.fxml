@@ -271,6 +271,9 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btGuardar" mnemonicParsing="false" onAction="#guardarTextArea" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Guardar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
@@ -279,6 +282,9 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="btCopiar" mnemonicParsing="false" onAction="#copiarTextArea" prefHeight="40.0" prefWidth="90.0" styleClass="btnMidi" text="Copiar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
@@ -287,6 +293,9 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Label text="Activar lectura continua:" GridPane.rowIndex="1">
                      <GridPane.margin>

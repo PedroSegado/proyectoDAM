@@ -180,22 +180,28 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="btAsignarPatron" minHeight="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#asignarPatron" prefHeight="34.0" prefWidth="34.0" styleClass="btnFlecha" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="btAsignarPatron" maxHeight="34.0" maxWidth="34.0" minHeight="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#asignarPatron" prefHeight="34.0" prefWidth="34.0" style="-fx-background-radius: 20;" styleClass="btImagen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                            <image>
                               <Image url="@flecha.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="btQuitarPatron" minHeight="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#quitarPatron" prefHeight="34.0" prefWidth="34.0" styleClass="btnFlecha" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="btQuitarPatron" maxHeight="34.0" maxWidth="34.0" minHeight="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#quitarPatron" prefHeight="34.0" prefWidth="34.0" style="-fx-background-radius: 20;" styleClass="btImagen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@flecha.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <TextField fx:id="tfCuentasPatron" maxWidth="70.0" minWidth="70.0" onMouseClicked="#truco" prefWidth="70.0" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets left="85.0" />
@@ -280,21 +286,30 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </GridPane>
-            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#aceptar" styleClass="btnMini" text="Aceptar" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets right="120.0" />
                </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnMini" text="Cancelar" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </GridPane>
