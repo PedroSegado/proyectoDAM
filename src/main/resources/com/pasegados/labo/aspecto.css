@@ -7,6 +7,34 @@
      -fx-background-color: #333333;     
  }
 
+ /* Todos los titulos que esten sobre el fondo azul oscuro */ 
+ .lbTituloSobreAzul {
+     -fx-text-fill: #dddddd;     
+ }
+ 
+ /* Titulos de los contenedores con fondo naranja */
+ .lbTituloContenedor {
+    -fx-text-fill: #333333;  
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.lbSecundariosContenedor {
+    -fx-text-fill: #444444;      
+}
+ 
+ 
+ /* Textfield del resultado */
+ .resultados {
+    -fx-border-color: #E4002B;  
+    -fx-border-radius: 15;
+    -fx-border-width: 5;
+    -fx-background-color: #041E42;   
+    -fx-background-radius: 20;
+    -fx-text-fill: white;    
+}
+ 
+
 
 .labelEspecial {
     -fx-text-fill: #E4002B;   /*rojo repsol*/ 
@@ -29,13 +57,7 @@
     -fx-font-weight: bold;
 }
 
-/* Titulos principales fuera de los contenedores */ 
 
-.tituloFueraContenedor {
-    -fx-text-fill: #E4002B;
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-}
 
 /* textos de la información de los calibrados */ 
 
@@ -272,15 +294,7 @@
     -fx-background-radius: 5;    
 }
 
-.resultados {
-    -fx-border-color: #E4002B;  
-    -fx-border-radius: 15;
-    -fx-border-width: 5;
-    -fx-background-color: #041E42;   
-    -fx-background-radius: 20;
-    -fx-text-fill: white;
-    
-}
+
 
 
 .tab {

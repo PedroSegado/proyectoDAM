@@ -67,7 +67,7 @@
                   <RowConstraints maxHeight="80.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <CheckBox fx:id="ckBuscNumMuestra" mnemonicParsing="false" text="Número de muestra" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <CheckBox fx:id="ckBuscNumMuestra" mnemonicParsing="false" styleClass="lbSecundariosContenedor" text="Número de muestra" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></CheckBox>
@@ -79,7 +79,7 @@
                         <Insets top="30.0" />
                      </GridPane.margin>
                   </TextField>
-                  <CheckBox fx:id="ckBuscaIdentificacion" mnemonicParsing="false" text="Identificacion" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <CheckBox fx:id="ckBuscaIdentificacion" mnemonicParsing="false" styleClass="lbSecundariosContenedor" text="Identificacion" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -94,7 +94,7 @@
                         <Insets top="30.0" />
                      </GridPane.margin>
                   </TextField>
-                  <CheckBox fx:id="ckBuscaFecha" mnemonicParsing="false" onAction="#usarFechaBusqueda" text="Fecha" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <CheckBox fx:id="ckBuscaFecha" mnemonicParsing="false" onAction="#usarFechaBusqueda" styleClass="lbSecundariosContenedor" text="Fecha" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></CheckBox>
@@ -102,7 +102,7 @@
                      <GridPane.margin>
                         <Insets top="30.0" />
                      </GridPane.margin></DatePicker>
-                  <CheckBox fx:id="ckBuscaRango" disable="true" mnemonicParsing="false" onAction="#usarRangoBusqueda" prefHeight="21.0" prefWidth="121.0" text="Hasta" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <CheckBox fx:id="ckBuscaRango" disable="true" mnemonicParsing="false" onAction="#usarRangoBusqueda" prefHeight="21.0" prefWidth="121.0" styleClass="lbSecundariosContenedor" text="Hasta" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></CheckBox>
@@ -110,7 +110,7 @@
                      <GridPane.margin>
                         <Insets top="30.0" />
                      </GridPane.margin></DatePicker>
-                  <CheckBox fx:id="ckBuscaCalibrado" mnemonicParsing="false" text="Calibrado" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                  <CheckBox fx:id="ckBuscaCalibrado" mnemonicParsing="false" styleClass="lbSecundariosContenedor" text="Calibrado" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></CheckBox>
@@ -151,7 +151,7 @@
                         <Insets bottom="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label styleClass="tituloContenedor" text="Filtro de búsqueda:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label styleClass="lbTituloContenedor" text="Filtro de búsqueda:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -164,9 +164,9 @@
                   <Insets />
                </GridPane.margin>
             </GridPane>
-            <Label fx:id="lbBusqueda" styleClass="tituloFueraContenedor" text="Últimos 25 análisis:" GridPane.valignment="TOP">
+            <Label fx:id="lbBusqueda" styleClass="lbTituloSobreAzul" text="Últimos 25 análisis:" GridPane.valignment="TOP">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <GridPane.margin>
                   <Insets left="10.0" />

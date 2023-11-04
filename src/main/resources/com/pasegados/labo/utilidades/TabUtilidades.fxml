@@ -217,16 +217,25 @@
                      <GridPane.margin>
                         <Insets right="3.0" top="5.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ToggleButton>
                   <ToggleButton fx:id="btAbajo" maxHeight="52.0" maxWidth="52.0" minHeight="52.0" minWidth="52.0" mnemonicParsing="false" opacity="0.4" prefHeight="52.0" prefWidth="52.0" styleClass="btnTecladoTg" toggleGroup="$especial" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="2.0" top="8.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ToggleButton>
                   <ToggleButton fx:id="btSecundaria" maxHeight="52.0" maxWidth="52.0" minHeight="52.0" minWidth="52.0" mnemonicParsing="false" opacity="0.4" prefHeight="52.0" prefWidth="52.0" styleClass="btnTecladoTg" toggleGroup="$especial" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="2.0" top="4.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ToggleButton>
                   <Label style="-fx-text-fill: white;" text="TECLADO VIRTUAL" underline="true" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <GridPane.margin>

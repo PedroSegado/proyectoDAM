@@ -80,7 +80,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Label styleClass="tituloContenedor" text="Patrones:" textFill="#201010">
+                  <Label styleClass="lbTituloContenedor" text="Patrones:" textFill="#201010">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -103,7 +103,7 @@
                 <RowConstraints minHeight="350.0" prefHeight="350.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label styleClass="tituloContenedor" text="Calibraciones:">
+                  <Label styleClass="lbTituloContenedor" text="Calibraciones:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -273,7 +273,7 @@
                               <Insets left="-50.0" right="30.0" top="25.0" />
                            </GridPane.margin>
                            <graphic>
-                              <ImageView fitHeight="109.0" fitWidth="189.0" pickOnBounds="true">
+                              <ImageView fitHeight="110.0" fitWidth="190.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@grafica.jpg" />
                                  </image>

@@ -1,13 +1,10 @@
 package com.pasegados.labo.conexionesbbdd;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 
 /**
  * Esta clase representa la conexión principal a la BBDD, con un conector de tipo HSQLDB, que genera y conecta a una
@@ -160,7 +157,8 @@ public class Conexion implements Cloneable {
         
         // Al borrar un ajuste, este hace SET null del campo 'ajuste' en la tabla Calibraciones, en aquellos registros que usaban este ajuste borrado.
         // Vamos previamente al UPDATE de Calibraciones, verificar si el UPDATE es por un Ajuste a NULL, y en ese caso, cambiaremos el campo activo a FALSE
-        // para desactivar el Calibrado en la aplicación, y que no se pueda usar hasta que el usuario lo revise y asigne otro ajuste de trabajo.
+        // para desactivar el Calibrado en la aplicación, y que no se pueda usar hasta que el usuario lo revise y asigne otro ajuste de trabajo. Ademas 
+        // vamos a cambiar la regresion a "Seleccionar..." para que el usuario escoja de nuevo.
         String triggerUpdCal = "CREATE TRIGGER updCal " +
                                "BEFORE UPDATE ON Calibracion " +
                                "REFERENCING NEW AS newrow FOR EACH ROW " +                                     
@@ -171,7 +169,7 @@ public class Conexion implements Cloneable {
                                "END";
         st.executeUpdate(triggerUpdCal);
         
-        // A borrar un calibrado, esto provoca que en la tabla Analisis se borren los registros que usan ese calibrado.
+        // Al borrar un calibrado, esto provoca que en la tabla Analisis se borren los registros que usan ese calibrado.
         // Tras borrar un registro de Analisis, vamos a copiar los datos a una tabla llamada AnalisisOLD en la que el campo Calibrado
         // no va a estar referenciado a Calibraciones.nombre, ya que estos calibrados ya no existen y daría error de integridad        
         String triggerdelAna =   "CREATE TRIGGER delAna " +

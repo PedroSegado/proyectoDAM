@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="691.0" minWidth="1276.0" prefHeight="691.0" prefWidth="1276.0" stylesheets="@../aspecto.css" xmlns="http://javafx.com/javafx/17.0.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.analisis.TabAnalisisControlador">
+<AnchorPane minHeight="691.0" minWidth="1276.0" prefHeight="691.0" prefWidth="1276.0" stylesheets="@../aspecto.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.analisis.TabAnalisisControlador">
    <children>
       <GridPane layoutX="37.0" layoutY="38.0" maxHeight="265.0" minHeight="265.0" minWidth="965.0" prefHeight="265.0" prefWidth="965.0" styleClass="contenedores" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
         <columnConstraints>
@@ -31,7 +31,7 @@
           <RowConstraints minHeight="85.0" prefHeight="85.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <Label styleClass="tituloContenedor" text="Nº de muestra:" GridPane.columnIndex="1">
+            <Label styleClass="lbTituloContenedor" text="Nº de muestra:" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -39,12 +39,12 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </Label>
-            <Label styleClass="tituloContenedor" text="Identificación:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label styleClass="lbTituloContenedor" text="Identificación:" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label styleClass="tituloContenedor" text="Calibrado:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label styleClass="lbTituloContenedor" text="Calibración:" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -97,7 +97,7 @@
             <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" styleClass="labelEspecial" text="RESULTADO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <Label alignment="CENTER" styleClass="lbTituloSobreAzul" text="RESULTADO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="72.0" />
                </font>
@@ -121,7 +121,7 @@
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Label styleClass="labelEspecial" text="CUENTAS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Label styleClass="lbTituloSobreAzul" text="CUENTAS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
