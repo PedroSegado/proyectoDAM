@@ -261,7 +261,8 @@ public class TabAnalisisControlador {
     // OTROS METODOS NO FXML PARA USO INTERNO DE ESTA CLASE
     
     // Calculamos el resultado a partir de la cuentas, usando la ecuacion del calibrado, y lo guardamos en BBDD
-    private void resultado(Calibrado c) {              
+    private void resultado(Calibrado c) {  
+        setFuente("normal"); // El texto a tamaño normal para mostrar el resultado
         // Paso el String de tfCuentas a Float
         float cuentas = Float.valueOf(tfCuentasMuestra.getText()); 
         // Calculo el % azufre con los terminos de la ecuación del calibrado con el que he analizado

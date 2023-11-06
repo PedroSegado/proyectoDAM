@@ -73,8 +73,8 @@ public class HiloMedida extends Thread {
                 }
 
                 if (midiendo) { //Si se completa la medida, midiendo sigue siendo "true"                
-                    CONTROLADOR_ANALISIS.setResultado("");
-                    CONTROLADOR_ANALISIS.setFuente("normal");
+                    //CONTROLADOR_ANALISIS.setResultado("");
+                    //CONTROLADOR_ANALISIS.setFuente("normal");
                 } else { // Hemos abortado y midiendo es "false"
                     CONTROLADOR_ANALISIS.setResultado("Abortado durante la medida");                   
                 }
