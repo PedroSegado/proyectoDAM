@@ -79,7 +79,8 @@ public class TabAnalisisControlador {
     public void initialize() {        
         App.setControladorAnalisis(this); // Establecemos en la clase App que este es el controlador FXML del la Tab Analisis
         tfMuestra.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(999999999))); // Para filtrar que solo se introduzcan dígitos y hasta un max. 999999999
-        tfIdentificacion.setTextFormatter(new TextFormatter<>(Filtros.getMaxTamanioFilter(20))); // Para filtrar que solo admita un max. 20 caracteres        
+        tfIdentificacion.setTextFormatter(new TextFormatter<>(Filtros.getMaxTamanioFilter(20))); // Para filtrar que solo admita un max. 20 caracteres   
+        
         // Preparo el escuchador del textfield cuentas, encargado de que cada vez que cambie el texto, llame al método
         // que calcula el resultado en % de azufre en función del calibrado con el que se analiza y estas cuentas.
         tfCuentasMuestra.textProperty().addListener(new ChangeListener<String>() {
@@ -114,11 +115,10 @@ public class TabAnalisisControlador {
         // Verificamos de que se han introducido los datos necesarios
         if (tfMuestra.getText().isEmpty() || cbMetodo.getSelectionModel().getSelectedIndex() == -1) {
             Alertas.alertaMuestra();
-        } else if (!verificaNumero(tfMuestra.getText())) { // y que el numero sea de 9 digitos numéricos
-            Alertas.alertaNumeroMuestra();
-        } else { // Si se han introducido todos los datos correctamente empezamos el proceso de análisis
+        } 
+        else { // Si se han introducido todos los datos correctamente empezamos el proceso de análisis
             try { 
-                // No existe PK, podemos analizar. 
+                // Si no existe esa PK en la BBDD, podemos analizar. 
                 if (!CNR.existePK(Integer.valueOf(tfMuestra.getText()), tfIdentificacion.getText(), cbMetodo.getValue())) {
                     //Vamos a rescatar el objeto calibrado que coincide con el nombre seleccionado en cbMetodo
                     Calibrado calib = App.getControladorPrincipal().getCalibrado(cbMetodo.getValue());
@@ -154,9 +154,8 @@ public class TabAnalisisControlador {
                             medida.setMidiendo(false); // ya no está midiendo
                             abortar(); // ajustamos nuestro interfaz a la nueva situación
                         }
-                    }
-                // Ya existe la PK en la BBDD, avisamos al usuario para que cambie alguno de los 3 campos que forman la PK
-                } else { 
+                    }                
+                } else { // Ya existe la PK en la BBDD, avisamos al usuario para que cambie alguno de los 3 campos que forman la PK
                     Alertas.alertaPKAnalisis();
                 }
             } catch (SQLException ex) {
@@ -169,7 +168,7 @@ public class TabAnalisisControlador {
     // OTROSMETODOS NO FXML PARA ACCEDER DESDE OTRAS CLASES
 
     /**
-     * Este método es llamado cuando quedan 5 segundos para terminar el ensayo, permitiendo escuchar los datos que desde
+     * Este método es llamado cuando quedan 5 segundos para terminar el análisis, permitiendo escuchar los datos que desde
      * ese momento se reciban por el puerto COM.
      */
     public void recibirDatos() {        
@@ -181,7 +180,7 @@ public class TabAnalisisControlador {
             puerto.escucharPuerto("muestra");
         } else{ // fallo conexión
             LOGGER.fatal("ERROR al intentar abrir el puerto COM");
-            abortar(); // cambiamos el gui para nuevo análisis
+            abortar(); // cambiamos la interfaz para nuevo análisis
             Alertas.alertaRecibirDatos();
         }
     }
@@ -201,11 +200,10 @@ public class TabAnalisisControlador {
     public void setCuentas(String cuentas) {
         tfCuentasMuestra.setText(cuentas);
     }
-
-    // Usado en los hilos de HiloAcondicionamiento y HiloMedida, para mostrar info y la cuenta atrás
+    
     /**
      * Este método permite ajustar el texto del TextField tfResultadoMuestra para mostrar información del proceso de
-     * medida.     *
+     * medida.
      * @param texto String con la información a mostrar al usuario
      */
     public void setResultado(String texto) {
@@ -258,7 +256,7 @@ public class TabAnalisisControlador {
         return ivIzquierda;
     }
     
-    // OTROS METODOS NO FXML PARA USO INTERNO DE ESTA CLASE
+    // OTROS METODOS NO FXML PARA USO PRIVADO INTERNO DE ESTA CLASE
     
     // Calculamos el resultado a partir de la cuentas, usando la ecuacion del calibrado, y lo guardamos en BBDD
     private void resultado(Calibrado c) {  
@@ -304,7 +302,7 @@ public class TabAnalisisControlador {
             LOGGER.fatal("Error al comunicar con la BBDD, analisis no guardado" + "\n" + ex.getMessage()); 
             Alertas.alertaBBDD(ex.getMessage());            
         }    
-        // Podemos cerra la conexión del puerto, hemos terminado el trabajo
+        // Podemos cerrar la conexión del puerto, hemos terminado el trabajo
         puerto.cierraConexion();         
     }    
     
@@ -335,12 +333,5 @@ public class TabAnalisisControlador {
         } catch (InterruptedException ex) {
             LOGGER.fatal("Error al esperar la respuesta del equipo al intentar abortar." + "\n" + ex.getMessage()); 
         }
-    }
-
-    // Verifica que el campo numero de muestra sea numerico y con una longitud de 9 dígitos"
-    private boolean verificaNumero(String cadena) {
-        Pattern pat = Pattern.compile("[0-9]{9}");
-        Matcher mat = pat.matcher(cadena);
-        return mat.matches();
     }
 }

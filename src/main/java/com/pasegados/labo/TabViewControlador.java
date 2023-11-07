@@ -125,11 +125,10 @@ public class TabViewControlador {
         App.getControladorResultados().setComboMetodos(LISTA_TODOS_METODOS); 
     }
        
-    // GETTERS LISTAS (SETTERS SON INNECESARIOS)
+    // GETTERS LISTAS (SETTERS SON INNECESARIOS PUES SE GENERAN DESDE LA BBDD)
     
     /**
      * Devuelve la lista de objetos Ajuste
-     *
      * @return ObservableList con todos los Ajustes
      */
     public ObservableList<Ajuste> getListaAjustes() {
@@ -138,7 +137,6 @@ public class TabViewControlador {
 
     /**
      * Devuelve la lista de objetos Analisis
-     *
      * @return ObservableList con todos los Analisis
      */
     public ObservableList<Analisis> getListaResultados() {
@@ -147,7 +145,6 @@ public class TabViewControlador {
 
     /**
      * Devuelve la lista de objetos Patron
-     *
      * @return ObservableList con todos los Analisis
      */
     public ObservableList<Patron> getListaPatrones() {
@@ -156,7 +153,6 @@ public class TabViewControlador {
 
     /**
      * Devuelve la lista de objetos Calibrado
-     *
      * @return ObservableList con todos los Analisis
      */
     public ObservableList<Calibrado> getListaCalibrados() {
@@ -167,7 +163,6 @@ public class TabViewControlador {
     
     /**
      * Este método devuelve el objeto Calibrado cuyo atributo nombre coincide con el indicado en el parámetro
-     *
      * @param nombre String con el nombre del Calibrado, que es su PK en la BBDD
      * @return Calibrado cuyo nombre coincide con el pasado por parámetro
      */
@@ -177,12 +172,11 @@ public class TabViewControlador {
                 return c;
             }
         }
-        return null;
+        return null; // No existe Calibrado con el nombre indicado, devolvemos null
     }
 
     /**
      * Este método devuelve el objeto Ajuste cuyo atributo nombre coincide con el indicado en el parámetro
-     *
      * @param nombre String con el nombre del Ajuste, que es su PK en la BBDD
      * @return Ajuste cuyo nombre coincide con el pasado por parámetro
      */
@@ -192,6 +186,6 @@ public class TabViewControlador {
                 return a;
             }
         }
-        return null;
+        return null; // No existe Ajuste con el nombre indicado, devolvemos null
     }    
 }

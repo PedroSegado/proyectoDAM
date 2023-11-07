@@ -40,8 +40,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {           
-        this.stage = stage;
-        App.app = this;
+        this.stage = stage; // Almaceno el escenario por si hay que reiniciar la app
+        App.app = this; // asigno esta instancia Main a la variable statica, para acceder desde otras clases (recargar la app)
+        
         //Comprobamos existencia BBDD: si existe podemos iniciar el programa               
         if (Conexion.getINSTANCIA().existeBBDD()){             
             LOGGER.info("Iniciando carga de la aplicación ...");            
@@ -49,7 +50,7 @@ public class App extends Application {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("TabView.fxml"));
                 Parent root = loader.load();
                 // Al cargar el loader, se llaman a todos los metodos initialize anidados en TabView.fxml, y aprovechamos
-                // cada unos de ellos para que use su setter en esta clase, para tener todos disponibles para interacturar.
+                // cada unos de ellos para que el setter de esta clase, para tener todos disponibles para interacturar.
                 Scene scene = new Scene(root);
                 stage.setTitle("Módulo controlador OXFORD LabX-3500");
                 stage.setMinHeight(769d); // Esta resolución ajusta perfectamente a monitor 1280x800 (16:10)
@@ -87,7 +88,6 @@ public class App extends Application {
     
     /**
      * Este método devuelve el controlador principal que contiene las pestañas
-     *
      * @return TabViewControlador con el controlador principal que a su vez carga los demás
      */
     public static TabViewControlador getControladorPrincipal() {
@@ -96,7 +96,6 @@ public class App extends Application {
 
     /**
      * Este método establece el controlador principal que contiene las pestañas
-     *
      * @param controladorPrincipal TabViewControlador con el controlador principal
      */
     public static void setControladorPrincipal(TabViewControlador controladorPrincipal) {
@@ -105,7 +104,6 @@ public class App extends Application {
 
     /**
      * Este método devuelve el controlador de la pestaña "Configuracion"
-     *
      * @return TabConfiguracionControlador con el controlador de la pestaña "Configuracion"
      */
     public static TabConfiguracionControlador getControladorConfiguracion() {
@@ -114,7 +112,6 @@ public class App extends Application {
 
     /**
      * Este método establece el controlador de la pestaña "Configuracion"
-     *
      * @param controladorConfiguracion TabConfiguracionControlador con el controlador de la pestaña "Configuracion"
      */
     public static void setControladorConfiguracion(TabConfiguracionControlador controladorConfiguracion) {
@@ -123,7 +120,6 @@ public class App extends Application {
 
     /**
      * Este método devuelve el controlador de la pestaña "Analisis"
-     *
      * @return TabAnalisisControlador con el controlador de la pestaña "Analisis"
      */
     public static TabAnalisisControlador getControladorAnalisis() {
@@ -132,7 +128,6 @@ public class App extends Application {
 
     /**
      * Este método establece el controlador de la pestaña "Analisis"
-     *
      * @param controladorAnalisis TabAnalisisControlador con el controlador de la pestaña "Analisis"
      */
     public static void setControladorAnalisis(TabAnalisisControlador controladorAnalisis) {
@@ -141,7 +136,6 @@ public class App extends Application {
 
     /**
      * Este método devuelve el controlador de la pestaña "Calibraciones"
-     *
      * @return TabCalibracionesControlador con el controlador de la pestaña "Calibraciones"
      */
     public static TabCalibracionesControlador getControladorCalibrados() {
@@ -150,7 +144,6 @@ public class App extends Application {
 
     /**
      * Este método establece el controlador de la pestaña "Calibraciones"
-     *
      * @param controladorCalibrados TabCalibracionesControlador con el controlador de la pestaña "Calibraciones"
      */
     public static void setControladorCalibrados(TabCalibracionesControlador controladorCalibrados) {
@@ -159,7 +152,6 @@ public class App extends Application {
 
     /**
      * Este método devuelve el controlador de la pestaña "Resultados"
-     *
      * @return TabResultadosControlador con el controlador de la pestaña "Resultados"
      */
     public static TabResultadosControlador getControladorResultados() {
@@ -168,7 +160,6 @@ public class App extends Application {
 
     /**
      * Este método establece el controlador de la pestaña "Resultados"
-     *
      * @param controladorResultados TabResultadosControlador con el controlador de la pestaña "Resultados"
      */
     public static void setControladorResultados(TabResultadosControlador controladorResultados) {
@@ -177,7 +168,6 @@ public class App extends Application {
 
     /**
      * Este método devuelve el controlador de la pestaña "Utilidades"
-     *
      * @return TabUtilidadesControlador con el controlador de la pestaña "Utilidades"
      */
     public static TabUtilidadesControlador getControladorUtilidades() {
@@ -186,27 +176,31 @@ public class App extends Application {
 
     /**
      * Este método establece el controlador de la pestaña "Utilidades"
-     *
      * @param controladorUtilidades TabUtilidadesControlador con el controlador de la pestaña "Utilidades"
      */
     public static void setControladorUtilidades(TabUtilidadesControlador controladorUtilidades) {
         App.controladorUtilidades = controladorUtilidades;
     }
     
+    // OTROS METODOS
     
-    // Método para reiniciar la aplicación
+    /**
+     * Este método permite reinciar la aplicación, recargando la BBDD al estado actual.
+     */
     public void reiniciar() {
         try {
             stop(); // Llamada al método stop() para detener la aplicación actual
         } catch (Exception ex) {
-            LOGGER.fatal(ex.getMessage());
+            LOGGER.fatal("Error al detener la aplicación: " + ex.getMessage());
         }
-        start(stage); // Iniciar una nueva instancia de la aplicación
+        start(stage); // Iniciar la aplicación, en el mismo stage que ya teníamos
     }
     
+    /**
+     * Este método devuelve el objeto App que ha iniciado la carga de la aplicación.
+     * @return App con la instancia que inicia la carga de la  App
+     */
     public static App getApp(){
         return app;
     }
-    
- 
 }

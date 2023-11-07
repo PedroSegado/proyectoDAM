@@ -86,6 +86,8 @@ public class EditorCalibracionControlador {
     private Label lbTermiInd;
     @FXML
     private Label lbR2;
+    @FXML
+    private Label lbCoefR2;
 
     // Botones y Toggles
     @FXML
@@ -120,6 +122,7 @@ public class EditorCalibracionControlador {
     private static final Logger LOGGER = LogManager.getLogger(TabCalibracionesControlador.class); // logger del controlador que lo llama
     private static final ConexionesCalibrado CNC = ConexionesCalibrado.getINSTANCIA_CALIBRADO();
     private Patron patronActualizandose;
+   
 
     /**
      * Inicializa automaticamente el controlador al crear el objeto, ejecutándose su contenido.
@@ -142,7 +145,9 @@ public class EditorCalibracionControlador {
         //Lista con todos los patrones asignados se asigna posteriormente al cargar el calibrado con el que trabajar en el método setCalibrado()      
         //Permitimos selección multiple en la listas
         lvPatrones.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        lvPatronesAsignados.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        lvPatronesAsignados.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);  
+        
+        lbCoefR2.setText("Coef. R\u00B2:"); // No se pueden poner superindices directamente en Scene Builder
     }
 
     // Analiza un Patrón para leer por primera vez o actualizar posteriormente sus cuentas

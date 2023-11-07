@@ -1,7 +1,7 @@
 module com.pasegados.labo {
     
-    requires javafx.graphics; //añadir transitive para evitar advertencias de error
-    requires javafx.controls; //añadir transitive para evitar advertencias de error
+    requires javafx.graphics; 
+    requires javafx.controls; 
     requires javafx.base;
     requires javafx.fxml;
     requires javafx.swing;
@@ -19,7 +19,7 @@ module com.pasegados.labo {
     opens com.pasegados.labo.configuracion;
     opens com.pasegados.labo.modelos;
     opens com.pasegados.labo.resultados;
-    opens com.pasegados.labo.utilidades; //to javafx.fxml, java.desktop;
+    opens com.pasegados.labo.utilidades; 
     
     exports com.pasegados.labo;
     exports com.pasegados.labo.analisis;
