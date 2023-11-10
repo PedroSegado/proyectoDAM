@@ -11,6 +11,7 @@ module com.pasegados.labo {
     requires commons.math3;
     requires com.fazecast.jSerialComm;    
     requires org.apache.logging.log4j;
+    requires java.base;
                  
     opens com.pasegados.labo;    
     opens com.pasegados.labo.analisis;     

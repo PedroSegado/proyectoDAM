@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import com.pasegados.labo.modelos.Calibrado;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
+import java.util.Locale;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -12,6 +15,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
@@ -92,11 +96,11 @@ public class GraficaControlador {
         double rango = max - min; // rango de cuentas del calibrado
 
         if (rango <= 2500) { // hasta 2500 cuentas            
-            resolucion = 50; // puntos en ecuacion de 50 en 50 cuentas
+            resolucion = 25; // puntos en ecuacion de 25 en 25 cuentas
         } else if (rango <= 15000) { // hasta 1.5%            
-            resolucion = 500; // puntos en ecuacion de 500 en 500 cuentas
+            resolucion = 250; // puntos en ecuacion de 250 en 250 cuentas
         } else if (rango > 15000) { // desde 1.5%            
-            resolucion = 1000; // puntos en ecuacion de 1000 en 1000 cuentas
+            resolucion = 500; // puntos en ecuacion de 500 en 500 cuentas
         }
 
         // Creo la recta/curva empezando en el mínino - resolucion y acabando en el maximo + resolucion
@@ -119,6 +123,20 @@ public class GraficaControlador {
         lcGrafico.getData().add(seriesPatrones); //Muestra los puntos de los patrones y la recta o curva calculada
 
         generaEtiqueta(calibrado); // genera la etiqueta con la ecuación y coeficiente de determinación
+        
+        
+        // Tooltips para los puntos de los patrones
+        for (XYChart.Series<Number, Number> s : lcGrafico.getData()) {
+            for (XYChart.Data<Number, Number> d : s.getData()) {
+                Tooltip.install(d.getNode(), new Tooltip("Cuentas : " + String.format(Locale.US, "%.0f", d.getXValue()) + "\n" +
+                                "Azufre(%) : " + String.format(Locale.US, "%.4f", d.getYValue())));
+
+                //Adding class on hover
+                d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+                //Removing class on exit
+                d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+            }
+        }
     }
 
     // Calcula concetración correspondiente a un numero de cuentas, en funcion de los coeficientes y tipo de regresión indicados
