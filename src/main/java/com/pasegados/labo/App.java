@@ -75,7 +75,7 @@ public class App extends Application {
                 mostrarVentanaPrincipal();
                 primerInicio = false;
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(4000);
                 } catch (InterruptedException ex) {
                     LOGGER.fatal("Error en sleep: " + ex.getMessage());
                 }

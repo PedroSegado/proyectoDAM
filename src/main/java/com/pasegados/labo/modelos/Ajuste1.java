@@ -16,33 +16,44 @@ import javafx.beans.property.StringProperty;
  * 
  * @author Pedro A. Segado Solanog
  */
-public class Ajuste implements Cloneable {
+public class Ajuste1 implements Cloneable {
     
     private StringProperty nombre; // Nombre del ajuste 
-    private StringProperty secuencia; // Pulsaciones para cargar la secuencia en el equipo, separadas por comas
+    private IntegerProperty analisisPagina; // en que pagina de los menús esta este ajuste
+    private IntegerProperty analisisMenu; // en que menú está dentro de la página
+    private IntegerProperty calibracionPagina; // en que pagina de los menús esta este ajuste
+    private IntegerProperty calibracionMenu; // en que menú está dentro de la página
     private IntegerProperty duracion; // Duración en segundos del análisis
+    private static final String INICIO = "ENT,4,1";
+    private static final String FIN = ",1,ENT,y";
     
     //CONSTRUCTORES
     
-    public Ajuste(String nombre, String secuencia, int tiempo ) {        
+    public Ajuste1(String nombre, int analisisPagina, int analisisMenu, int calibracionPagina, int calibracionMenu, int tiempo ) {        
         this.nombre = new SimpleStringProperty(nombre);        
-        this.secuencia = new SimpleStringProperty(secuencia);
+        this.analisisPagina = new SimpleIntegerProperty(analisisPagina);
+        this.analisisMenu = new SimpleIntegerProperty(analisisMenu);
+        this.calibracionPagina = new SimpleIntegerProperty(calibracionPagina);
+        this.calibracionPagina = new SimpleIntegerProperty(calibracionMenu);
         this.duracion = new SimpleIntegerProperty(tiempo);
     }
 
-    public Ajuste() {
-        this("", "", 0);
+    public Ajuste1() {
+        this("",1,1,1,1,0);
     }
 
     // CLONADOR DE OBJETOS AJUSTE
     
     @Override
-    public Object clone() {
-        Ajuste obj = new Ajuste();
+    public Object clone() {        
+        Ajuste1 obj = new Ajuste1();
         obj.setNombre(this.nombre.getValue());
-        obj.setSecuencia(this.secuencia.getValue());
+        obj.setAnalisisPagina(this.analisisPagina.getValue());
+        obj.setAnalisisMenu(this.analisisMenu.getValue());
+        obj.setCalibracionPagina(this.analisisPagina.getValue());
+        obj.setCalibracionMenu(this.analisisMenu.getValue());
         obj.setDuracion(this.duracion.getValue());        
-        return obj;
+        return obj;        
     }
 
     //GETTERS Y SETTERS
@@ -70,31 +81,60 @@ public class Ajuste implements Cloneable {
     public StringProperty nombreProperty() {
         return nombre;
     }
+
     
-    /**
-     * Devuelve la secuencia, separada por comas, de pulsaciones a enviar al equipo
-     * para usar este ajuste
-     * @return String con la secuencia a teclear para este ajuste
-     */
-    public String getSecuencia() {
-        return secuencia.get();
+    
+    public int getAnalisisPagina() {
+        return analisisPagina.get();
     }
 
-    /**
-     * Ajusta la secuencia, separada por comas, de pulsaciones a enviar al equipo
-     * @param secuencia String con la secuencia a teclear
-     */
-    public void setSecuencia(String secuencia) {
-        this.secuencia.set(secuencia);
+    public void setAnalisisPagina(int analisisPagina) {
+        this.analisisPagina.set(analisisPagina);
+    }
+    
+    public IntegerProperty analisisPaginaProperty() {
+        return analisisPagina;
+    }
+    
+    public int getAnalisisMenu() {
+        return analisisMenu.get();
     }
 
-    /**
-     * Para hacer Binding entre el objeto Ajuste y el textField del controlador
-     * @return StringProperty con la secuencia a teclear para este ajuste
-     */
-    public StringProperty secuenciaProperty() {
-        return secuencia;
+    public void setAnalisisMenu(int analisisMenu) {
+        this.analisisMenu.set(analisisMenu);
     }
+    
+    public IntegerProperty analisisMenuProperty() {
+        return analisisMenu;
+    }
+    
+    public int getCalibracionPagina() {
+        return calibracionPagina.get();
+    }
+
+    public void setCalibracionPagina(int calibracionPagina) {
+        this.calibracionPagina.set(calibracionPagina);
+    }
+    
+    public IntegerProperty calibracionPaginaProperty() {
+        return calibracionPagina;
+    }
+    
+    public int getCalibracionMenu() {
+        return calibracionMenu.get();
+    }
+
+    public void setCalibracionMenu(int calibracionMenu) {
+        this.calibracionMenu.set(calibracionMenu);
+    }
+    
+    public IntegerProperty calilbracionMenuProperty() {
+        return calibracionMenu;
+    }
+
+    
+    
+    
     
     /**
      * Devuelve la duración en segundos de la medida en este ajuste
@@ -134,6 +174,19 @@ public class Ajuste implements Cloneable {
      * @return String con toda la info del objeto Ajuste
      */
     public String toStringCompleto() {
-        return "Ajuste{" + "nombre=" + nombre.get() + ", secuencia=" + secuencia.get() + ", duracion=" + duracion.get() + '}';
+        return "Ajuste{" + "nombre=" + nombre.get() + ",  duracion=" + duracion.get() + '}';
     }    
+    
+    
+    public String getSecuencia(){
+        
+        String paginas = "";
+        for (int i = 1; i<getAnalisisPagina(); i++){ // Si esta en la primera pagina no se cuenta
+            paginas += ",4";
+        }
+        
+        String posicionMenu = "," + String.valueOf(getAnalisisMenu());        
+        
+        return INICIO + paginas + posicionMenu + FIN;
+    }
 }
