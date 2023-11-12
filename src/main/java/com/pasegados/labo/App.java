@@ -61,7 +61,7 @@ public class App extends Application {
     private void mostrarSplash() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("splash.fxml"));
+            loader.setLocation(getClass().getResource("Splash.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage splashStage = new Stage();
