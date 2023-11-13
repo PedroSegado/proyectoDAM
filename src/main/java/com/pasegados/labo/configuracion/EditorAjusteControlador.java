@@ -2,12 +2,15 @@ package com.pasegados.labo.configuracion;
 
 import com.pasegados.labo.App;
 import com.pasegados.labo.modelos.Ajuste;
+import com.pasegados.labo.modelos.Ajuste;
 import com.pasegados.labo.modelos.Alertas;
 import com.pasegados.labo.modelos.Filtros;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
@@ -31,8 +34,16 @@ public class EditorAjusteControlador {
     private TextField tfNombre;
     @FXML
     private TextField tfDuracion;
+    
+    // Spinners
     @FXML
-    private TextField tfSecuencia;
+    private Spinner<Integer> spAnalisisPagina;
+    @FXML
+    private Spinner<Integer> spAnalisisMenu;
+    @FXML
+    private Spinner<Integer> spCalibracionPagina;
+    @FXML
+    private Spinner<Integer> spCalibracionMenu;
 
     // Botones    
     @FXML
@@ -45,13 +56,26 @@ public class EditorAjusteControlador {
     private Ajuste ajusteDuplicado;
     private Ajuste ajusteOriginal;
     private boolean aceptarPulsado = false;
+    
 
     /**
      * Inicializa automaticamente el controlador al crear el objeto, ejecutándose su contenido.
      */
     public void initialize() {
+        
+       
         // Control de entrada solo numérico y máximo valor en textfield de duración (300s max)
         tfDuracion.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(300)));
+        
+        SpinnerValueFactory<Integer> valorPaginaAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,4,1);
+        SpinnerValueFactory<Integer> valorPaginaCalibracion = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,9,1);
+        SpinnerValueFactory<Integer> valorMenuAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,2,1);
+        SpinnerValueFactory<Integer> valorMenuCalibracion = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,3,1);
+        
+        spAnalisisPagina.setValueFactory(valorPaginaAnalisis);
+        spAnalisisMenu.setValueFactory(valorMenuAnalisis);
+        spCalibracionPagina.setValueFactory(valorPaginaCalibracion);
+        spCalibracionMenu.setValueFactory(valorMenuCalibracion);
     }
 
     // Pulsamos el botón cancelar para rechazar cualquier tipo de cambios o trabajo realizado
@@ -66,7 +90,12 @@ public class EditorAjusteControlador {
         if (isInputValid()) { // Si tenemos los campos necesarios y son correctos
             // Ajustamos los atributos del objeto original con lo indicados en pantalla sobre el duplicado
             ajusteOriginal.setNombre(ajusteDuplicado.getNombre());
-            ajusteOriginal.setSecuencia(ajusteDuplicado.getSecuencia());
+            
+            ajusteOriginal.setAnalisisMenu(ajusteDuplicado.getAnalisisMenu());
+            ajusteOriginal.setAnalisisPagina(ajusteDuplicado.getAnalisisPagina());
+            ajusteOriginal.setCalibracionMenu(ajusteDuplicado.getCalibracionMenu());
+            ajusteOriginal.setCalibracionPagina(ajusteDuplicado.getCalibracionPagina());
+                        
             ajusteOriginal.setDuracion(ajusteDuplicado.getDuracion());
 
             aceptarPulsado = true;
@@ -89,9 +118,7 @@ public class EditorAjusteControlador {
                 mensajeMostrar += "Ya existe un ajuste con ese nombre";                                                       // el mismo nombre
             }
         }
-        if (tfSecuencia.getText() == null || tfSecuencia.getText().length() == 0) { // No hay concentracion
-            mensajeMostrar += "Debes seleccionar una secuencia de teclas, separada por comas,  para el ajueste\n";
-        }
+        
         // El resto de campos se podrían dejar a null si se desconocen
         if (mensajeMostrar.length() == 0) {
             return true;
@@ -111,7 +138,11 @@ public class EditorAjusteControlador {
         this.ajusteDuplicado = (Ajuste) ajuste.clone();
 
         tfNombre.textProperty().bindBidirectional(this.ajusteDuplicado.nombreProperty());
-        tfSecuencia.textProperty().bindBidirectional(this.ajusteDuplicado.secuenciaProperty());
+        spAnalisisMenu.getValueFactory().valueProperty().bindBidirectional(this.ajusteDuplicado.analisisMenuProperty().asObject());
+        spAnalisisPagina.getValueFactory().valueProperty().bindBidirectional(this.ajusteDuplicado.analisisPaginaProperty().asObject());
+        spCalibracionMenu.getValueFactory().valueProperty().bindBidirectional(this.ajusteDuplicado.calilbracionMenuProperty().asObject());
+        spCalibracionPagina.getValueFactory().valueProperty().bindBidirectional(this.ajusteDuplicado.calibracionPaginaProperty().asObject());
+               
         tfDuracion.textProperty().bindBidirectional(this.ajusteDuplicado.tiempoProperty(), new NumberStringConverter("0"));
         if (tfDuracion.textProperty().getValue().equals("0,0000")) {
             tfDuracion.setText("");

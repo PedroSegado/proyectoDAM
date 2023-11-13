@@ -3,24 +3,28 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="450.0" maxWidth="500.0" minHeight="350.0" minWidth="400.0" prefHeight="350.0" prefWidth="400.0" style="-fx-border-color: white;" stylesheets="@../aspecto.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.configuracion.EditorAjusteControlador">
+<AnchorPane id="AnchorPane" maxHeight="450.0" maxWidth="500.0" minHeight="350.0" minWidth="359.0" prefHeight="448.0" prefWidth="359.0" style="-fx-border-color: white;" stylesheets="@../aspecto.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.configuracion.EditorAjusteControlador">
    <children>
-      <GridPane layoutX="43.0" layoutY="69.0" minHeight="300.0" minWidth="540.0" prefHeight="300.0" prefWidth="540.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="25.0">
+      <GridPane layoutX="37.0" layoutY="31.0" minHeight="300.0" minWidth="540.0" prefHeight="300.0" prefWidth="540.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="NEVER" maxWidth="95.0" minWidth="95.0" prefWidth="95.0" />
-            <ColumnConstraints hgrow="ALWAYS" maxWidth="150.0" minWidth="50.0" prefWidth="60.0" />
+          <ColumnConstraints hgrow="NEVER" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="150.0" minWidth="80.0" prefWidth="80.0" />
             <ColumnConstraints hgrow="ALWAYS" minWidth="60.0" prefWidth="80.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="NEVER" />
           <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="NEVER" />
           <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="NEVER" />
             <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="NEVER" />
             <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="NEVER" />
@@ -28,24 +32,24 @@
         </rowConstraints>
          <children>
             <Label styleClass="labelFormulario" text="Nombre:" GridPane.rowIndex="1" />
-            <Label styleClass="labelFormulario" text="Duración (s):" GridPane.rowIndex="3" />
-            <Label styleClass="labelFormulario" text="Secuencia:" GridPane.rowIndex="2" />
-            <TextField fx:id="tfNombre" maxWidth="360.0" minWidth="110.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="50.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="tfDuracion" maxWidth="100.0" minWidth="70.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label styleClass="labelFormulario" text="Duración:" GridPane.rowIndex="2" />
+            <Label styleClass="labelFormulario" text="Página:" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <TextField fx:id="tfNombre" maxWidth="360.0" minWidth="201.0" prefHeight="26.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="30.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnMini" text="Cancelar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+            <TextField fx:id="tfDuracion" maxWidth="100.0" minWidth="70.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="30.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnMini" text="Cancelar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#aceptar" styleClass="btnMini" text="Aceptar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+            <Button fx:id="btAceptar" mnemonicParsing="false" onAction="#aceptar" styleClass="btnMini" text="Aceptar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets right="100.0" />
                </GridPane.margin>
@@ -58,15 +62,57 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="tfSecuencia" maxWidth="360.0" minWidth="110.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets right="50.0" />
-               </GridPane.margin></TextField>
-            <Label styleClass="labelFormulario" text="(max. 300)" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label styleClass="labelFormulario" text="(max. 300 segundos)" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="-20.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="10.0" />
+               </font>
             </Label>
+            <Label styleClass="labelFormulario" text="Página:" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <Label styleClass="labelFormulario" text="Menú:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets right="-20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label styleClass="labelFormulario" text="Menú:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="-20.0" />
+               </GridPane.margin>
+            </Label>
+            <Spinner fx:id="spAnalisisPagina" prefHeight="26.0" prefWidth="55.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Spinner>
+            <Spinner fx:id="spAnalisisMenu" prefHeight="26.0" prefWidth="55.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Spinner>
+            <Spinner fx:id="spCalibracionPagina" prefHeight="26.0" prefWidth="55.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Spinner>
+            <Spinner fx:id="spCalibracionMenu" prefHeight="26.0" prefWidth="55.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Spinner>
+            <Label styleClass="labelFormulario" text="Posición en Menú Análisis" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+            <Label styleClass="labelFormulario" text="Posición en Menú Calibracion" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+            <Line endX="135.0" stroke="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="8.0" left="90.0" />
+               </GridPane.margin>
+            </Line>
+            <Line endX="112.0" stroke="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="8.0" />
+               </GridPane.margin>
+            </Line>
          </children>
       </GridPane>
    </children>

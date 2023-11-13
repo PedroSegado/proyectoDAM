@@ -158,9 +158,12 @@ public class ConexionesConfiguracion extends Conexion implements Cloneable {
         resultados = st.executeQuery("Select * from Ajuste");
         
         while (resultados.next()) { // Podemos tener varios ajustes, por defecto existen 3
-            Ajuste a = new Ajuste(resultados.getString("nombre"), resultados.getString("secuencia"), resultados.getInt("tiempo"));
-            listaAjustes.add(a); // Voy añadiendo objetos Ajuste en las iteraciones
+            Ajuste a = new Ajuste(resultados.getString("nombre"), resultados.getInt("analisisPagina"),
+                    resultados.getInt("analisisMenu"), resultados.getInt("calibracionPagina"), 
+                    resultados.getInt("calibracionMenu"),resultados.getInt("tiempo"));
+            listaAjustes.add(a); // Voy añadiendo objetos Ajuste en las iteraciones            
         }
+          
         // Cerramos los objetos implicados
         resultados.close();
         st.close();
@@ -177,10 +180,14 @@ public class ConexionesConfiguracion extends Conexion implements Cloneable {
      */
     public void insertarAjuste(Ajuste a) throws SQLException {
 
-        ps = iniciarConexion().prepareStatement("INSERT INTO Ajuste (nombre, secuencia, tiempo) VALUES (?,?,?);");
+        ps = iniciarConexion().prepareStatement("INSERT INTO Ajuste (nombre, analisisPagina, analisisMenu,"
+                + " calibracionPagina, calibracionMenu, tiempo) VALUES (?,?,?,?,?,?);");
         ps.setString(1, a.getNombre());
-        ps.setString(2, a.getSecuencia());
-        ps.setInt(3, a.getDuracion());
+        ps.setInt(2, a.getAnalisisPagina());
+        ps.setInt(3, a.getAnalisisMenu());
+        ps.setInt(4, a.getCalibracionPagina());
+        ps.setInt(5, a.getCalibracionMenu());
+        ps.setInt(6, a.getDuracion());          
 
         ps.executeUpdate();
         // Cierro los objetos implicados
@@ -198,10 +205,14 @@ public class ConexionesConfiguracion extends Conexion implements Cloneable {
      */
     public void actualizarAjuste(Ajuste a, String nombreOriginal) throws SQLException {
 
-        ps = iniciarConexion().prepareStatement("Update Ajuste set nombre = ?, secuencia = ?, tiempo = ?   where nombre = '" + nombreOriginal + "';");
+        ps = iniciarConexion().prepareStatement("Update Ajuste set nombre = ?, analisisPagina = ?,"
+                + "analisisMenu = ?, calibracionPagina = ?, calibracionMenu = ?, tiempo = ?   where nombre = '" + nombreOriginal + "';");
         ps.setString(1, a.getNombre());
-        ps.setString(2, a.getSecuencia());
-        ps.setInt(3, a.getDuracion());
+        ps.setInt(2, a.getAnalisisPagina());
+        ps.setInt(3, a.getAnalisisMenu());
+        ps.setInt(4, a.getCalibracionPagina());
+        ps.setInt(5, a.getCalibracionMenu());
+        ps.setInt(6, a.getDuracion());
         // Realizamos el update tal y como lo hemos configurado anterioremente
         ps.executeUpdate();
         // Cerramos los objetos implicados

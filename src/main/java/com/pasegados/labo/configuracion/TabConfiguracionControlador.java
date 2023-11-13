@@ -234,7 +234,7 @@ public class TabConfiguracionControlador {
                 } catch (SQLException e) {
                     LOGGER.fatal("Error al modificar en BBDD el ajuste con datos " + valorViejo + "\n" + e.getMessage());
                     Alertas.alertaBBDD(e.getMessage());
-                }
+                }                
             }
         } else { // No se ha seleccionado ningún Ajuste en la lista
             Alertas.alertaErrorModificar("ajuste");
@@ -383,23 +383,7 @@ public class TabConfiguracionControlador {
         lvAjustes.setItems(this.listaAjustes);
     }
 
-    /**
-     * Este método devulve la secuencia de pulsaciones necesaria para que el equipo trabaje en un determinado ajuste,
-     * para realizar el análisis de una muestra o patrón
-     *
-     *
-     * @param ajuste Nombre del objeto Ajuste del que obtener la secuencia de pulsaciones
-     * @return String con la secuencia, separada por comas, de las distintas pulsaciones
-     */
-    public String getPulsacionesAjuste(String ajuste) {
-        for (Ajuste a : listaAjustes) {
-            if (a.getNombre().equals(ajuste)) {
-                return a.getSecuencia();
-            }
-        }
-        return null; // Si llegamos aqui no existe ese ajuste y se devuelve null
-    }
-
+    
     /**
      * Este método permite borrar la BBDD en uso, eliminando los archivos del equipo.
      */

@@ -59,7 +59,7 @@ public class HiloEnvioDatos extends Thread {
                 case "abortar" ->
                     secuencia = "abortar"; // Abortar proceso de medida
                 case "analizar" ->
-                    secuencia = App.getControladorConfiguracion().getPulsacionesAjuste(calibrado.getAjuste().getNombre());                
+                    secuencia = calibrado.getAjuste().getSecuencia();                     
                 default ->
                     secuencia = tipo;
             }

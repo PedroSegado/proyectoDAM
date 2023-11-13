@@ -77,7 +77,7 @@ public class Calibrado implements Cloneable {
     }
 
     public Calibrado() {
-        this("", LocalDate.now(), new Ajuste("Seleccionar...", null, 0), true, FXCollections.observableArrayList(), "Seleccionar...");
+        this("", LocalDate.now(), new Ajuste("Seleccionar...", 0,0,0,0,0), true, FXCollections.observableArrayList(), "Seleccionar...");
     }
 
     // CLONADOR DE OBJETOS CALIBRADO

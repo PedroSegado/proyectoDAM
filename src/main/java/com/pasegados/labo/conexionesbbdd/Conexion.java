@@ -88,7 +88,10 @@ public class Conexion implements Cloneable {
     // --- TABLAS --- //
     
         String tablaAjuste = "CREATE TABLE Ajuste (nombre VARCHAR(32) PRIMARY KEY, "
-                                                + "secuencia VARCHAR(32) NOT NULL, "
+                                                + "analisisPagina INT NOT NULL, "
+                                                + "analisisMenu INT NOT NULL, "
+                                                + "calibracionPagina INT NOT NULL, "
+                                                + "calibracionMenu INT NOT NULL, "
                                                 + "tiempo INT CONSTRAINT Chk_Aj_NotNullAndRange CHECK (tiempo IS NOT NULL AND tiempo BETWEEN 10 AND 300))";
         st.executeUpdate(tablaAjuste);
                 
@@ -181,9 +184,9 @@ public class Conexion implements Cloneable {
         st.executeUpdate(triggerdelAna);
         
         //CREAMOS AJUSTES POR DEFECTO
-        st.executeUpdate("INSERT INTO Ajuste VALUES ('LZMET048','ENT,4,1,1,1,ENT,y',200)");
-        st.executeUpdate("INSERT INTO Ajuste VALUES ('LZMET049','ENT,4,1,2,1,ENT,y',200)");
-        st.executeUpdate("INSERT INTO Ajuste VALUES ('LZMET050','ENT,4,1,4,1,1,ENT,y',99)");
+        st.executeUpdate("INSERT INTO Ajuste VALUES ('LZMET048',1,1,1,1,200)");
+        st.executeUpdate("INSERT INTO Ajuste VALUES ('LZMET049',1,1,1,1,200)");
+        st.executeUpdate("INSERT INTO Ajuste VALUES ('LZMET050',1,1,1,1,99)");
         
         // Puerto y Config por defecto
         st.executeUpdate("INSERT INTO Configuracion VALUES ('COM1','2400','8','Ninguna','1',300,13,10,36,10,66)");
