@@ -313,7 +313,7 @@ public class TabAnalisisControlador {
     
     // Establece los valores de los componentes en pantalla cuando se inicia el Analisis con el botón Analizar
     private void analizar() {
-        tfResultadoMuestra.setStyle("-fx-text-fill: white;");
+        tfResultadoMuestra.setStyle("-fx-text-fill: white;"); 
         btAnalizarMuestra.setText("Abortar"); // cambiamos texto del botón para poder "Abortar"
         tfResultadoMuestra.setText(""); // borramos cualquier texto previo del textfield del resultado
         tfCuentasMuestra.setText(""); // y del de las cuentas que se reciben desde el equipo OXFORD
