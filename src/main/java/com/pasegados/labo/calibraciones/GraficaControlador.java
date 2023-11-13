@@ -128,12 +128,16 @@ public class GraficaControlador {
         // Tooltips para los puntos de los patrones
         for (XYChart.Series<Number, Number> s : lcGrafico.getData()) {
             for (XYChart.Data<Number, Number> d : s.getData()) {
-                Tooltip.install(d.getNode(), new Tooltip("Cuentas : " + String.format(Locale.US, "%.0f", d.getXValue()) + "\n" +
-                                "Azufre(%) : " + String.format(Locale.US, "%.4f", d.getYValue())));
-
-                //Adding class on hover
+                
+                Tooltip tooltip = new Tooltip("Cuentas : " + String.format(Locale.US, "%.0f", d.getXValue()) + "\n" +
+                                "Azufre(%) : " + String.format(Locale.US, "%.4f", d.getYValue()));
+                // Ajustar el showDelay a 0 para que aparezca inmediatamente
+                tooltip.setShowDelay(javafx.util.Duration.millis(0));
+                Tooltip.install(d.getNode(),  tooltip);
+                
+                //evento mostrar al entrar con el raton
                 d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
-                //Removing class on exit
+                //eliminamos al salir con el raton
                 d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
             }
         }

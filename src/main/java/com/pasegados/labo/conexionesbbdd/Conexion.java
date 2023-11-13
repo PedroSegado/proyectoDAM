@@ -118,7 +118,7 @@ public class Conexion implements Cloneable {
                                           + "concentracion DECIMAL(5,4) NOT NULL)";
         st.executeUpdate(tablaPatrones);
         
-        String tablaConfiguracion = "CREATE TABLE Configuracion (puerto VARCHAR(16) PRIMARY KEY, "
+        String tablaConfiguracion = "CREATE TABLE Configuracion (puerto VARCHAR(16) NOT NULL, "
                                                               + "bps VARCHAR(16) NOT NULL, "
                                                               + "bdd VARCHAR(16) NOT NULL, "
                                                               + "par VARCHAR(16) NOT NULL, "
@@ -192,9 +192,7 @@ public class Conexion implements Cloneable {
         st.executeUpdate("INSERT INTO Configuracion VALUES ('COM1','2400','8','Ninguna','1',300,13,10,36,10,66)");
         // Ajuste por defecto, sera INBORRABLE
       /*  st.executeUpdate("INSERT INTO Ajuste VALUES ('Seleccionar...','ESC',1)");*/
-        
-        
-        System.out.println("Tablas creadas con éxito.");
+       
         detenerConexion();
     }
     

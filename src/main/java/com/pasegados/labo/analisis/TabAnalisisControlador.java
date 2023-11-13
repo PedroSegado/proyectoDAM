@@ -268,7 +268,12 @@ public class TabAnalisisControlador {
         // Creo un string del resultado con 4 decimales
         String res = String.valueOf(new Formatter(Locale.US).format("%.4f", resultado)); // Formateado para usar . como decimal
         // Muestro el resultado en el textfield correspondiente
-        tfResultadoMuestra.setText(res + " %"); 
+        tfResultadoMuestra.setText(res + " %");
+        
+        if (resultado <c.getMinimo()*0.9 || resultado >c.getMaximo()*1.1){
+            tfResultadoMuestra.setStyle("-fx-text-fill: red;");
+        }
+                
         LOGGER.info("ANALIZADO: " + tfMuestra.getText() + " - " + tfIdentificacion.getText() + " - " + cbMetodo.getValue() 
                               + " con resultado " + tfResultadoMuestra.getText() + " y cuentas " + tfCuentasMuestra.getText());
         // Creamos objeto Analisis y lo configuramos con sus valores
@@ -308,6 +313,7 @@ public class TabAnalisisControlador {
     
     // Establece los valores de los componentes en pantalla cuando se inicia el Analisis con el botón Analizar
     private void analizar() {
+        tfResultadoMuestra.setStyle("-fx-text-fill: white;");
         btAnalizarMuestra.setText("Abortar"); // cambiamos texto del botón para poder "Abortar"
         tfResultadoMuestra.setText(""); // borramos cualquier texto previo del textfield del resultado
         tfCuentasMuestra.setText(""); // y del de las cuentas que se reciben desde el equipo OXFORD

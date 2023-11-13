@@ -9,11 +9,13 @@ import java.util.Locale;
 import com.pasegados.labo.App;
 import com.pasegados.labo.conexionesbbdd.ConexionesCalibrado;
 import com.pasegados.labo.conexionesbbdd.ConexionesPatron;
+import com.pasegados.labo.modelos.Ajuste;
 import com.pasegados.labo.modelos.Alertas;
 import com.pasegados.labo.modelos.Analisis;
 import com.pasegados.labo.modelos.BooleanStringConverterPerso;
 import com.pasegados.labo.modelos.Calibrado;
 import com.pasegados.labo.modelos.ColeccionCalibraciones;
+import com.pasegados.labo.modelos.HiloEnvioDatos;
 import com.pasegados.labo.modelos.Patron;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -627,5 +629,27 @@ public class TabCalibracionesControlador {
                 LOGGER.fatal("CALIBRADO: Error al acceder a la gráfica del calibrado " + seleccionado.getNombre() + "\n" + e.getMessage());
                 Alertas.alertaIOException(e.toString());
             }
+    }
+
+    @FXML
+    private void sincronizarCoeficientes(ActionEvent event) {
+        
+        Calibrado seleccionado = tvCalibrados.getSelectionModel().getSelectedItem();
+        
+        if (seleccionado != null) { // si hemos seleccionado uno en la tabla de calibrados
+            
+            // Alerta avisando al usuario de la importancia de la posición actual en el menú
+            if (Alertas.alertaPrevioSincro()){
+                Ajuste ajuste = seleccionado.getAjuste(); // rescatamos el ajuste que usa el calibrado            
+                        
+                String actualizarCoeficientes = ajuste.getSecuenciaAjusteCoeficientes(seleccionado);
+            
+                //System.out.println(actualizarCoeficientes);            
+                HiloEnvioDatos envioDatos = new HiloEnvioDatos(actualizarCoeficientes, LOGGER);
+                envioDatos.start();
+            }            
+        } else {
+            Alertas.alertaErrorSincro();
+        }        
     }
 }

@@ -331,10 +331,10 @@ public class TabConfiguracionControlador {
 
             controladorAjuste.setStage(stage);
             stage.setScene(scene);
-            stage.setMinHeight(436d);
-            stage.setMinWidth(414d);
-            stage.setMaxHeight(500d);
-            stage.setMaxWidth(500d);
+            stage.setMinHeight(486d);
+            stage.setMinWidth(374d);
+            stage.setMaxHeight(536d);
+            stage.setMaxWidth(424d);
 
             stage.showAndWait(); // Esperamos respuesta del usuario en el editor
 

@@ -120,7 +120,7 @@ public class App extends Application {
             // Al cargar el loader, se llaman a todos los metodos initialize anidados en TabView.fxml, y aprovechamos
             // cada unos de ellos para que el setter de esta clase, para tener todos disponibles para interacturar.
             Scene scene = new Scene(root);
-            stage.setTitle("Módulo controlador OXFORD LabX-3500");
+            stage.setTitle("Gestor OXFORD - LabX-3500");
             stage.setMinHeight(769d); // Esta resolución ajusta perfectamente a monitor 1280x800 (16:10)
             stage.setMinWidth(1293d); // manteniendo la barra de tareas de windows visible
             stage.setScene(scene);
@@ -137,6 +137,7 @@ public class App extends Application {
         } catch (IOException ex) {
             LOGGER.fatal("Error al cargar 'TabView.fxml' al inicio " + "\n" + ex.getMessage());
             Alertas.alertaCargaInicial(ex.getLocalizedMessage());
+            System.exit(0);
         }
     }
 

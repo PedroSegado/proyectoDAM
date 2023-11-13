@@ -291,12 +291,12 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 3 &quot;Utilidades&quot;" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 3 &quot;Utilitarios&quot;" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 4 &quot;Cambiar página&quot; dos veces hasta llegar a ver la opción &quot;Configurar RS232&quot;." GridPane.rowIndex="4">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 4 &quot;Cambiar página&quot; dos veces hasta llegar a ver la opción &quot;Formatear RS232&quot;." GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -324,7 +324,7 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 1 para acceder al menú &quot;Configurar RS232&quot;" GridPane.rowIndex="5">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 1 para acceder al menú &quot;Formatear RS232&quot;" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -344,18 +344,18 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 3 &quot;Utilidades&quot;" GridPane.rowIndex="15">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Acceder al menú 3 &quot;Utilitarios&quot;" GridPane.rowIndex="15">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 4 &quot;Cambiar página&quot; tres veces hasta llegar a ver la opción &quot;Conexiones&quot;" GridPane.rowIndex="16">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 4 &quot;Cambiar página&quot; tres veces hasta llegar a ver la opción &quot;Connections&quot;" GridPane.rowIndex="16">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text=" " GridPane.rowIndex="17" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 1 para acceder al menú &quot;Conexiones&quot;" GridPane.rowIndex="17">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelInforme" text="- Pulsar 1 para acceder al menú &quot;Connections&quot;" GridPane.rowIndex="17">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>

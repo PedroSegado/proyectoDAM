@@ -597,4 +597,59 @@ public abstract class Alertas {
         alert.setContentText("Se ha producido un error al localizar e intentar abrir el editor de " + editor);
         alert.showAndWait();
     }
+    
+    
+    // Sincronización Coeficientes PC-EQUIPO
+    
+    /**
+     * Alerta para indicar que se debe seleccionar una Calibracion para sincronizar los coeficientes con el equipo.    
+     */
+    public static void alertaErrorSincro() {
+        alert.setAlertType(Alert.AlertType.WARNING);
+        alert.setTitle("Error de selección");
+        alert.setHeaderText("No has seleccionado una calibración");
+        alert.setContentText("Debe seleccionar un 'Calibrado' de la lista para proceder a sincronizar los coeficientes de la ecuación con el equipo.\n\n"
+                + "Tras esto se obtendrá el mismo resultado tanto en el display del equipo como en el PC.\n");
+        alert.showAndWait();
+    }
+    
+    /**
+     * Alerta para avisar al usuario de la posición necesaria en el menú antes de actualizar los coeficientes.
+     */
+    public static boolean alertaPrevioSincro() {
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("¡Muy Importante!");
+        alert.setHeaderText("Asegurese de la posición actual en los menús del equipo 'OXFORD'");
+        alert.setContentText("Es necesario que el equipo se encuentre en una posición de trabajo que coincida con el fín de una análisis, por ejemplo: \n\n"
+                
+                + "                             ----------------------------------------------------------\n"
+                + "                              AZUFRE BAJO                         S = 0.0405MASS%\n"
+                + "                              Tecle <ENTER> para continuar\n"
+                + "                             ----------------------------------------------------------\n\n"
+                
+                + "O bien que se esté situado en una de las dos primeras pantallas del equipo:\n\n"
+                                
+                + "         PANTALLA 1:\n"
+                + "                             ----------------------------------------------------------\n"
+                + "                                      LAB-X 3500 PROGRAMAS ANALITICOS" + "\n"        
+                + "                              LZ 1.0                       <ENTER> PARA CONTINUAR\n"
+                + "                             ----------------------------------------------------------\n\n"
+                
+                + "         PANTALLA 2:\n"
+                + "                             ----------------------------------------------------------\n"
+                + "                                              : MENU PRINCIPAL:" + "\n"      
+                + "                              1=ANALISIS                        2=OTRAS FUNCIONES\n"
+                + "                             ----------------------------------------------------------\n\n"
+                
+                +" Si se encuentra en una de estas situaciones y desea sincronizar los coeficientes del equipo con los del software pulse 'ACEPTAR'\n\n"
+                + "En caso contrario sitúese primero en uno de estos menús antes de pulsar 'ACEPTAR' o pulse 'CANCELAR' para abortar el proceso.\n\n");
+                
+                
+                
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            return true;
+        }
+        return false;
+    }
 }

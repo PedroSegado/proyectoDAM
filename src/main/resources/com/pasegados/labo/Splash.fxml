@@ -7,18 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/17.0.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.SplashControlador">
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pasegados.labo.SplashControlador">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="2.0" layoutY="124.0" pickOnBounds="true" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="596.0" fitWidth="796.0" layoutX="2.0" layoutY="124.0" pickOnBounds="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <image>
             <Image url="@fondo.png" />
          </image>
       </ImageView>
-      <Text fx:id="ap" layoutX="608.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pedro Antonio Segado Solano">
+      <Text fx:id="ap" layoutX="575.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pedro Antonio Segado Solano">
          <font>
-            <Font name="Eras Demi ITC" size="12.0" />
+            <Font name="Eras Demi ITC" size="14.0" />
          </font></Text>
-      <Text layoutX="569.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proyecto Grado Superior DAM 23/24" wrappingWidth="208.595703125">
+      <Text layoutX="569.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proyecto Grado Superior DAM 23/24" wrappingWidth="208.595703125">
          <font>
             <Font name="Eras Demi ITC" size="12.0" />
          </font></Text>
@@ -47,7 +47,7 @@
             <Image url="@JasperReports.png" />
          </image>
       </ImageView>
-      <Text layoutX="23.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Desarrollado gracias a:">
+      <Text layoutX="23.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Desarrollado gracias a:">
          <font>
             <Font name="Eras Demi ITC" size="12.0" />
          </font>

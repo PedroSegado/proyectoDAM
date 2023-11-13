@@ -1,5 +1,9 @@
 package com.pasegados.labo.modelos;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -181,34 +185,81 @@ public class Ajuste implements Cloneable {
         final String INICIO_ANALISIS = "ENT,4,1";
         final String FIN_ANALISIS = ",1,ENT,y";
         
+        // Preparo la parte relativa a la página que ocupa dentro de los calibrados del equipo
         String paginas = "";
         for (int i = 1; i<getAnalisisPagina(); i++){ // Si esta en la primera pagina no se cuenta
-            paginas += ",4";
+            paginas += ",4"; // Inserta tantos 4 como cambios de página necesitamos
         }
         
+        // Preparo la parte relativa a la posición en el menú dentro de la página vista anteriormente
         String posicionMenu = "," + String.valueOf(getAnalisisMenu());        
         
+        // Devuelvo el String completo con todas las pulsaciones que lanzan el análisis en el equipo bajo este ajuste
         return INICIO_ANALISIS + paginas + posicionMenu + FIN_ANALISIS;
     }
     
-    public String getSecuenciaAjusteCoeficientes(double termInd, double coefLin, double coefCuad){
+    public String getSecuenciaAjusteCoeficientes(Calibrado calibrado){
         
         final String INICIO_CALIB = "ENT,4,2,ENT,2,ENT,2";
         final String PREVIO_REGRESION = ",1,ENT,3,2,5";
-        String a0 = "," +String.valueOf(termInd) + ",ENT";
-        String a1 = "," +String.valueOf(coefLin) + ",ENT";;
-        String a2 = "," +String.valueOf(coefCuad) + ",ENT";;
         final String FIN_CALIB = ",6,4,4,1,4,y,7,4";
         
+        // Redondeo al número de decimales máximo que permite el equipo en su entrada de datos
+        double coefCuad = round(calibrado.getCoefCuadratico(), numeroDecimales(calibrado.getCoefCuadratico()));
+        double coefLin = round(calibrado.getCoefLineal(), numeroDecimales(calibrado.getCoefLineal()));            
+        double termInd = round(calibrado.getTerminoIndep(),numeroDecimales(calibrado.getTerminoIndep()));         
+        // Verifico que la notación científica siempre tenga dos dígitos, añadiendo 0 si es necesario 
+        String ti = verificaFormato(String.valueOf(termInd));
+        String cl = verificaFormato(String.valueOf(coefLin));
+        String cc = verificaFormato(String.valueOf(coefCuad));        
+        // Genero el String final para cad coeficiente
+        String a0 = "," + ti + ",ENT";
+        String a1 = "," + cl + ",ENT";;
+        String a2 = "," + cc + ",ENT";;
+        
+        // Preparo la parte relativa a la página que ocupa dentro de los calibrados del equipo
         String paginas = "";
         for (int i = 1; i<getCalibracionPagina(); i++){ // Si esta en la primera pagina no se cuenta
-            paginas += ",4";
+            paginas += ",4"; // Inserta tantos 4 como cambios de página necesitamos
         }
         
+        // Preparo la parte relativa a la posición en el menú dentro de la página vista anteriormente
         String posicionMenu = "," + String.valueOf(getCalibracionMenu());        
-        
-        System.out.println(INICIO_CALIB + paginas + posicionMenu + PREVIO_REGRESION + a0 + a1 + a2+ FIN_CALIB);
-        return INICIO_CALIB + paginas + posicionMenu + PREVIO_REGRESION + a0 + a1 + a2+ FIN_CALIB;
-        
+         
+        // Devuelvo el String completo con todas las pulsaciones que realizar el proceso de actualización de coeficientes
+        return INICIO_CALIB + paginas + posicionMenu + PREVIO_REGRESION + a0 + a1 + a2+ FIN_CALIB;        
+    }
+    
+    // Verifica el formato científico de los coeficientes, añadiendo un 0 a los que solo tienen un dígito
+    private String verificaFormato(String cadena) {          
+        Pattern pat = Pattern.compile("E-[1-9]{1}$");
+        Matcher mat = pat.matcher(cadena);                
+        if(mat.find()){
+            cadena = cadena.replace("E-", "E-0"); // Añadimos el 0 para seguir el formato del equipo                
+        }
+        return cadena;
+    }
+    
+    // Calcula los decimales que puede admitir el equipo en función de la notación científica que tiene el coeficiente
+    private int numeroDecimales(double coeficiente){
+        String coefString = String.valueOf(coeficiente);
+        String[] partes = coefString.split("E"); // partimos por la notación cientifica, para quedarme con el exponente            
+        if (partes.length>1){
+            int valorCientifico = Integer.valueOf(partes[1]);
+            return -valorCientifico+6;        
+        }
+        else{ // No tiene E, luego muestro 5 decimales fijos (poor ejemplo en terminos independientes)
+            return 5;
+        }
+    }
+    
+    // Redondea un double al número de decimales indicado
+    private static double round(double numero, int decimales) {
+        if (decimales < 0) {
+            throw new IllegalArgumentException();
+        }
+        BigDecimal bd = BigDecimal.valueOf(numero);
+        bd = bd.setScale(decimales, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }

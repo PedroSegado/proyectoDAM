@@ -111,7 +111,8 @@
 
 .btImagenContraste {
     -fx-background-color: transparent;
-    -fx-border-color: transparent; 
+    -fx-border-color: lightgray; 
+    -fx-border-radius: 9;
     
 }
 .btImagenContraste:hover {
@@ -124,7 +125,8 @@
 
 .btInforme {
     -fx-background-color: transparent;
-    -fx-border-color: transparent; 
+    -fx-border-color: lightgray; 
+    -fx-border-radius: 12;
     
 }
 .btInforme:hover {
