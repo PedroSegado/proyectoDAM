@@ -101,6 +101,7 @@ public class TabConfiguracionControlador {
     private final ConexionesConfiguracion CNCF = ConexionesConfiguracion.getINSTANCIA_CONFIGURACION();
     private final ConexionesResultados CNR = ConexionesResultados.getINSTANCIA_RESULTADOS();
     private Puerto puerto;
+    private String puertoViejo;
     private final SerialPort[] PORTS = Puerto.getPuertosSistema();
     private Configuracion config; // Objeto Configuración que almacena toda la info
     private EditorAjusteControlador controladorAjuste = new EditorAjusteControlador();
@@ -167,8 +168,9 @@ public class TabConfiguracionControlador {
         config.setPreMedida(Integer.valueOf(tfPreMed.getText()));
 
         try { // Guardamos ambos en la BBDD, en la tabla Configuración que contendrá una único registro
-            CNCF.actualizarDatosPuerto(puerto);
-            CNCF.actualizarDatosConfig(config);
+            CNCF.actualizarDatosPuerto(puerto, puertoViejo);
+            CNCF.actualizarDatosConfig(config, puertoViejo);
+            puertoViejo = cbPuerto.getValue();
         } catch (SQLException e) { // Error al comunicar con BBDD
             LOGGER.fatal("Error al guardar datos relativos a la configuración" + "\n" + e.getMessage());
             Alertas.alertaBBDD(e.getMessage());
@@ -183,6 +185,7 @@ public class TabConfiguracionControlador {
             config = CNCF.cargarDatosConfiguracion(); // Configuración desde la BBDD 
             // Ajusto los combos relativos al puerto COM con la información recibiba
             cbPuerto.setValue(puerto.getNombrePuerto());
+            puertoViejo = puerto.getNombrePuerto();
             cbBPS.setValue(puerto.getBps());
             cbBDD.setValue(puerto.getBdd());
             cbPAR.setValue(puerto.getParidad());

@@ -246,7 +246,7 @@ public class Ajuste implements Cloneable {
         String[] partes = coefString.split("E"); // partimos por la notación cientifica, para quedarme con el exponente            
         if (partes.length>1){
             int valorCientifico = Integer.valueOf(partes[1]);
-            return -valorCientifico+6;        
+            return -valorCientifico+10;        
         }
         else{ // No tiene E, luego muestro 5 decimales fijos (poor ejemplo en terminos independientes)
             return 5;

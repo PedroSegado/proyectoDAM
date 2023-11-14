@@ -67,10 +67,10 @@ public class EditorAjusteControlador {
         // Control de entrada solo numérico y máximo valor en textfield de duración (300s max)
         tfDuracion.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(300)));
         
-        SpinnerValueFactory<Integer> valorPaginaAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,4,1);
+        SpinnerValueFactory<Integer> valorPaginaAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,9,1);
         SpinnerValueFactory<Integer> valorPaginaCalibracion = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,9,1);
         SpinnerValueFactory<Integer> valorMenuAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,2,1);
-        SpinnerValueFactory<Integer> valorMenuCalibracion = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,3,1);
+        SpinnerValueFactory<Integer> valorMenuCalibracion = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,2,1);
         
         spAnalisisPagina.setValueFactory(valorPaginaAnalisis);
         spAnalisisMenu.setValueFactory(valorMenuAnalisis);

@@ -99,11 +99,11 @@ public class ConexionesConfiguracion extends Conexion implements Cloneable {
      * @param p Puerto con los atributos establecidos tal y como queremos guardarlos
      * @throws SQLException
      */
-    public void actualizarDatosPuerto(Puerto p) throws SQLException {
+    public void actualizarDatosPuerto(Puerto p, String puertoViejo) throws SQLException {
 
         
         // Como hay un solo registro no uso WHERE, y hago UPDATE solo de los campos del puerto
-        ps = iniciarConexion().prepareStatement("Update Configuracion set puerto = ? , bps = ? , bdd = ? , par = ? , bdp = ?");
+        ps = iniciarConexion().prepareStatement("UPDATE Configuracion set puerto = ? , bps = ? , bdd = ? , par = ? , bdp = ? WHERE puerto = '" + puertoViejo + "';");
 
         ps.setString(1, p.getNombrePuerto());
         ps.setInt(2, p.getBps());
@@ -124,11 +124,11 @@ public class ConexionesConfiguracion extends Conexion implements Cloneable {
      * @param c Configuracion con los atributos establecidos tal y como queremos guardarlos
      * @throws SQLException
      */
-    public void actualizarDatosConfig(Configuracion c) throws SQLException {
+    public void actualizarDatosConfig(Configuracion c, String puertoViejo) throws SQLException {
         
         // Como hay un solo registro no uso WHERE, y hago UPDATE solo de los campos de configuracion
-        ps = iniciarConexion().prepareStatement("Update Configuracion set pulsaciones = ? , preacondicionamiento = ? ,"
-                + " acondicionamiento = ? , preenergia = ? , energia = ? , premedida = ?");
+        ps = iniciarConexion().prepareStatement("UPDATE Configuracion set pulsaciones = ? , preacondicionamiento = ? ,"
+                + " acondicionamiento = ? , preenergia = ? , energia = ? , premedida = ? WHERE puerto = '" + puertoViejo + "';");
 
         ps.setInt(1, c.getPulsaciones());
         ps.setInt(2, c.getPreAcondicionamiento());
