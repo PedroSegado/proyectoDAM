@@ -118,7 +118,7 @@ public class Conexion implements Cloneable {
                                           + "concentracion DECIMAL(5,4) NOT NULL)";
         st.executeUpdate(tablaPatrones);
         
-        String tablaConfiguracion = "CREATE TABLE Configuracion (puerto VARCHAR(16) NOT NULL, "
+        String tablaConfiguracion = "CREATE TABLE Configuracion (puerto VARCHAR(16) PRIMARY KEY, "
                                                               + "bps VARCHAR(16) NOT NULL, "
                                                               + "bdd VARCHAR(16) NOT NULL, "
                                                               + "par VARCHAR(16) NOT NULL, "

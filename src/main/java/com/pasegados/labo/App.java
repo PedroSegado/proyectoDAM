@@ -14,6 +14,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.logging.log4j.LogManager;
@@ -65,6 +66,7 @@ public class App extends Application {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage splashStage = new Stage();
+            splashStage.getIcons().add(new Image(App.class.getResourceAsStream("xray32.png")));
   
             splashStage.initStyle(StageStyle.UNDECORATED);
             splashStage.setScene(scene);
@@ -121,6 +123,7 @@ public class App extends Application {
             // cada unos de ellos para que el setter de esta clase, para tener todos disponibles para interacturar.
             Scene scene = new Scene(root);
             stage.setTitle("Gestor OXFORD - LabX-3500");
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("xray32.png")));
             stage.setMinHeight(769d); // Esta resolución ajusta perfectamente a monitor 1280x800 (16:10)
             stage.setMinWidth(1293d); // manteniendo la barra de tareas de windows visible
             stage.setScene(scene);
