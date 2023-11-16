@@ -12,11 +12,11 @@ import com.pasegados.labo.conexionesbbdd.ConexionesPatron;
 import com.pasegados.labo.modelos.Ajuste;
 import com.pasegados.labo.modelos.Alertas;
 import com.pasegados.labo.modelos.Analisis;
-import com.pasegados.labo.modelos.BooleanStringConverterPerso;
 import com.pasegados.labo.modelos.Calibrado;
 import com.pasegados.labo.modelos.ColeccionCalibraciones;
 import com.pasegados.labo.modelos.HiloEnvioDatos;
 import com.pasegados.labo.modelos.Patron;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,8 +30,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalDateStringConverter;
-import javafx.util.converter.NumberStringConverter;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -147,46 +145,26 @@ public class TabCalibracionesControlador {
         });
         
          
-        //BINDING CALIBRADOS       
-        tvCalibrados.getSelectionModel().selectedItemProperty().addListener((o, ov, nv) -> {            
-            if (ov != null) {
-                lbNombre.textProperty().unbindBidirectional(ov.nombreProperty());
-                lbFecha.textProperty().unbindBidirectional(ov.fechaProperty());
-                lbActivo.textProperty().unbindBidirectional(ov.activoProperty());
-                if (ov.getAjuste()!=null) {
-                    lbAjuste.textProperty().unbindBidirectional(ov.getAjuste().nombreProperty());
-                }   
-                lbPatrones.textProperty().unbindBidirectional(ov.patronesStringProperty());
-                lbRango.textProperty().unbindBidirectional(ov.rangoStringProperty());
-                if (ov.getTipoRegresion().equals("Cuadrática")){
-                    lbCoefCuad.textProperty().unbindBidirectional(ov.coefCuadraticoProperty());
-                }
-                lbCoefLin.textProperty().unbindBidirectional(ov.coefLinealProperty());
-                lbTermInd.textProperty().unbindBidirectional(ov.terminoIndepProperty());
-                lbCoefDeterminacion.textProperty().unbindBidirectional(ov.coefDeterminacionProperty());                
-            }
-
+        //BINDING CALIBRADOS (no es necesario bidireccional pues solo muestra información en las label)       
+        tvCalibrados.getSelectionModel().selectedItemProperty().addListener((o, ov, nv) -> {
             if (nv != null) {
-                lbNombre.textProperty().bindBidirectional(nv.nombreProperty());
-                lbFecha.textProperty().bindBidirectional(nv.fechaProperty(), new LocalDateStringConverter());
-                lbActivo.textProperty().bindBidirectional(nv.activoProperty(), new BooleanStringConverterPerso());
+                lbNombre.textProperty().bind(nv.nombreProperty());
+                lbFecha.textProperty().bind(nv.fechaProperty().asString());
+                lbActivo.textProperty().bind(Bindings.when(nv.activoProperty()).then("SI").otherwise("NO"));         
+                                
                 if (nv.getAjuste()!=null) {
-                    lbAjuste.textProperty().bindBidirectional(nv.getAjuste().nombreProperty());
+                    lbAjuste.textProperty().bind(nv.getAjuste().nombreProperty());
+                } else {                    
+                    lbAjuste.textProperty().unbind();
+                    lbAjuste.textProperty().set("No Establecido");    
                 }
-                else{
-                    lbAjuste.setText("No Establecido");                            
-                }                
-                lbPatrones.textProperty().bindBidirectional(nv.patronesStringProperty());
-                lbRango.textProperty().bindBidirectional(nv.rangoStringProperty());
-                if (nv.getTipoRegresion().equals("Cuadrática")){
-                    lbCoefCuad.textProperty().bindBidirectional(nv.coefCuadraticoProperty(), new NumberStringConverter("0.000000000000000000000000"));
-                }
-                else{
-                    lbCoefCuad.textProperty().set("");
-                }
-                lbCoefLin.textProperty().bindBidirectional(nv.coefLinealProperty(), new NumberStringConverter("0.000000000000000000000000"));
-                lbTermInd.textProperty().bindBidirectional(nv.terminoIndepProperty(), new NumberStringConverter("0.00000"));
-                lbCoefDeterminacion.textProperty().bindBidirectional(nv.coefDeterminacionProperty(), new NumberStringConverter("R\u00B2= " + "0.000000"));
+                           
+                lbPatrones.textProperty().bind(nv.patronesStringProperty());
+                lbRango.textProperty().bind(nv.rangoStringProperty());                
+                lbCoefCuad.textProperty().bind(nv.coefCuadraticoProperty().asString());                
+                lbCoefLin.textProperty().bind(nv.coefLinealProperty().asString());
+                lbTermInd.textProperty().bind(nv.terminoIndepProperty().asString(Locale.US, "%.8f"));
+                lbCoefDeterminacion.textProperty().bind(nv.coefDeterminacionProperty().asString(Locale.US, "R\u00B2= " + "%.8f"));
 
             } else {
                 lbNombre.setText("");
@@ -200,8 +178,9 @@ public class TabCalibracionesControlador {
                 lbTermInd.setText("");
                 lbCoefDeterminacion.setText("");
             }
-        });
+        });        
     }
+    
 
     // -------------------- PATRONES ------------------------ //
         

@@ -248,8 +248,8 @@ public class Ajuste implements Cloneable {
             int valorCientifico = Integer.valueOf(partes[1]);
             return -valorCientifico+10;        
         }
-        else{ // No tiene E, luego muestro 5 decimales fijos (poor ejemplo en terminos independientes)
-            return 5;
+        else{ // No tiene E, luego muestro 8 decimales fijos (por ejemplo en terminos independientes)
+            return 8;
         }
     }
     

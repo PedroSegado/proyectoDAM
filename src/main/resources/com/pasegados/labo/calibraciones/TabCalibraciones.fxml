@@ -316,12 +316,12 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
-                           <padding>
-                              <Insets left="25.0" />
-                           </padding>
                            <GridPane.margin>
-                              <Insets left="-15.0" />
+                              <Insets />
                            </GridPane.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
                         </Label>
                         <Button maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#sincronizarCoeficientes" prefHeight="32.0" prefWidth="32.0" styleClass="btImagenContraste" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                            <graphic>

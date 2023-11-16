@@ -254,16 +254,16 @@ public class TabConfiguracionControlador {
         if (seleccionado != null) { // Si ha algo seleccionado      
             // Verifico si se usa en algún Calibrado, para avisar al usuario
             int tamanyo = App.getControladorPrincipal().getListaCalibrados().size();
-            for (int i = 0; i < tamanyo; i++) {
-                if (App.getControladorPrincipal().getListaCalibrados().get(i).getAjuste().getNombre().equals(seleccionado.getNombre())) {
-                    if (usanAjuste.isBlank()) { // primero en escribirse
-                        usanAjuste += "'" + App.getControladorPrincipal().getListaCalibrados().get(i).getNombre() + "'";
+            for (int i = 0; i < tamanyo; i++) {                
+                if (App.getControladorPrincipal().getListaCalibrados().get(i).getAjuste()!=null && App.getControladorPrincipal().getListaCalibrados().get(i).getAjuste().getNombre().equals(seleccionado.getNombre())) {
+                if (usanAjuste.isBlank()) { // primero en escribirse
+                    usanAjuste += "'" + App.getControladorPrincipal().getListaCalibrados().get(i).getNombre() + "'";
                     } else if (i < (tamanyo - 1)) { // ultimo en escribirse, pero y ya hay otro/s antes
                         usanAjuste = usanAjuste.replaceAll(" y ", ", ") + " y '" + App.getControladorPrincipal().getListaCalibrados().get(i).getNombre() + "'";
                     } else { // lo demas
                         usanAjuste += " y '" + App.getControladorPrincipal().getListaCalibrados().get(i).getNombre() + "'";
                     }
-                }
+                }                                                    
             }
 
             // Alerta confirmacion por parte del usuario
@@ -283,7 +283,7 @@ public class TabConfiguracionControlador {
                     //Verifico los objetos Calibrado, y si alguno usaba este ajuste, pasa al valor NULL
                     //En BBDD se realiza automaticamente con el ON DELETE SET NULL                    
                     for (Calibrado c : App.getControladorPrincipal().getListaCalibrados()) {
-                        if (c.getAjuste().equals(seleccionado)) {
+                        if (c.getAjuste()!=null && c.getAjuste().equals(seleccionado)) {
                             c.setAjuste(null);
                             c.setActivo(false);// y ya no se puede usar para analizar hasta que no se le asigne un ajuste
                             c.setTipoRegresion("Seleccionar...");// y el tipo de regresion a seleccionar por el ususario
