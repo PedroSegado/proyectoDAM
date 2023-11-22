@@ -58,7 +58,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
         while (resultados1.next()) {
 
             String calibrado = resultados1.getString("nombre");
-            LocalDate fecha = resultados1.getDate("fecha").toLocalDate();
+            LocalDate fecha = (resultados1.getDate("fecha") == null) ? null : resultados1.getDate("fecha").toLocalDate();            
             boolean activo = resultados1.getBoolean("activo");
             String ajuste = resultados1.getString("ajuste"); // Hemos guardado solo el nombre del objeto Ajuste
             String tipoRegresion = resultados1.getString("tipoRegresion");
@@ -101,7 +101,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
         //Una vez terminada la conexion, podemos actualizar los coeficientes, ya que para ello usa la conexión nuevamente
         // y si lo hacemos antes, cierra la conexión y solo hace una iteracion del resulset1
         for (Calibrado c:listaCalibrados){
-            c.ajustaCoeficientes("normal");
+            c.ecuacionProperty().get().calculaCoeficientes(c.getListaPatrones(),c.getAjuste().getNombre(),c.getTipoRegresion());
         }
 
         return listaCalibrados;
@@ -119,7 +119,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
                                  + "VALUES (?,?,?,?,?);");
         // Preparo cada campo del registro por su posición en el INSERT declarado anteriormente
         ps.setString(1, c.getNombre());
-        ps.setDate(2, Date.valueOf(c.getFecha()));
+        ps.setDate(2, (c.getFecha()!=null)?Date.valueOf(c.getFecha()):null);
         ps.setBoolean(3, c.isActivo());
         ps.setString(4, c.getAjuste().getNombre()); // Del objeto ajuste solo guardo el nombre, por ser PK, y aquí FK
         ps.setString(5, c.getTipoRegresion());
@@ -143,7 +143,7 @@ public class ConexionesCalibrado extends Conexion implements Cloneable {
                                 + " ajuste = ? , tipoRegresion = ? where nombre = '" + nombre + "';");
         // Preparo cada campo del UPDATE, y uso el parametro recibido como nombre para hacer el WHERE que limita a un solo registro, ya que el nombre es el PK
         ps.setString(1, c.getNombre());
-        ps.setDate(2, Date.valueOf(c.getFecha()));
+        ps.setDate(2, (c.getFecha()!=null)?Date.valueOf(c.getFecha()):null);
         ps.setBoolean(3, c.isActivo());
         ps.setString(4, c.getAjuste().getNombre()); // Del objeto ajuste solo guardamos su nombre, por ser el PK de la tabla de estos objeots, y aqui FK
         ps.setString(5, c.getTipoRegresion());

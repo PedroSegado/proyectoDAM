@@ -49,21 +49,21 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fitHeight="442.0" fitWidth="577.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,8), 30, 0, 0,0);;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <ImageView fitHeight="442.0" fitWidth="577.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,8), 30, 0, 0,0);" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      
                      <GridPane.margin>
                         <Insets left="70.0" top="-156.0" />
                      </GridPane.margin>
                      <image>
-                        <Image url="@teclas.png" />
+                        <Image url="@tecladoR2.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btEscape" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaEscape" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="btEscape" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaEscape" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="10.0" top="6.0" />
+                        <Insets left="12.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt7" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaA7B" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -71,7 +71,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets right="5.0" top="5.0" />
+                        <Insets top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt8" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaC8D" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -79,7 +79,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="2.0" top="5.0" />
+                        <Insets left="7.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt9" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaE9F" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -87,7 +87,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="7.0" top="6.0" />
+                        <Insets left="7.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="btYes" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaGYesH" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -95,7 +95,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="3.0" top="6.0" />
+                        <Insets right="1.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt4" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaI4J" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -103,7 +103,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets right="5.0" top="5.0" />
+                        <Insets top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt5" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaK5L" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -111,7 +111,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="2.0" top="5.0" />
+                        <Insets left="7.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt6" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaM6N" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -119,7 +119,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="6.0" top="6.0" />
+                        <Insets left="7.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="btNo" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaONoP" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -127,15 +127,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="2.0" top="6.0" />
+                        <Insets right="1.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btImprimir" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Button fx:id="btImprimir" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="9.0" top="6.0" />
+                        <Insets left="12.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt0" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaQ0R" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -143,7 +143,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets right="4.0" top="4.0" />
+                        <Insets left="4.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt1" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaS1T" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -151,7 +151,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="2.0" right="8.0" top="5.0" />
+                        <Insets />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt2" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaU2V" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -159,7 +159,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="4.0" top="5.0" />
+                        <Insets left="7.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="bt3" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaW3X" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -167,7 +167,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="7.0" top="6.0" />
+                        <Insets left="7.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="btDel" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaYDelZ" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -175,7 +175,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="2.0" top="7.0" />
+                        <Insets right="1.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="btSpace" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarTeclaIgualEspacioMas" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
@@ -183,7 +183,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets bottom="1.0" right="6.0" top="2.0" />
+                        <Insets bottom="8.0" left="4.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="btPunto" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarIzqPuntoDcha" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
@@ -191,7 +191,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="1.0" top="3.0" />
+                        <Insets bottom="8.0" left="6.0" />
                      </GridPane.margin>
                   </Button>
                   <Button fx:id="btEnter" maxHeight="54.0" maxWidth="54.0" minHeight="54.0" minWidth="54.0" mnemonicParsing="false" onAction="#enviarMenosEntPorc" opacity="0.4" prefHeight="54.0" prefWidth="54.0" styleClass="btnTeclado" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
@@ -199,12 +199,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets left="5.0" top="4.0" />
+                        <Insets bottom="9.0" left="6.0" />
                      </GridPane.margin>
                   </Button>
-                  <TextField fx:id="tfPantalla" maxHeight="53.0" maxWidth="425.0" minHeight="53.0" minWidth="425.0" prefHeight="53.0" prefWidth="425.0" styleClass="pantalla" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+                  <TextField fx:id="tfPantalla" maxHeight="56.0" maxWidth="422.0" minHeight="56.0" minWidth="422.0" prefHeight="56.0" prefWidth="422.0" styleClass="pantalla" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
                      <GridPane.margin>
-                        <Insets bottom="33.0" left="1.0" />
+                        <Insets bottom="33.0" left="3.0" />
                      </GridPane.margin>
                      <font>
                         <Font size="24.0" />
@@ -215,7 +215,7 @@
                         <ToggleGroup fx:id="especial" />
                      </toggleGroup>
                      <GridPane.margin>
-                        <Insets right="3.0" top="5.0" />
+                        <Insets left="6.0" right="3.0" top="2.0" />
                      </GridPane.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -223,7 +223,7 @@
                   </ToggleButton>
                   <ToggleButton fx:id="btAbajo" maxHeight="52.0" maxWidth="52.0" minHeight="52.0" minWidth="52.0" mnemonicParsing="false" opacity="0.4" prefHeight="52.0" prefWidth="52.0" styleClass="btnTecladoTg" toggleGroup="$especial" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
-                        <Insets right="2.0" top="8.0" />
+                        <Insets left="4.0" top="2.0" />
                      </GridPane.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -231,7 +231,7 @@
                   </ToggleButton>
                   <ToggleButton fx:id="btSecundaria" maxHeight="52.0" maxWidth="52.0" minHeight="52.0" minWidth="52.0" mnemonicParsing="false" opacity="0.4" prefHeight="52.0" prefWidth="52.0" styleClass="btnTecladoTg" toggleGroup="$especial" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
-                        <Insets left="2.0" top="4.0" />
+                        <Insets left="12.0" top="2.0" />
                      </GridPane.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />

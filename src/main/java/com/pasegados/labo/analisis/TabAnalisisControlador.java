@@ -5,8 +5,6 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.Formatter;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import com.pasegados.labo.App;
 import com.pasegados.labo.conexionesbbdd.ConexionesResultados;
 import com.pasegados.labo.modelos.Alertas;
@@ -264,7 +262,7 @@ public class TabAnalisisControlador {
         // Paso el String de tfCuentas a Float
         float cuentas = Float.valueOf(tfCuentasMuestra.getText()); 
         // Calculo el % azufre con los terminos de la ecuación del calibrado con el que he analizado
-        double resultado = (c.getCoefCuadratico() * Math.pow(cuentas, 2)) + (c.getCoefLineal() * cuentas) + c.getTerminoIndep();        
+        double resultado = (c.getEcuacion().getCoefCuadratico() * Math.pow(cuentas, 2)) + (c.getEcuacion().getCoefLineal() * cuentas) + c.getEcuacion().getTerminoIndep();        
         // Creo un string del resultado con 4 decimales
         String res = String.valueOf(new Formatter(Locale.US).format("%.4f", resultado)); // Formateado para usar . como decimal
         // Muestro el resultado en el textfield correspondiente

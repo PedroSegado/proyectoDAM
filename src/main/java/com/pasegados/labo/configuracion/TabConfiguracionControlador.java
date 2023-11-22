@@ -287,7 +287,7 @@ public class TabConfiguracionControlador {
                             c.setAjuste(null);
                             c.setActivo(false);// y ya no se puede usar para analizar hasta que no se le asigne un ajuste
                             c.setTipoRegresion("Seleccionar...");// y el tipo de regresion a seleccionar por el ususario
-                            c.ajustaCoeficientes("cero");
+                            c.getEcuacion().coeficientesCero();                            
                             for (Patron p : c.getListaPatrones()) {
                                 p.setCuentas(0); // y las cuentas de los patrones a 0 hasta que se elija otro ajuste y se actualicen
                             }

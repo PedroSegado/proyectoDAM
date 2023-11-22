@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.Arrays;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import org.apache.commons.math3.fitting.PolynomialCurveFitter;
 import org.apache.commons.math3.fitting.WeightedObservedPoints;
@@ -15,30 +19,143 @@ import org.apache.commons.math3.fitting.WeightedObservedPoints;
  */
 public class Ecuacion {
     
-    private ObservableList<Patron> listaPatrones;
-    private String tipoRegresion;
-    private String ajuste;
-
-    public Ecuacion(ObservableList<Patron> listaPatrones, String tipoRegresion, String ajuste) {
-        this.listaPatrones = listaPatrones;
-        this.tipoRegresion = tipoRegresion;
-        this.ajuste = ajuste;
+    private DoubleProperty coefCuadratico;
+    private DoubleProperty coefLineal;
+    private DoubleProperty terminoIndep;
+    private DoubleProperty coefDeterminacion;
+    
+    public Ecuacion() {
+        this.coefCuadratico = new SimpleDoubleProperty(0);
+        this.coefLineal = new SimpleDoubleProperty(0);
+        this.terminoIndep = new SimpleDoubleProperty(0);
+        this.coefDeterminacion = new SimpleDoubleProperty(0); 
     }
+    
+    
+    /**
+     * Devuelve el coeficiente cuadrático de la ecuación de segundo grado, o 0 si es lineal
+     * 
+     * @return float con el valor del coef. cuadrático de la ecuación del Calibrado
+     */
+    public double getCoefCuadratico() {
+        return coefCuadratico.get();
+    }
+
+    /**
+     * Establece el coeficiente cuadrático de la ecuación de segundo grado, o 0 si es lineal
+     * 
+     * @param coefCuad double con el valor del coef. cuadrático de la ecuación del Calibrado (0 si es lineal)
+     */
+    public void setCoefCuadratico(double coefCuad) {
+        this.coefCuadratico.set(coefCuad);
+    }
+
+    /**
+     * Para hacer Binding entre el objeto Calibrado y el label del Editor y el label de la pestaña de Calibraciones
+     * 
+     * @return DoubleProperty con el valor del coef. cuadrático de la ecuación del Calibrado
+     */
+    public DoubleProperty coefCuadraticoProperty() {
+        return coefCuadratico;
+    }
+
+    /**
+     * Devuelve el coeficiente lineal de la ecuación del Calibrado
+     * 
+     * @return double con el valor del coef. lineal de la ecuación del Calibrado
+     */
+    public double getCoefLineal() {
+        return coefLineal.get();
+    }
+
+    /**
+     * Establece el coeficiente lineal de la ecuación del Calibrado
+     * 
+     * @param coefLin double con el valor del coef. lineal de la ecuación del Calibrado
+     */
+    public void setCoefLineal(double coefLin) {
+        this.coefLineal.set(coefLin);
+    }
+
+    /**
+     * Para hacer Binding entre el objeto Calibrado y el label del Editor y el label de la pestaña de Calibraciones
+     * 
+     * @return DoubleProperty con el valor del coef. lineal de la ecuación del Calibrado
+     */
+    public DoubleProperty coefLinealProperty() {
+        return coefLineal;
+    }
+
+    /**
+     * Establece el termino independiente de la ecuación del Calibrado
+     * 
+     * @return double con el valor del termino independiente de la ecuación del Calibrado
+     */
+    public double getTerminoIndep() {
+        return terminoIndep.get();
+    }
+
+    /**
+     * Devuelve el termino independiente de la ecuación del Calibrado
+     * 
+     * @param terminIndep double con el valor del termino independiente de la ecuación del Calibrado
+     */
+    public void setTerminoIndep(double terminIndep) {
+        this.terminoIndep.set(terminIndep);
+    }
+
+    /**
+     * Para hacer Binding entre el objeto Calibrado y el label del Editor y el label de la pestaña de Calibraciones
+     * 
+     * @return DoubleProperty con el valor del coef. lineal de la ecuación del Calibrado
+     */
+    public DoubleProperty terminoIndepProperty() {
+        return terminoIndep;
+    }
+    
+    /**
+     * Devuelve el coeficiente de determinación R2 obtenido de la ecuación del Calibrado y los puntos con los que se ha generado
+     * 
+     * @return double con el valor del coeficiente de determinacion R2
+     */
+    public double getCoefDeterminacion() {
+        return coefDeterminacion.get();
+    }
+
+    /**
+     * Establece el coeficiente de determinación R2 obtenido de la ecuación del Calibrado y los puntos con los que se ha generado
+     * 
+     * @param coefDeterminacion double con el valor del coeficiente de determinacion R2
+     */
+    public void setCoefDeterminacion(double coefDeterminacion) {
+        this.coefDeterminacion.set(coefDeterminacion);
+    }
+
+    /**
+     * Para hacer Binding entre el objeto Calibrado y el label del Editor y el label de la pestaña de Calibraciones
+     * 
+     * @return DoubleProperty con el valor del coeficiente de determinacion R2
+     */
+    public DoubleProperty coefDeterminacionProperty() {
+        return coefDeterminacion;
+    }
+    
+    
+    
         
     // Calcula los coeficientes gracias a la librería apache.commons.math, devolviendolos como un array de tipo double
-    public double[] calculaCoeficientes() {
+    public void calculaCoeficientes(ObservableList<Patron> listaPatrones, String ajuste, String tipoRegresion) {   
         boolean cero = false; //Controla si algun patron tiene cuentas=0 por no haber sido analizado
         int tamanio = listaPatrones.size(); // Cuantos tenemos
         
-        if (tamanio > 0) { // Tenemos algun patrón en la lista
-            
+        if (tamanio > 0) { // Tenemos algun patrón en la lista            
             WeightedObservedPoints puntosObservados = new WeightedObservedPoints(); // Preparamos el objeto que almacenas los pares
 
             for (int i = 0; i < tamanio; i++) { 
                 //usar nueva tabla de ajuste, patron, cuentas
                 try {
                     listaPatrones.get(i).RecuperarCuentasAjuste(ajuste);
-                    double x = listaPatrones.get(i).getCuentas();
+                    double x = listaPatrones.get(i).getCuentas();                 
                     if (x == 0) { // Si las cuentas son 0, el patrón no ha sido analizado
                         cero = true;
                     }
@@ -48,9 +165,7 @@ public class Ecuacion {
                     //Agrego el par al objeto para luego calcular los coeficientes de la recta/curva
                     puntosObservados.add(x, y);
                 } catch (SQLException ex) {
-                    System.out.println("Error al rescatar las cuentas del patron para el ajuste");
-                    double[] nohay = {0, 0, 0}; // devuelvo 0 en los coeficientes
-                    return nohay;
+                    coeficientesCero();
                 }
             }
 
@@ -61,23 +176,38 @@ public class Ecuacion {
                 degree = 2;
             }
 
-            if (cero) { //Ya que un patron no se ha analizado, devolvemos regresión 0
-                double[] nohay = {0, 0, 0};
-                return nohay;
+            if (cero) { //Ya que un patron no se ha analizado, devolvemos regresión 0                 
+                coeficientesCero();
+                
             } else { //Todos los patrones tienen valor en cuentas distinto a 0, luego podemos calcular la regresión
-
                 PolynomialCurveFitter fitter = PolynomialCurveFitter.create(degree);
                 double[] coeficientes = fitter.fit(puntosObservados.toList()); // Genero los coef cuadrátivo, lineal y term. independiente
                 double rSquared = calculateRSquared(coeficientes, puntosObservados); // Calculo el coef, de determinación R2
 
                 double coef[] = Arrays.copyOf(coeficientes, coeficientes.length + 1); // Creo un nuevo array, con 1 posición mas
                 coef[coef.length - 1] = rSquared; // Agrego el coef de determinación al array, en última posición
-             
-                return coef;
+                if (coef.length==3){                    
+                    coefCuadratico.set(0);
+                    coefLineal.set(coef[1]);
+                    terminoIndep.set(coef[0]);
+                    coefDeterminacion.set(coef[2]);
+                } else if (coef.length==4){                    
+                    coefCuadratico.set(coef[2]);
+                    coefLineal.set(coef[1]);
+                    terminoIndep.set(coef[0]);
+                    coefDeterminacion.set(coef[3]);
+                }               
             }
-        } //Si no hay patrones asignados, devolveremos cero para el calculo de regeasión.
-        double[] nohay = {0, 0, 0};
-        return nohay;
+        } else { //Si no hay patrones asignados, los coeficientes son todos 0            
+            coeficientesCero();
+        }
+    }
+    
+    public void coeficientesCero(){
+        coefCuadratico.set(0);
+                coefLineal.set(0);
+                terminoIndep.set(0);
+                coefDeterminacion.set(0);
     }
 
     // Redondea a los decimales indicados

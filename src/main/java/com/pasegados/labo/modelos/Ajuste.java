@@ -205,9 +205,9 @@ public class Ajuste implements Cloneable {
         final String FIN_CALIB = ",6,4,4,1,4,y,7,4";
         
         // Redondeo al número de decimales máximo que permite el equipo en su entrada de datos
-        double coefCuad = round(calibrado.getCoefCuadratico(), numeroDecimales(calibrado.getCoefCuadratico()));
-        double coefLin = round(calibrado.getCoefLineal(), numeroDecimales(calibrado.getCoefLineal()));            
-        double termInd = round(calibrado.getTerminoIndep(),numeroDecimales(calibrado.getTerminoIndep()));         
+        double coefCuad = round(calibrado.getEcuacion().getCoefCuadratico(), numeroDecimales(calibrado.getEcuacion().getCoefCuadratico()));
+        double coefLin = round(calibrado.getEcuacion().getCoefLineal(), numeroDecimales(calibrado.getEcuacion().getCoefLineal()));            
+        double termInd = round(calibrado.getEcuacion().getTerminoIndep(),numeroDecimales(calibrado.getEcuacion().getTerminoIndep()));         
         // Verifico que la notación científica siempre tenga dos dígitos, añadiendo 0 si es necesario 
         String ti = verificaFormato(String.valueOf(termInd));
         String cl = verificaFormato(String.valueOf(coefLin));

@@ -147,9 +147,26 @@ public class TabCalibracionesControlador {
          
         //BINDING CALIBRADOS (no es necesario bidireccional pues solo muestra información en las label)       
         tvCalibrados.getSelectionModel().selectedItemProperty().addListener((o, ov, nv) -> {
+            if (ov !=null) {
+                lbNombre.textProperty().unbind();
+                lbFecha.textProperty().unbind();
+                lbActivo.textProperty().unbind();
+                lbAjuste.textProperty().unbind();
+                lbPatrones.textProperty().unbind();
+                lbRango.textProperty().unbind();
+                lbCoefCuad.textProperty().unbind();
+                lbCoefLin.textProperty().unbind();
+                lbTermInd.textProperty().unbind();
+                lbCoefDeterminacion.textProperty().unbind();
+            }
             if (nv != null) {
                 lbNombre.textProperty().bind(nv.nombreProperty());
-                lbFecha.textProperty().bind(nv.fechaProperty().asString());
+                if (nv.getFecha()!=null) {
+                    lbFecha.textProperty().bind(nv.fechaProperty().asString());
+                } else {                    
+                    lbFecha.textProperty().unbind();
+                    lbFecha.textProperty().set("No Establecida");    
+                }
                 lbActivo.textProperty().bind(Bindings.when(nv.activoProperty()).then("SI").otherwise("NO"));         
                                 
                 if (nv.getAjuste()!=null) {
@@ -161,12 +178,12 @@ public class TabCalibracionesControlador {
                            
                 lbPatrones.textProperty().bind(nv.patronesStringProperty());
                 lbRango.textProperty().bind(nv.rangoStringProperty());                
-                lbCoefCuad.textProperty().bind(nv.coefCuadraticoProperty().asString());                
-                lbCoefLin.textProperty().bind(nv.coefLinealProperty().asString());
-                lbTermInd.textProperty().bind(nv.terminoIndepProperty().asString(Locale.US, "%.8f"));
-                lbCoefDeterminacion.textProperty().bind(nv.coefDeterminacionProperty().asString(Locale.US, "R\u00B2= " + "%.8f"));
+                lbCoefCuad.textProperty().bind(nv.ecuacionProperty().get().coefCuadraticoProperty().asString());                
+                lbCoefLin.textProperty().bind(nv.ecuacionProperty().get().coefLinealProperty().asString());
+                lbTermInd.textProperty().bind(nv.ecuacionProperty().get().terminoIndepProperty().asString(Locale.US, "%.8f"));
+                lbCoefDeterminacion.textProperty().bind(nv.ecuacionProperty().get().coefDeterminacionProperty().asString(Locale.US, "R\u00B2= " + "%.8f"));
 
-            } else {
+            } else {                
                 lbNombre.setText("");
                 lbFecha.setText("");
                 lbActivo.setText("");
@@ -222,7 +239,7 @@ public class TabCalibracionesControlador {
                 for (Calibrado c : listaCalibrados) {                     
                     if (c.getListaPatrones().contains(seleccionado)){ // Si el calibrado contiene el patron modificado
                         c.actualizaPatronesString();                        
-                        c.ajustaCoeficientes("normal"); // ajustemos coeficientes y strings del calibrado afectado                        
+                        c.getEcuacion().calculaCoeficientes(c.getListaPatrones(),c.getAjuste().getNombre(),c.getTipoRegresion()); // ajustemos coeficientes y strings del calibrado afectado                        
                         c.actualizaRangoString();
                     }
                 }               
@@ -253,7 +270,7 @@ public class TabCalibracionesControlador {
                             c.getListaPatrones().remove(patron); //eliminamos el patron de la lista del calibrado
                             c.actualizaPatronesString(); //actualizamos el string de los patrones usados
                             c.actualizaRangoString();   //actualizamos el rango del calibrado
-                            c.ajustaCoeficientes("normal"); //recalculamos los coeficientes con los patrones que quedan
+                            c.getEcuacion().calculaCoeficientes(c.getListaPatrones(),c.getAjuste().getNombre(),c.getTipoRegresion()); //recalculamos los coeficientes con los patrones que quedan
                             
                             // Verifico ademas que a ese calibrado le queden al menos 3 patrones para que su regresión
                             // sea cuadrática, o 2 para lineal. Si no los tiene, cambio la regresión a "Seleccionar..."
@@ -264,10 +281,7 @@ public class TabCalibracionesControlador {
                                     CNC.actualizarCalibrado(c, c.getNombre()); 
                                     c.setActivo(false); // desactivo el calibrado
                                     c.setTipoRegresion("Seleccionar..."); // elimino regresión para que el usario actúe
-                                    c.setCoefCuadratico(0f); // coeficientes todos a 0
-                                    c.setCoefLineal(0f);
-                                    c.setTerminoIndep(0f);
-                                    c.setCoefDeterminacion(0f);
+                                    c.getEcuacion().coeficientesCero(); // coeficientes todos a 0                                    
                                     // Aviso al usuario con un Alert de lo ocurrido
                                     Alertas.alertaCalibradoFaltanPatrones(patron.getNombre(), c.getNombre());
                                     LOGGER.warn("CALIBRADO: Desactivado el calibrado "+ c.getNombre() + " por falta de patrones en regresion " + c.getTipoRegresion());

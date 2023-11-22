@@ -13,6 +13,7 @@ import com.pasegados.labo.modelos.HiloMedida;
 import com.pasegados.labo.modelos.Patron;
 import com.pasegados.labo.modelos.Puerto;
 import java.sql.SQLException;
+import java.util.Locale;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -37,7 +38,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.converter.NumberStringConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -213,10 +213,10 @@ public class EditorCalibracionControlador {
 
                 } else if (!listaPatronesAsignados.contains(p)) { //Si no está asignado ya, lo agrego (evito duplicidad de patrones)                
                     calibradoDuplicado.getListaPatrones().add(p);
-                    if (!cbEcuacion.getValue().equals("Seleccionar...")) { // Si tiene asignada algún tipo de regresión, recalculo los coeficientes
-                        calibradoDuplicado.ajustaCoeficientes("normal");
+                    if (!cbEcuacion.getValue().equals("Seleccionar...")) { // Si tiene asignada algún tipo de regresión, recalculo los coeficientes                        
+                        calibradoDuplicado.getEcuacion().calculaCoeficientes(listaPatronesAsignados,calibradoDuplicado.getAjuste().getNombre(),calibradoDuplicado.getTipoRegresion());
                     } else { // Si no tiene asignada regresion, los coeficientes son 0
-                        calibradoDuplicado.ajustaCoeficientes("cero");
+                        calibradoDuplicado.getEcuacion().coeficientesCero();
                     }
                 }
             }
@@ -237,18 +237,18 @@ public class EditorCalibracionControlador {
         if (seleccion > 0) { //Si hay patrones seleccionados
             if (cbEcuacion.getValue().equals("Cuadrática") & !((listaPatronesAsignados.size() - seleccion) >= 3)) {
                 Alertas.alertaRegresion("Cuadrática"); //Si quiero regresión cuadrática necesito al menos 3 patrones y no permito borrar
-                cbEcuacion.setValue("Seleccionar...");
-                calibradoDuplicado.ajustaCoeficientes("cero");
+                cbEcuacion.setValue("Seleccionar...");                
+                calibradoDuplicado.getEcuacion().coeficientesCero();
             } else if (cbEcuacion.getValue().equals("Lineal") & !((listaPatronesAsignados.size() - seleccion) >= 2)) {
                 Alertas.alertaRegresion("Lineal"); //Si quiero regresión lineal necesito al menos 2 patrones y no permito borrar
                 cbEcuacion.setValue("Seleccionar...");
-                calibradoDuplicado.ajustaCoeficientes("cero");
+                calibradoDuplicado.getEcuacion().coeficientesCero();                
             } else { // Quedan patrones suficiente para mantener el tipo de regresión, podemos quitar los patrónes de nuestro calibrado.
                 calibradoDuplicado.getListaPatrones().removeAll(lvPatronesAsignados.getSelectionModel().getSelectedItems());
                 if (!(cbEcuacion.getValue().isEmpty())) { //Si tiene asignada algún tipo de regresión, recalculo los coeficientes
-                    calibradoDuplicado.ajustaCoeficientes("normal");
+                    calibradoDuplicado.getEcuacion().calculaCoeficientes(listaPatronesAsignados,calibradoDuplicado.getAjuste().getNombre(),calibradoDuplicado.getTipoRegresion());
                 } else {
-                    calibradoDuplicado.ajustaCoeficientes("cero");
+                    calibradoDuplicado.getEcuacion().coeficientesCero();
                 }
             }
         } else { //No hemos seleccionado níngun patrón, alerta al usuario
@@ -269,10 +269,11 @@ public class EditorCalibracionControlador {
             calibradoOriginal.setAjuste(calibradoDuplicado.getAjuste());
             calibradoOriginal.setActivo(calibradoDuplicado.isActivo());
             calibradoOriginal.setTipoRegresion(calibradoDuplicado.getTipoRegresion());
+            calibradoOriginal.setEcuacion(calibradoDuplicado.getEcuacion());
             calibradoOriginal.setListaPatrones(calibradoDuplicado.getListaPatrones());
             calibradoOriginal.actualizaPatronesString();
             calibradoOriginal.actualizaRangoString();
-            calibradoOriginal.ajustaCoeficientes("normal");
+            calibradoOriginal.getEcuacion().calculaCoeficientes(listaPatronesAsignados,calibradoOriginal.getAjuste().getNombre(),calibradoOriginal.getTipoRegresion());
 
             aceptarPulsado = true; //para que desde el controlador TabCalibracionControlador sepamos que se ha pulsado aceptar            
             stage.close(); //Cerramos la ventana del editor de calibrado
@@ -290,18 +291,18 @@ public class EditorCalibracionControlador {
     private void calcularRegresion(ActionEvent event) {
         //Verificamos que para la regresión seleccionada tengamos patrones suficientes  
         if (cbEcuacion.getValue().equals("Seleccionar...")) {
-            calibradoDuplicado.ajustaCoeficientes("cero");
+            calibradoDuplicado.getEcuacion().coeficientesCero();                        
         } else if (cbEcuacion.getValue().equals("Cuadrática") & listaPatronesAsignados.size() < 3) {
             Alertas.alertaRegresion("Cuadrática"); //Necesitamos al menos 3 para regresión cuadrática
-            calibradoDuplicado.ajustaCoeficientes("cero");
+            calibradoDuplicado.getEcuacion().coeficientesCero();                        
             cbEcuacion.setValue("Seleccionar..."); //Cambiamos el valor del combo para poder borrar patrones y asignar más tarde la regresión            
         } else if (cbEcuacion.getValue().equals("Lineal") & listaPatronesAsignados.size() < 2) {
             Alertas.alertaRegresion("Lineal"); //Necesitamos al menos 2 para regresión lineas
-            calibradoDuplicado.ajustaCoeficientes("cero");
+            calibradoDuplicado.getEcuacion().coeficientesCero();                        
             cbEcuacion.setValue("Seleccionar...");
         } else {
             if (listaPatronesAsignados.size() >= 2) {
-                calibradoDuplicado.ajustaCoeficientes("normal");
+            calibradoDuplicado.getEcuacion().calculaCoeficientes(listaPatronesAsignados,calibradoDuplicado.getAjuste().getNombre(),calibradoDuplicado.getTipoRegresion());
             }
         }
     }
@@ -344,7 +345,7 @@ public class EditorCalibracionControlador {
                     patronActualizandose.ActualizarCuentasAjuste(ajuste, cuentasNuevas);
                     lvPatrones.refresh();
                     lvPatronesAsignados.refresh();
-                    calibradoDuplicado.ajustaCoeficientes("normal");
+                    calibradoDuplicado.getEcuacion().calculaCoeficientes(listaPatronesAsignados,calibradoDuplicado.getAjuste().getNombre(),calibradoDuplicado.getTipoRegresion());
                     LOGGER.info("CALIBRADO: Actualizadas correctamente las cuentas (antes: " + cuentasViejas + " - ahora: " + cuentasNuevas + ") del patrón "
                             + patronActualizandose.getNombre() + " para el ajuste " + calibradoDuplicado.getAjuste() + " en la tabla PatronAjuste");
                 } catch (SQLException e) {
@@ -530,10 +531,15 @@ public class EditorCalibracionControlador {
         //Resto del binding
         lvPatronesAsignados.itemsProperty().bindBidirectional(this.calibradoDuplicado.listaPatronesProperty());
         cbEcuacion.valueProperty().bindBidirectional(this.calibradoDuplicado.tipoRegresionProperty());
-        lbCoefCuad.textProperty().bindBidirectional(this.calibradoDuplicado.coefCuadraticoProperty(), new NumberStringConverter("0.000000000000000000000000"));
-        lbCoefLin.textProperty().bindBidirectional(this.calibradoDuplicado.coefLinealProperty(), new NumberStringConverter("0.000000000000000000000000"));
-        lbTermiInd.textProperty().bindBidirectional(this.calibradoDuplicado.terminoIndepProperty(), new NumberStringConverter("0.00000"));
-        lbR2.textProperty().bindBidirectional(this.calibradoDuplicado.coefDeterminacionProperty(), new NumberStringConverter("0.000000"));
+        //this.calibradoDuplicado.getEcuacion().tipoRegresionProperty().bind(cbEcuacion.valueProperty()); // Así la ecuacion del calibrado tambien tiene el mismo tipo de regresion siempre
+        
+        
+        
+        // En estos ya el binding no es bidireccional
+        lbCoefCuad.textProperty().bind(this.calibradoDuplicado.getEcuacion().coefCuadraticoProperty().asString());
+        lbCoefLin.textProperty().bind(this.calibradoDuplicado.getEcuacion().coefLinealProperty().asString());
+        lbTermiInd.textProperty().bind(this.calibradoDuplicado.getEcuacion().terminoIndepProperty().asString(Locale.US, "%.8f"));
+        lbR2.textProperty().bind(this.calibradoDuplicado.getEcuacion().coefDeterminacionProperty().asString(Locale.US, "%.8f"));
 
         //Asignamos los patrones del calibrado a la listview de "Patrones asignados"
         listaPatronesAsignados = calibradoDuplicado.getListaPatrones(); //Muestro los patrones de esta calibracion en la lista de patrones asignadosv
@@ -624,7 +630,7 @@ public class EditorCalibracionControlador {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                                calibradoDuplicado.ajustaCoeficientes("normal");
+                                calibradoDuplicado.getEcuacion().calculaCoeficientes(listaPatronesAsignados,calibradoDuplicado.getAjuste().getNombre(),calibradoDuplicado.getTipoRegresion());
                                 btAnalizarPatron.setText("ANALIZAR");
                             }
                         });

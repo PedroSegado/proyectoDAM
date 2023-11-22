@@ -1,4 +1,3 @@
-
 package com.pasegados.labo.modelos;
 
 import java.sql.SQLException;

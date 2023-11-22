@@ -147,9 +147,9 @@ public class GraficaControlador {
     private double calculaConcentracion(double cuentas, Calibrado calibrado) {
         double concentracion;
         if (calibrado.getTipoRegresion().equals("Cuadrática")) {
-            concentracion = (calibrado.getCoefCuadratico() * Math.pow(cuentas, 2)) + (calibrado.getCoefLineal() * cuentas) + calibrado.getTerminoIndep();
+            concentracion = (calibrado.getEcuacion().getCoefCuadratico() * Math.pow(cuentas, 2)) + (calibrado.getEcuacion().getCoefLineal() * cuentas) + calibrado.getEcuacion().getTerminoIndep();
         } else { // Lineal
-            concentracion = (calibrado.getCoefLineal() * cuentas) + calibrado.getTerminoIndep();
+            concentracion = (calibrado.getEcuacion().getCoefLineal() * cuentas) + calibrado.getEcuacion().getTerminoIndep();
         }
         return concentracion;
     }
@@ -159,11 +159,11 @@ public class GraficaControlador {
         String etiq;
 
         if (calibrado.getTipoRegresion().equals("Cuadrática")) {
-            etiq = "y = " + calibrado.getCoefCuadratico() + "x\u00B2 + " + calibrado.getCoefLineal() + "x + " + String.format("%.5f", calibrado.getTerminoIndep())
-                    + "\n" + "R\u00B2" + " = " + String.format("%.6f", calibrado.getCoefDeterminacion());
+            etiq = "y = " + calibrado.getEcuacion().getCoefCuadratico() + "x\u00B2 + " + calibrado.getEcuacion().getCoefLineal() + "x + " + String.format("%.5f", calibrado.getEcuacion().getTerminoIndep())
+                    + "\n" + "R\u00B2" + " = " + String.format("%.6f", calibrado.getEcuacion().getCoefDeterminacion());
         } else {
-            etiq = calibrado.getCoefLineal() + "x + " + String.format("%.5f", calibrado.getTerminoIndep())
-                    + "\n" + "R\u00B2" + " = " + String.format("%.6f", calibrado.getCoefDeterminacion());
+            etiq = calibrado.getEcuacion().getCoefLineal() + "x + " + String.format("%.5f", calibrado.getEcuacion().getTerminoIndep())
+                    + "\n" + "R\u00B2" + " = " + String.format("%.6f", calibrado.getEcuacion().getCoefDeterminacion());
         }
 
         etiq = etiq.replace("+ -", "- "); // para que la ecuación quede con los signos bien representadios, como siempre suma, eliminamos el + en caso de restar
