@@ -55,7 +55,7 @@
 		<fieldDescription><![CDATA[listaPatrones]]></fieldDescription>
 	</field>
 	<field name="coefDeterminacion" class="java.lang.Double">
-		<fieldDescription><![CDATA[coefDeterminacion]]></fieldDescription>
+		<fieldDescription><![CDATA[ecuacion.coefDeterminacion]]></fieldDescription>
 	</field>
 	<field name="ajuste" class="com.pasegados.labo.modelos.Ajuste">
 		<fieldDescription><![CDATA[ajuste]]></fieldDescription>
@@ -64,19 +64,19 @@
 		<fieldDescription><![CDATA[nombre]]></fieldDescription>
 	</field>
 	<field name="terminoIndep" class="java.lang.Double">
-		<fieldDescription><![CDATA[terminoIndep]]></fieldDescription>
+		<fieldDescription><![CDATA[ecuacion.terminoIndep]]></fieldDescription>
 	</field>
 	<field name="fecha" class="java.time.LocalDate">
 		<fieldDescription><![CDATA[fecha]]></fieldDescription>
 	</field>
 	<field name="coefCuadratico" class="java.lang.Double">
-		<fieldDescription><![CDATA[coefCuadratico]]></fieldDescription>
+		<fieldDescription><![CDATA[ecuacion.coefCuadratico]]></fieldDescription>
 	</field>
 	<field name="tipoRegresion" class="java.lang.String">
 		<fieldDescription><![CDATA[tipoRegresion]]></fieldDescription>
 	</field>
 	<field name="coefLineal" class="java.lang.Double">
-		<fieldDescription><![CDATA[coefLineal]]></fieldDescription>
+		<fieldDescription><![CDATA[ecuacion.coefLineal]]></fieldDescription>
 	</field>
 	<variable name="coeLin" class="java.lang.String">
 		<variableExpression><![CDATA[$F{coefLineal}.toString().startsWith("-") ? $F{coefLineal}.toString().replaceFirst("-"," - ") + "x" : " + " + $F{coefLineal}.toString() + "x"]]></variableExpression>
