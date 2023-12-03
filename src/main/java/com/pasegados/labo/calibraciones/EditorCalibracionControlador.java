@@ -269,11 +269,15 @@ public class EditorCalibracionControlador {
             calibradoOriginal.setAjuste(calibradoDuplicado.getAjuste());
             calibradoOriginal.setActivo(calibradoDuplicado.isActivo());
             calibradoOriginal.setTipoRegresion(calibradoDuplicado.getTipoRegresion());
-            calibradoOriginal.setEcuacion(calibradoDuplicado.getEcuacion());
+            //calibradoOriginal.setEcuacion(calibradoDuplicado.getEcuacion());
+            calibradoOriginal.getEcuacion().setCoefCuadratico(calibradoDuplicado.getEcuacion().getCoefCuadratico());
+            calibradoOriginal.getEcuacion().setCoefLineal(calibradoDuplicado.getEcuacion().getCoefLineal());
+            calibradoOriginal.getEcuacion().setTerminoIndep(calibradoDuplicado.getEcuacion().getTerminoIndep());
+            calibradoOriginal.getEcuacion().setCoefDeterminacion(calibradoDuplicado.getEcuacion().getCoefDeterminacion());
             calibradoOriginal.setListaPatrones(calibradoDuplicado.getListaPatrones());
             calibradoOriginal.actualizaPatronesString();
             calibradoOriginal.actualizaRangoString();
-            calibradoOriginal.getEcuacion().calculaCoeficientes(listaPatronesAsignados,calibradoOriginal.getAjuste().getNombre(),calibradoOriginal.getTipoRegresion());
+            //calibradoOriginal.getEcuacion().calculaCoeficientes(listaPatronesAsignados,cbAjusteEquipo.getValue(),cbEcuacion.getValue());
 
             aceptarPulsado = true; //para que desde el controlador TabCalibracionControlador sepamos que se ha pulsado aceptar            
             stage.close(); //Cerramos la ventana del editor de calibrado
@@ -283,6 +287,7 @@ public class EditorCalibracionControlador {
     // Si pulsamos "cancelar" no se guarda ningún cambio, simplemente se cierra la ventana
     @FXML
     private void cancelar(ActionEvent event) {
+        //calibradoOriginal.getEcuacion().calculaCoeficientes(calibradoOriginal.getListaPatrones(),calibradoOriginal.getAjuste().getNombre(),calibradoOriginal.getTipoRegresion());
         stage.close(); //Cerramos la ventana y no guardamos ningún cambio de calibradoDuplicado sobre el calilbradoOriginal
     }
 

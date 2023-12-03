@@ -284,8 +284,9 @@ public abstract class Alertas {
      */
     public static boolean alertaEliminaObjeto(String tipo, String valor) {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Eliminar " + tipo);
-        alert.setContentText("¿Estás seguro de eliminar el " + tipo + " " + valor + "?");
+        alert.setTitle("Eliminar");
+        alert.setHeaderText("Eliminar " + tipo);
+        alert.setContentText("¿Estás seguro de eliminar el " + tipo + " " + valor + "?" + "\n");
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
@@ -303,7 +304,8 @@ public abstract class Alertas {
      */
     public static boolean alertaEliminaObjeto(String tipo, String valor, String loUsan) {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Eliminar " + tipo);
+        alert.setTitle("Eliminar");
+        alert.setHeaderText("Eliminar " + tipo);
         alert.setContentText("¿Estás seguro de eliminar el " + tipo + " " + valor + "?" + "\n\n" + valor + " se usa en: " + loUsan);
         Optional<ButtonType> result = alert.showAndWait();
 
@@ -320,7 +322,7 @@ public abstract class Alertas {
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Eliminar Ajuste usado en calibrado");
         alert.setHeaderText("El ajuste " + valor + " se usa en al menos un calibrado");
-        alert.setContentText("Revisar los calibrados afectados y eliminarlos o cambiar su ajuste previamente al borrado de este ajuste" + "\n");
+        alert.setContentText("Revisar los calibrados afectados y eliminarlos o cambiar su ajuste previamente al borrado de este ajuste. \n\n");
 
         alert.showAndWait();
     }
@@ -329,10 +331,10 @@ public abstract class Alertas {
      * Tras eliminar un patron, hay calibrados que no tienen suficientes para mantener su tipo de regresión
      */
     public static void alertaCalibradoFaltanPatrones(String nombrePatron, String nombreCalibrado) {
-        alert.setAlertType(Alert.AlertType.WARNING);
+        alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Revisar Calibrado");
         alert.setHeaderText("El borrado del patrón " + nombrePatron + " afecta al calibrado " + nombreCalibrado);
-        alert.setContentText("Revisar el calibrado " + nombreCalibrado + " y ajustar el tipo de regresión y/o el número de patrones asignados a la misma.");
+        alert.setContentText("Revisar el calibrado " + nombreCalibrado + " y ajustar el tipo de regresión y/o el número de patrones asignados a la misma. \n\n");
 
         alert.showAndWait();
     }

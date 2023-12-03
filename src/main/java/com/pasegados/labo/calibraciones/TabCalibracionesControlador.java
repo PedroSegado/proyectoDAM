@@ -431,7 +431,7 @@ public class TabCalibracionesControlador {
                         }
                     }
                 }
-            }          
+            }            
         } else { // No se ha seleccionado nada en la lista
             Alertas.alertaErrorModificar("calibrado");
         }

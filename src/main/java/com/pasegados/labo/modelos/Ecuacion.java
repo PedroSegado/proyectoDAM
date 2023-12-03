@@ -17,7 +17,7 @@ import org.apache.commons.math3.fitting.WeightedObservedPoints;
  *
  * @author paseg
  */
-public class Ecuacion {
+public class Ecuacion implements Cloneable {
     
     private DoubleProperty coefCuadratico;
     private DoubleProperty coefLineal;
@@ -31,7 +31,18 @@ public class Ecuacion {
         this.coefDeterminacion = new SimpleDoubleProperty(0); 
     }
     
+    @Override
+    public Object clone() {
+        Ecuacion obj = new Ecuacion();
+
+        obj.setCoefCuadratico(this.getCoefCuadratico());
+        obj.setCoefLineal(this.getCoefLineal());
+        obj.setTerminoIndep(this.getTerminoIndep());
+        obj.setCoefDeterminacion(this.getCoefDeterminacion());
+        return obj;
+    }
     
+
     /**
      * Devuelve el coeficiente cuadrático de la ecuación de segundo grado, o 0 si es lineal
      * 

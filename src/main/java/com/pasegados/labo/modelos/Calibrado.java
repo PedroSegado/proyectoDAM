@@ -86,7 +86,7 @@ public class Calibrado implements Cloneable {
         obj.setMinimo(this.minimo.getValue());
         obj.setMaximo(this.maximo.getValue());
         obj.setTipoRegresion(this.tipoRegresion.getValue());    
-        obj.setEcuacion(this.ecuacion.getValue());   
+        obj.setEcuacion((Ecuacion)this.ecuacion.getValue().clone());   
 
         return obj;
     }
