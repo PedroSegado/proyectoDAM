@@ -7,6 +7,7 @@ import com.pasegados.labo.configuracion.TabConfiguracionControlador;
 import com.pasegados.labo.modelos.Alertas;
 import com.pasegados.labo.resultados.TabResultadosControlador;
 import com.pasegados.labo.utilidades.TabUtilidadesControlador;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.application.Application;
@@ -38,7 +39,7 @@ public class App extends Application {
     private Stage stage; // Stage creado por si hay que reiniciar la App actuar sobre el mismo    
     private static boolean primerInicio = true; // controla si es la primera ejecucion, o si ha reiniciado tras algun cambio en la BBDD
     private boolean splashActiva = false;
-    private static App app; // Devuelve esta clase, por si hay que llamar al metodo de reiniciarla
+    private static App app; // Devuelve esta clase de inicio, por si hay que llamar al metodo de reiniciar la App
 
     public static void main(String[] args) {
         launch(args);
@@ -47,7 +48,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage; // Almaceno el escenario por si hay que reiniciar la app
-        App.app = this; // asigno esta instancia Main a la variable statica, para acceder desde otras clases (recargar la app)
+        App.app = this; // asigno esta instancia App a la variable statica, para acceder desde otras clases (recargar la app)
 
         if (primerInicio) {
             if (!splashActiva) {
@@ -66,8 +67,8 @@ public class App extends Application {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage splashStage = new Stage();
-            splashStage.getIcons().add(new Image(App.class.getResourceAsStream("xray32.png")));
-  
+            splashStage.getIcons().add(new Image(App.class.getResourceAsStream("xray32.png"))); // icono de la ventana
+
             splashStage.initStyle(StageStyle.UNDECORATED);
             splashStage.setScene(scene);
             splashActiva = true;
@@ -94,28 +95,24 @@ public class App extends Application {
     private void mostrarVentanaPrincipal() {
         //Comprobamos existencia BBDD: si existe podemos iniciar el programa               
         if (Conexion.getINSTANCIA().existeBBDD()) {
-            LOGGER.info("Iniciando carga de la aplicación ...");
-            generaVentana();
-        
+            LOGGER.info("Iniciando carga de la aplicación ...");      
         } else { // No existe la BBDD, vamos a crearla            
             boolean crearBBDD = Alertas.alertaCrearNuevaBBDD();
             if (crearBBDD) {
                 try {
                     Conexion.getINSTANCIA().crearEstructura(); // Patron singleton, una única instancia de Conexion
-                    Alertas.alertaBBDDCreada();
-                    generaVentana();
+                    Alertas.alertaBBDDCreada(); // alerta creada con éxito                    
                 } catch (SQLException ex) {
                     LOGGER.fatal("Error al crear la BBDD" + "\n" + ex.getMessage());
                     Alertas.alertaBBDDErrorCrear();
+                    borrarBD();
+                    System.exit(0); // cerramos porque no se ha generado correctamente la BD
                 }
-            } else {
-                //el ususario ha cancelado la creacion de la BBDD, se cerrará la aplicación al terminar este hilo
+            } else { //el ususario ha cancelado la creacion de la BBDD, se cerrará la aplicación al terminar este hilo                
                 System.exit(0);
             }
         }
-    }
-
-    private void generaVentana() {
+        // Llegado a este punto podemos generar la ventana
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TabView.fxml"));
             Parent root = loader.load();
@@ -145,6 +142,7 @@ public class App extends Application {
     }
 
     // GETTERS Y SETTERS CONTROLADORES PRINCIPAL Y DE CADA UNA DE LAS PESTAÑAS
+    
     /**
      * Este método devuelve el controlador principal que contiene las pestañas
      *
@@ -273,5 +271,27 @@ public class App extends Application {
      */
     public static App getApp() {
         return app;
-    }    
+    }
+
+    // Borra la parte de BBDD que se haya creado, si ha surgido un error durante la creación de su estructura
+    private void borrarBD() {
+        try {
+            Conexion.getINSTANCIA().iniciarConexion();
+            Conexion.getINSTANCIA().cerrarBase(); // Cierra
+            Conexion.getINSTANCIA().detenerConexion();
+        } catch (SQLException ex) {
+            LOGGER.fatal("Error al crear BBDD la primera vez y borrar lo creado: " + ex.getMessage());
+        }
+
+        File directorioBaseDeDatos = new File("./bbdd");
+        File[] archivos = directorioBaseDeDatos.listFiles();
+
+        if (archivos != null) {
+            for (File archivo : archivos) {
+                archivo.delete();
+            }
+        }
+        // Borra el directorio
+        directorioBaseDeDatos.delete();
+    }
 }

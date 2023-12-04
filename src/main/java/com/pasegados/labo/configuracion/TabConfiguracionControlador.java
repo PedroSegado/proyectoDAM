@@ -18,7 +18,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
-import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -115,12 +114,12 @@ public class TabConfiguracionControlador {
     public void initialize() {
         App.setControladorConfiguracion(this); // Establecemos en la clase App que este es el controlador FXML del la Tab Configuracion        
         // Filtros de los textFields
-        tfPulsaciones.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(1000))); // tiempo entre pulsaciones maximo permitido de 1000 ms
+        tfPulsaciones.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(2000))); // tiempo entre pulsaciones maximo permitido de 2000 ms
         tfPreAcond.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(20000))); // tiempo preacondicionamiento maximo 20000 ms
         tfAcond.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(20))); // tiempo acondicionamiento maximo 20 s
         tfPreEnerg.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(10000))); // tiempo preenergia maximo 10000 ms
         tfEner.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(20))); // tiempo energia maximo 20 s
-        tfPreMed.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(10000))); // tiempo premedidao maximo 10000 ms
+        tfPreMed.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(10000))); // tiempo premedida maximo 10000 ms
         //Combobox PUERTOS + Busca puertos COM en el equipo
         for (SerialPort port : PORTS) {
             listaPuertos.add(port.getSystemPortName()); //añade los nombres de los puertos a la lista
@@ -203,6 +202,8 @@ public class TabConfiguracionControlador {
         }
     }
 
+    // ----- AJUSTES ------ //
+    
     // Abre el editor de ajustes para crear un nuevo Ajuste
     @FXML
     private void nuevoAjuste(ActionEvent event) {
@@ -352,44 +353,10 @@ public class TabConfiguracionControlador {
 
         return false; // Si llegamos aqui el usuario a cancelado o cerrado la ventana sin aceptar
     }
-
-    // OTROS METODOS NO FXML
-    /**
-     * Este método devuelve el Puerto creado por este controlador de la pestaña "Configuración".
-     *
-     *
-     * @return Puerto configurado tal y como vemos en la pestaña
-     */
-    public Puerto getPuerto() {
-        return puerto;
-    }
-
-    /**
-     * Este método devuelve la Configuracion relativa al funcionamiento del equipo, tal y como aparece en la pestaña
-     * "Configuracion".
-     *
-     *
-     * @return Configuración con los atributos tal y como vemos en la pestaña
-     */
-    public Configuracion getConfiguracion() {
-        return config;
-    }
-
-    /**
-     * Este método recibe la lista de objetos Ajuste para trabajar en su gestión desde la pestaña "Configuración
-     *
-     *
-     * @param listaAjustes ObservableList de objetos Ajuste rescatada desde la BBDD al inicio del programa
-     */
-    public void setListaAjustes(ObservableList<Ajuste> listaAjustes) {
-        this.listaAjustes = listaAjustes;
-        lvAjustes.setItems(this.listaAjustes);
-    }
-
     
-    /**
-     * Este método permite borrar la BBDD en uso, eliminando los archivos del equipo.
-     */
+    // ------ BBDD ------ //       
+    
+    // Este método permite borrar la BBDD en uso, eliminando los archivos del equipo.    
     @FXML
     private void borrarBBDD(ActionEvent event) {
         // Antes de borrar indicaremos que es conveniente hacer copia de seguridad
@@ -426,11 +393,13 @@ public class TabConfiguracionControlador {
         }
     }
 
+    // Este método realiza la copia de seguridad al pulsar el botón en la interfaz
     @FXML
     private void realizarCopia(ActionEvent event) {
         copiaSeguridadBBDD(false);
     }
 
+    // Para realizar copia tanto desde el método realizarCopia() como desde el borrarBBDD() si el usuario lo indica
     private boolean copiaSeguridadBBDD(boolean borradoPrevio) {
         // Solicitaremos confirmación al usuario, salvo que la haya dado anteriormente porque iba a borrar la bbdd
         boolean copia;
@@ -468,6 +437,7 @@ public class TabConfiguracionControlador {
         return false;
     }
 
+    // Este método restaura la BD a un estado anterior a partir de una copia seleccionada por el usuario
     @FXML
     private void restaurarCopia(ActionEvent event) {
         // Si el directorio de copias no existe, lo creamos para usarlo en el futuro
@@ -496,23 +466,59 @@ public class TabConfiguracionControlador {
                     }
                 }
                 
-                //Alerta exito indicando que se va a reiniciar
+                Alertas.alertaRestaurarExito(directorioCopia.getPath());
                 App.getApp().reiniciar(); // Reiniciamos la app para que cargue los datos nuevos
             } catch (SQLException ex) {
                 LOGGER.fatal("Error al restaurar BBDD " + directorioCopia.getAbsolutePath() + ": " + ex.getMessage());
-                //Alerta fallo
+                Alertas.alertaRestaurarFracaso(ex.getMessage());
             }           
         }
     }
 
+    // Este método elimina todos los resultados registrados, manteniendo calibrados, patrones y ajustes.
     @FXML
     private void eliminarResultadosBBDD(ActionEvent event) {
         try {
-            CNR.eliminaAnalisis();            
-            //Alerta exito indicando que se va a reiniciar
-                App.getApp().reiniciar(); // Reiniciamos la app para que cargue los datos nuevos
+            CNR.eliminaAnalisis();    
+            Alertas.alertaBorrarResultadosExito();            
+            App.getApp().reiniciar(); // Reiniciamos la app para que cargue los datos nuevos
         } catch (SQLException ex) {
-           // java.util.logging.Logger.getLogger(TabConfiguracionControlador.class.getName()).log(Level.SEVERE, null, ex);
+           LOGGER.fatal("Error al eliminar resultados de BBDD: " + ex.getMessage());
+           Alertas.alertaBorrarResultadosFracaso(ex.getMessage());
         }
+    }
+        
+    // OTROS METODOS NO FXML
+    
+    /**
+     * Este método devuelve el Puerto creado por este controlador de la pestaña "Configuración".
+     *
+     *
+     * @return Puerto configurado tal y como vemos en la pestaña
+     */
+    public Puerto getPuerto() {
+        return puerto;
+    }
+
+    /**
+     * Este método devuelve la Configuracion relativa al funcionamiento del equipo, tal y como aparece en la pestaña
+     * "Configuracion".
+     *
+     *
+     * @return Configuración con los atributos tal y como vemos en la pestaña
+     */
+    public Configuracion getConfiguracion() {
+        return config;
+    }
+
+    /**
+     * Este método recibe la lista de objetos Ajuste para trabajar en su gestión desde la pestaña "Configuración
+     *
+     *
+     * @param listaAjustes ObservableList de objetos Ajuste rescatada desde la BBDD al inicio del programa
+     */
+    public void setListaAjustes(ObservableList<Ajuste> listaAjustes) {
+        this.listaAjustes = listaAjustes;
+        lvAjustes.setItems(this.listaAjustes);
     }
 }

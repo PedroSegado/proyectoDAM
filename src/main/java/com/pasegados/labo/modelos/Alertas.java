@@ -229,10 +229,43 @@ public abstract class Alertas {
         return directorioCopia;    
     }
         
+    // Informa de que se ha restaurado correctamente desde la copia de la bbdd
+    public static void alertaRestaurarExito(String directorio) {
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información BBDD");
+        alert.setHeaderText("Restauración realizada correctamente");
+        alert.setContentText("Se ha recuperado la copia guardada en " + directorio + "." + "\n\n");                
+        alert.showAndWait();
+    }
+
+    // Informa de Error durante la restauracion de la bbdd desde una copia
+    public static void alertaRestaurarFracaso(String error) {
+        alert.setAlertType(Alert.AlertType.ERROR);
+        alert.setTitle("Información BBDD");
+        alert.setHeaderText("Error al intentar restaurar la copia de seguridad");
+        alert.setContentText("Ha surgido un problema durante el proceso de restauración de la copia de seguridad. "
+                + "No se garantiza que se haya completado correctamente: " + "\n\n" + error + "\n\n");                
+        alert.showAndWait();
+    }
     
-    
-    
-    
+    // Informa de que se han borrado correctamente los resultado
+    public static void alertaBorrarResultadosExito() {
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información BBDD");
+        alert.setHeaderText("Borrado realizado correctamente");
+        alert.setContentText("Se ha eliminado todos los registros de los ánalisis." + "\n\n");                
+        alert.showAndWait();
+    }
+
+    // Informa de Error durante la restauracion de la bbdd desde una copia
+    public static void alertaBorrarResultadosFracaso(String error) {
+        alert.setAlertType(Alert.AlertType.ERROR);
+        alert.setTitle("Información BBDD");
+        alert.setHeaderText("Error al intentar borrar los ánalisis");
+        alert.setContentText("Ha surgido un problema durante el borrado de los análisis. "
+                + "No se garantiza que se haya completado correctamente: " + "\n\n" + error + "\n\n");                
+        alert.showAndWait();
+    }
     
     
     

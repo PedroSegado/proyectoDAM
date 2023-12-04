@@ -2,7 +2,6 @@ package com.pasegados.labo.configuracion;
 
 import com.pasegados.labo.App;
 import com.pasegados.labo.modelos.Ajuste;
-import com.pasegados.labo.modelos.Ajuste;
 import com.pasegados.labo.modelos.Alertas;
 import com.pasegados.labo.modelos.Filtros;
 import javafx.event.ActionEvent;
@@ -62,14 +61,12 @@ public class EditorAjusteControlador {
      * Inicializa automaticamente el controlador al crear el objeto, ejecutándose su contenido.
      */
     public void initialize() {
-        
-       
         // Control de entrada solo numérico y máximo valor en textfield de duración (300s max)
         tfDuracion.setTextFormatter(new TextFormatter<>(Filtros.getNumeroFilter(300)));
         
-        SpinnerValueFactory<Integer> valorPaginaAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,9,1);
+        SpinnerValueFactory<Integer> valorPaginaAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,9,1);
         SpinnerValueFactory<Integer> valorPaginaCalibracion = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,9,1);
-        SpinnerValueFactory<Integer> valorMenuAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,2,1);
+        SpinnerValueFactory<Integer> valorMenuAnalisis = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,2,1);
         SpinnerValueFactory<Integer> valorMenuCalibracion = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,2,1);
         
         spAnalisisPagina.setValueFactory(valorPaginaAnalisis);
@@ -89,15 +86,13 @@ public class EditorAjusteControlador {
     private void aceptar(ActionEvent event) {
         if (isInputValid()) { // Si tenemos los campos necesarios y son correctos
             // Ajustamos los atributos del objeto original con lo indicados en pantalla sobre el duplicado
-            ajusteOriginal.setNombre(ajusteDuplicado.getNombre());
-            
+            ajusteOriginal.setNombre(ajusteDuplicado.getNombre());            
+            ajusteOriginal.setDuracion(ajusteDuplicado.getDuracion());
             ajusteOriginal.setAnalisisMenu(ajusteDuplicado.getAnalisisMenu());
             ajusteOriginal.setAnalisisPagina(ajusteDuplicado.getAnalisisPagina());
             ajusteOriginal.setCalibracionMenu(ajusteDuplicado.getCalibracionMenu());
-            ajusteOriginal.setCalibracionPagina(ajusteDuplicado.getCalibracionPagina());
-                        
-            ajusteOriginal.setDuracion(ajusteDuplicado.getDuracion());
-
+            ajusteOriginal.setCalibracionPagina(ajusteDuplicado.getCalibracionPagina());                        
+            
             aceptarPulsado = true;
             //Cerramos la ventana del editor de ajustes
             stage.close();
@@ -144,7 +139,7 @@ public class EditorAjusteControlador {
         spCalibracionPagina.getValueFactory().valueProperty().bindBidirectional(this.ajusteDuplicado.calibracionPaginaProperty().asObject());
                
         tfDuracion.textProperty().bindBidirectional(this.ajusteDuplicado.tiempoProperty(), new NumberStringConverter("0"));
-        if (tfDuracion.textProperty().getValue().equals("0,0000")) {
+        if (tfDuracion.textProperty().getValue().equals("0")) {
             tfDuracion.setText("");
         }
     }

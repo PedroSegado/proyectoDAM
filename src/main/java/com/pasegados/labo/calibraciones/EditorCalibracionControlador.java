@@ -134,7 +134,9 @@ public class EditorCalibracionControlador {
 
         //Combo ajustes, con los existentes en la pestaña configuración
         for (Ajuste a : App.getControladorPrincipal().getListaAjustes()) {
-            LISTA_AJUSTES.add(a.getNombre());
+            if (a.getAnalisisPagina()!=0 & a.getAnalisisMenu()!=0){ // Solo añadiremos ajustes activos en el menú analisis del equipo, es decir con atributo analisisPagina y analisisMenu distinto a 0
+                LISTA_AJUSTES.add(a.getNombre());
+            }            
         }
         cbAjusteEquipo.setItems(LISTA_AJUSTES);
 
@@ -268,16 +270,14 @@ public class EditorCalibracionControlador {
             calibradoOriginal.setFecha(calibradoDuplicado.getFecha());
             calibradoOriginal.setAjuste(calibradoDuplicado.getAjuste());
             calibradoOriginal.setActivo(calibradoDuplicado.isActivo());
-            calibradoOriginal.setTipoRegresion(calibradoDuplicado.getTipoRegresion());
-            //calibradoOriginal.setEcuacion(calibradoDuplicado.getEcuacion());
+            calibradoOriginal.setTipoRegresion(calibradoDuplicado.getTipoRegresion());            
             calibradoOriginal.getEcuacion().setCoefCuadratico(calibradoDuplicado.getEcuacion().getCoefCuadratico());
             calibradoOriginal.getEcuacion().setCoefLineal(calibradoDuplicado.getEcuacion().getCoefLineal());
             calibradoOriginal.getEcuacion().setTerminoIndep(calibradoDuplicado.getEcuacion().getTerminoIndep());
             calibradoOriginal.getEcuacion().setCoefDeterminacion(calibradoDuplicado.getEcuacion().getCoefDeterminacion());
             calibradoOriginal.setListaPatrones(calibradoDuplicado.getListaPatrones());
             calibradoOriginal.actualizaPatronesString();
-            calibradoOriginal.actualizaRangoString();
-            //calibradoOriginal.getEcuacion().calculaCoeficientes(listaPatronesAsignados,cbAjusteEquipo.getValue(),cbEcuacion.getValue());
+            calibradoOriginal.actualizaRangoString();            
 
             aceptarPulsado = true; //para que desde el controlador TabCalibracionControlador sepamos que se ha pulsado aceptar            
             stage.close(); //Cerramos la ventana del editor de calibrado
@@ -324,8 +324,7 @@ public class EditorCalibracionControlador {
                 LOGGER.fatal("CALIBRACION: Error al recuprara las cuentas del calibrado " + calibradoDuplicado.getNombre()
                         + " con el ajuste " + calibradoDuplicado.getAjuste().getNombre() + "\n" + ex.getMessage());
             }
-            if (p.getCuentas() == 0) { //Si algún patrón no ha sido analizado para ese ajuste
-                //listaPatronesAsignados.remove(p); //lo elimino de la lista porque no se puede usar                
+            if (p.getCuentas() == 0) { //Si algún patrón no ha sido analizado para ese ajuste                
                 cbEcuacion.setValue("Seleccionar...");
             }
         });
