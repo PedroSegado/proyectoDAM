@@ -92,13 +92,13 @@ public class Conexion implements Cloneable {
                                                 + "analisisMenu INT NOT NULL, "
                                                 + "calibracionPagina INT NOT NULL, "
                                                 + "calibracionMenu INT NOT NULL, "
-                                                + "tiempo INT CONSTRAINT Chk_Aj_NotNullAndRange CHECK (tiempo IS NOT NULL AND tiempo BETWEEN 10 AND 300))";
+                                                + "tiempo INT CHECK (tiempo IS NOT NULL AND tiempo BETWEEN 5 AND 300))";
         st.execute(tablaAjuste);
                 
         String tablaCalibraciones = "CREATE TABLE Calibracion (nombre VARCHAR(32) PRIMARY KEY, "
                                                                + "fecha DATE NULL, "
                                                                + "activo BOOLEAN NOT NULL, "
-                                                               + "ajuste VARCHAR(32) NULL, "
+                                                               + "ajuste VARCHAR(32) UNIQUE NULL, "
                                                                + "tipoRegresion VARCHAR(16) NULL, "
                                                                + "FOREIGN KEY (ajuste) REFERENCES Ajuste(nombre) ON UPDATE CASCADE ON DELETE SET NULL)";
         st.execute(tablaCalibraciones);
